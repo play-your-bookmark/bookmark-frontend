@@ -1,0 +1,138 @@
+{
+  "mainCategory": [
+    {
+      "type": "Main",
+      "name": "Language",
+      "subCategory": [
+        {
+          "type": "Sub",
+          "name": "JavaScript"
+        },
+        {
+          "type": "Sub",
+          "name": "Kotlin"
+        },
+        {
+          "type": "Sub",
+          "name": "Java"
+        },
+        {
+          "type": "Sub",
+          "name": "Typescript"
+        },
+        {
+          "type": "Sub",
+          "name": "Go"
+        },
+        {
+          "type": "Sub",
+          "name": "Python"
+        },
+        {
+          "type": "Sub",
+          "name": "Scala"
+        },
+        {
+          "type": "Sub",
+          "name": "C++"
+        },
+        {
+          "type": "Sub",
+          "name": "Swift"
+        }
+      ]
+    },
+    {
+      "type": "Main",
+      "name": "Frontend",
+      "subCategory": [
+        {
+          "type": "Sub",
+          "name": "ReactJS"
+        },
+        {
+          "type": "Sub",
+          "name": "Redux"
+        },
+        {
+          "type": "Sub",
+          "name": "VueJS"
+        },
+        {
+          "type": "Sub",
+          "name": "AngularJS"
+        },
+        {
+          "type": "Sub",
+          "name": "NextJS"
+        },
+        {
+          "type": "Sub",
+          "name": "Mobx"
+        },
+        {
+          "type": "Sub",
+          "name": "Recoil"
+        },
+        {
+          "type": "Sub",
+          "name": "OpenQL"
+        },
+        {
+          "type": "Sub",
+          "name": "Storybook"
+        },
+        {
+          "type": "Sub",
+          "name": "GraphQL"
+        }
+      ]
+    },
+    {
+      "type": "Main",
+      "name": "Backend",
+      "subCategory": [
+        {
+          "type": "Sub",
+          "name": "NodeJS"
+        },
+        {
+          "type": "Sub",
+          "name": "ExpressJS"
+        },
+        {
+          "type": "Sub",
+          "name": "Spring"
+        },
+        {
+          "type": "Sub",
+          "name": "Apollo"
+        },
+        {
+          "type": "Sub",
+          "name": "Koa"
+        },
+        {
+          "type": "Sub",
+          "name": "Liquibase"
+        },
+        {
+          "type": "Sub",
+          "name": "Netty"
+        },
+        {
+          "type": "Sub",
+          "name": "Relay"
+        },
+        {
+          "type": "Sub",
+          "name": "GRPC"
+        },
+        {
+          "type": "Sub",
+          "name": "Netty"
+        }
+      ]
+    }
+  ]
+}
