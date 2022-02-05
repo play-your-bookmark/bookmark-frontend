@@ -7,7 +7,7 @@ const req = (
   url,
   callback = () => {},
   { params = {}, data = {}, headers = {}, responseType = "json" },
-  is_based = true,
+  is_based = false,
 ) => {
       const accessToken = Cookies.get("accessToken") || undefined;
       return axios({

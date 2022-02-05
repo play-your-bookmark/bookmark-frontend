@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCreatedFolder } from "../../redux/slices/folderSlices";
 import { addFolder, addLink, buildTree, relocateFolder, removeFolder, removeLink } from "../../utils/tree"
 import CATEGORY from "../../utils/category.json"
 
 export default function Tree () {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCreatedFolder())
+  }, []);
   /* 
   1. build tree 
   const folderTree = buildTree(0, []);
