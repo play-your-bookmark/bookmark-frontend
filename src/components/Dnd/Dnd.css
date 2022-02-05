@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.data-box {
+  display: flex;
+  width: 100%;
+  background-color: burlywood;
+  max-width: 700px;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.drag-target {
+  cursor: grabbing;
+}
+
+.data-box .folder {
+  padding: 5px 25px;
+  margin-top: 10px;
+  background-color: #cccccc;
+  cursor: grab;
+}
+
+.drag-target {
+  background-color: blue;
+  opacity: 0.4;
+}
