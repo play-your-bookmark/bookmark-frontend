@@ -4,19 +4,18 @@ import styled from "styled-components";
 import FOLDERS from "../../utils/folders.json";
 import { dragOver, dragStart, dragEnd, drop } from "../../utils/dnd";
 import { buildTree } from "../../utils/tree";
-import { fetchCreatedFolder, moveFolder } from "../../redux/slices/folderSlices";
+import folderSlices, { fetchCreatedFolder, moveFolder } from "../../redux/slices/folderSlices";
 import { useDispatch, useSelector } from "react-redux";
 
 function Dnd() {
   //const [ folderList, setFolderList ] = useState(FOLDERS);
   const dispatch = useDispatch();
+  const folderList = useSelector(state => state.folder.folderList);
 
   useEffect(() => {
     dispatch(fetchCreatedFolder());
   }, []);
 
-  const folderList = useSelector(state => state.folder.folderList);
-  console.log(folderList);
   const [ grabFolder, setGrabFolder ] = useState(null);
 
   useEffect(() => {
@@ -54,7 +53,7 @@ function Dnd() {
         <div className="data-box">
           <ul>
             root
-          {folderList.map((folder, index) => {
+          {Object.values(folderList).map((folder, index) => {
             if (folder.parent_folder === undefined) {
               return null;
             }
@@ -80,7 +79,7 @@ function Dnd() {
         <div className="data-box">
         <ul>
           search history
-          {folderList.map((folder, index) => {
+          {Object.values(folderList).map((folder, index) => {
             if (folder.parent_folder === undefined) {
               return null;
             }

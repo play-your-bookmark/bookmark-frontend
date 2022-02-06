@@ -22,7 +22,7 @@ export const drop = (targetFolder, folderList, grabFolder) => {
   const grabFolderIndex = folderList.findIndex(folder => folder.id === grabFolderId);
 
   //css조작
-  targetFolder.appendChild(grabFolder);
+  //targetFolder.appendChild(grabFolder);
   grabFolder.style.display = "block";
 
   return grabFolderIndex;
