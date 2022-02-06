@@ -13,11 +13,11 @@ export const buildTree = (level, folderTree) => {
         temp.push([FOLDERS[i].id, FOLDERS[i].title, FOLDERS[i].bookmark]);
       }
     }
-  
+
     for (let i = 3; i < temp.length; i++) {
       const subTree = temp[i];
       buildTree(level + 1, subTree);
-    }  
+    }
 
     return folderTree;
   }
