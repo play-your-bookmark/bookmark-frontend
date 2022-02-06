@@ -10,21 +10,18 @@ body {
 .container {
   display: flex;
   width: 100%;
+  margin: 10px 10px;
 }
 
 .data-box {
   display: flex;
   width: 100%;
-  background-color: burlywood;
+  background-color: rgb(235, 223, 207);
   max-width: 700px;
   height: 100vh;
   overflow: hidden;
   margin: 0 auto;
   padding: 15px;
-}
-
-.drag-target {
-  cursor: grabbing;
 }
 
 .data-box .folder {
@@ -37,4 +34,5 @@ body {
 .drag-target {
   background-color: blue;
   opacity: 0.4;
+  cursor: grabbing;
 }

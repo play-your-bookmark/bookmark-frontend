@@ -9,13 +9,14 @@ function Dnd() {
   const [ folderList, setFolderList ] = useState(FOLDERS);
   const [ grabFolder, setGrabFolder ] = useState(null);
 
-  useEffect(() => {
-    const initialTree = (folderList) => {
-      console.log(buildTree(0, []));
-    };
+  //buildTree 메서드 테스트
+  // useEffect(() => {
+  //   const initialTree = (folderList) => {
+  //     console.log(buildTree(0, []));
+  //   };
 
-    initialTree(folderList);
-  }, [folderList]);
+  //   initialTree(folderList);
+  // }, [folderList]);
 
   const handleDragOver = (e) => {
     dragOver(e);
@@ -52,7 +53,7 @@ function Dnd() {
 
           return (
             <li
-            key={index}
+              key={index}
               className="folder"
               data-id={folder.id}
               data-parent={folder.parent_folder}
@@ -61,7 +62,7 @@ function Dnd() {
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
               onDrop={handleDrop}
-              >
+            >
               {folder.title}
             </li>
           );
@@ -87,8 +88,9 @@ function Dnd() {
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
               onDrop={handleDrop}
-              >
+            >
               {folder.title}
+              <li></li>
             </li>
           );
         })}
