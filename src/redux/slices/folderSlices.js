@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import req from "../../utils/api";
+// import req from "../../utils/api"; 
+// -> 서버 구축 이후 my_created_folder 불러올 때 사용
+// -> 현재는 public folder에 넣어둔 folderCopy.json mock data 사용 중 
 
 export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
@@ -9,7 +11,7 @@ export const fetchCreatedFolder = createAsyncThunk(
       const { data } = await axios.get("/foldersCopy.json");
       return data;
     } catch (error) {
-      return error;
+      return rejectWithValue(error.response.data);
     }
   },
 )

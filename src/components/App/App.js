@@ -1,16 +1,10 @@
-import React from "react";
-import Tree from "../Tree/Tree";
-import LinkList from '../Link/LinkList';
-import Dnd from "../Dnd/Dnd";
+import { useRoutes } from "react-router-dom"
+import routes from "./routes";
 
-function App() {
-  return (
-    <div className="App">
-      <Tree />
-      <LinkList />
-      <Dnd />
-    </div>
-  );
+function App({ auth }) {
+  const routing = useRoutes(routes(auth));
+
+  return routing;
 }
 
 export default App;
