@@ -13,6 +13,7 @@ const routes = (auth) => [
     children: [
       { path: "/app/rankpage", element: <RankPage />},
       { path: "/app/editpage", element: <FolderEditPage />},
+      { path: "/", element: <Navigate to="/app/rankpage" />}
     ]
   },
   {
