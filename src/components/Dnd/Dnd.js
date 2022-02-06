@@ -4,19 +4,25 @@ import styled from "styled-components";
 import FOLDERS from "../../utils/folders.json";
 import { dragOver, dragStart, dragEnd, drop } from "../../utils/dnd";
 import { buildTree } from "../../utils/tree";
+import { fetchCreatedFolder, moveFolder } from "../../redux/slices/folderSlices";
+import { useDispatch, useSelector } from "react-redux";
 
 function Dnd() {
-  const [ folderList, setFolderList ] = useState(FOLDERS);
+  //const [ folderList, setFolderList ] = useState(FOLDERS);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCreatedFolder());
+  }, []);
+
+  const folderList = useSelector(state => state.folder.folderList);
+  console.log(folderList);
   const [ grabFolder, setGrabFolder ] = useState(null);
 
-  // buildTree 메서드 테스트
-  // useEffect(() => {
-  //   const initialTree = (folderList) => {
-  //     console.log(buildTree(0, []));
-  //   };
-
-  //   initialTree(folderList);
-  // }, [folderList]);
+  useEffect(() => {
+    console.log("변경");
+    console.log(folderList);
+  }, [folderList]);
 
   const handleDragOver = (e) => {
     dragOver(e);
@@ -36,8 +42,9 @@ function Dnd() {
     const targetLocation = e.target.dataset.id;
 
     if (targetLocation !== grabLocation) {
-      const modifiedList = drop(e.target, folderList, grabFolder);
-      setFolderList(modifiedList);
+      const targetId = e.target.dataset.id;
+      const grabFolderIndex = drop(e.target, folderList, grabFolder);
+      dispatch(moveFolder({ targetId, grabFolderIndex }));
     }
   }
 
@@ -47,7 +54,7 @@ function Dnd() {
         <div className="data-box">
           <ul>
             root
-          {FOLDERS.map((folder, index) => {
+          {folderList.map((folder, index) => {
             if (folder.parent_folder === undefined) {
               return null;
             }
@@ -73,7 +80,7 @@ function Dnd() {
         <div className="data-box">
         <ul>
           search history
-          {FOLDERS.map((folder, index) => {
+          {folderList.map((folder, index) => {
             if (folder.parent_folder === undefined) {
               return null;
             }
@@ -91,7 +98,7 @@ function Dnd() {
                 onDrop={handleDrop}
               >
                 {folder.title}
-                <li></li>
+
               </li>
             );
           })}

@@ -19,6 +19,12 @@ export const fetchCreatedFolder = createAsyncThunk(
 const folderSlices = createSlice({
   name: "folders",
   initialState: {},
+  reducers: {
+    moveFolder: (state, action) => {
+      const { targetId, grabFolderIndex } = action.payload;
+      state.folderList[grabFolderIndex] = targetId;
+    },
+  },
   extraReducers: {
     [fetchCreatedFolder.pending]: (state, action) => {
       state.loading = true;
@@ -34,4 +40,5 @@ const folderSlices = createSlice({
   }
 })
 
+export const { moveFolder } = folderSlices.actions;
 export default folderSlices.reducer;

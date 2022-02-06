@@ -19,12 +19,11 @@ export const dragEnd = (e) => {
 
 export const drop = (targetFolder, folderList, grabFolder) => {
   const grabFolderId = grabFolder.dataset.id;
+  const grabFolderIndex = folderList.findIndex(folder => folder.id === grabFolderId);
 
-  let modifiedList = [...folderList];
-  const grabFolderIndex = modifiedList.findIndex(folder => folder.id === grabFolderId);
-  modifiedList[grabFolderIndex].parent_folder = targetFolder.dataset.id;
+  //css조작
   targetFolder.appendChild(grabFolder);
-  grabFolder.style.display="block";
+  grabFolder.style.display = "block";
 
-  return modifiedList;
+  return grabFolderIndex;
 }
