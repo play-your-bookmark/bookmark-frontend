@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import FOLDERS from "../../utils/folders.json";
 import { dragOver, dragStart, dragEnd, drop } from "../../utils/dnd";
 import { buildTree } from "../../utils/tree";
-import folderSlices, { fetchCreatedFolder, moveFolder } from "../../redux/slices/folderSlices";
+import { fetchCreatedFolder, moveFolder } from "../../redux/slices/folderSlices";
 import { useDispatch, useSelector } from "react-redux";
 
 function Dnd() {
-  //const [ folderList, setFolderList ] = useState(FOLDERS);
   const dispatch = useDispatch();
-  const folderList = useSelector(state => state.folder.folderList);
 
   useEffect(() => {
     dispatch(fetchCreatedFolder());
   }, []);
 
+  const folderList = useSelector(state => state.folder.folderList);
   const [ grabFolder, setGrabFolder ] = useState(null);
+  //const [ nestedFolder, setNestedFolder ] = useState([]);
 
   useEffect(() => {
     console.log("변경");
@@ -53,54 +52,59 @@ function Dnd() {
         <div className="data-box">
           <ul>
             root
-          {Object.values(folderList).map((folder, index) => {
-            if (folder.parent_folder === undefined) {
-              return null;
-            }
+            {
+              folderList &&
+              Object.values(folderList).map((folder, index) => {
+                if (folder.parent_folder === undefined) {
+                  return null;
+                }
 
-            return (
-              <li
-                key={index}
-                className="folder"
-                data-id={folder.id}
-                data-parent={folder.parent_folder}
-                draggable
-                onDragOver={handleDragOver}
-                onDragStart={handleDragStart}
-                onDragEnd={handleDragEnd}
-                onDrop={handleDrop}
-              >
-                {folder.title}
-              </li>
-            );
-          })}
+                return (
+                  <li
+                    key={index}
+                    className="folder"
+                    data-id={folder.id}
+                    data-parent={folder.parent_folder}
+                    draggable
+                    onDragOver={handleDragOver}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    onDrop={handleDrop}
+                  >
+                    {folder.title}
+                  </li>
+                );
+              })
+            }
           </ul>
         </div>
         <div className="data-box">
-        <ul>
-          search history
-          {Object.values(folderList).map((folder, index) => {
-            if (folder.parent_folder === undefined) {
-              return null;
+          <ul>
+            search history
+            {
+              folderList &&
+              Object.values(folderList).map((folder, index) => {
+                if (folder.parent_folder === undefined) {
+                  return null;
+                }
+
+                return (
+                  <li
+                    key={index}
+                    className="folder"
+                    data-id={folder.id}
+                    data-parent={folder.parent_folder}
+                    draggable
+                    onDragOver={handleDragOver}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    onDrop={handleDrop}
+                  >
+                    {folder.title}
+                  </li>
+                );
+              })
             }
-
-            return (
-              <li
-              key={index}
-                className="folder"
-                data-id={folder.id}
-                data-parent={folder.parent_folder}
-                draggable
-                onDragOver={handleDragOver}
-                onDragStart={handleDragStart}
-                onDragEnd={handleDragEnd}
-                onDrop={handleDrop}
-              >
-                {folder.title}
-
-              </li>
-            );
-          })}
           </ul>
         </div>
       </div>

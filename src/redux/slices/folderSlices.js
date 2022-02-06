@@ -18,9 +18,7 @@ export const fetchCreatedFolder = createAsyncThunk(
 
 const folderSlices = createSlice({
   name: "folders",
-  initialState: {
-    folderList: [],
-  },
+  initialState: {},
   reducers: {
     moveFolder: (state, action) => {
       const { targetId, grabFolderIndex } = action.payload;
