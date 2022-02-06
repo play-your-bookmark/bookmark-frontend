@@ -7,7 +7,7 @@ export default function Login({ auth }) {
     auth
       .login(e.target.name)
       .then((data) => {
-        navigate("/rankPage");
+        navigate("/app/rankpage");
       })
   }
   return (
