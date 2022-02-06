@@ -23,6 +23,7 @@ export default function useInfinityScroll(target) {
       observer = new IntersectionObserver(onIntersect, {
         threshold: 0.1,
       });
+
       observer.observe(target);
     }
 
@@ -30,7 +31,7 @@ export default function useInfinityScroll(target) {
   }, [target]);
 
   useEffect(() => {
-    function getMoreBookmark() {
+    function getMoreLinks() {
       dispatch(toggleIsLoaded());
       dispatch(fetchLinkHistory());
       dispatch(toggleIsLoaded());
@@ -40,6 +41,6 @@ export default function useInfinityScroll(target) {
       return;
     }
 
-    getMoreBookmark();
+    getMoreLinks();
   }, [isFetching, dispatch]);
 }

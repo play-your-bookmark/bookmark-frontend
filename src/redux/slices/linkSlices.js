@@ -10,7 +10,7 @@ export const fetchLinkHistory = createAsyncThunk(
       const { data } = await axios.get("/linksCopy.json");
       return data;
     } catch (error) {
-      return error;
+      return rejectWithValue(error.response.data);
     }
   },
 )
@@ -19,7 +19,6 @@ const linkSlices = createSlice({
   name: "links",
   initialState: {
     linkList: [],
-    target: null,
     isLoaded: false,
   },
   reducers: {
