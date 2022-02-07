@@ -4,8 +4,8 @@ import isLoggedIn from "../../utils/isLoggedIn";
 import Login from "../Login/Login";
 import RankPage from "../RankPage/RankPage";
 import FolderEditPage from "../FolderEditPage/FolderEditPage";
-import Header from "../Layout/Header/Header";
-import Dnd from "../Dnd/Dnd";
+import Header from "../Header/Header";
+import Tree from "../Tree/Tree";
 
 const routes = (auth) => [
   {
@@ -24,7 +24,8 @@ const routes = (auth) => [
   {
     path: "/auth",
     element: <Outlet />,
-    children: [{ path: "/auth/login", element: <Login auth={auth} /> }],
+    children: [{ path: "/auth/login", element: <Tree /> }],
+    // <Login auth={auth} />
   },
 ];
 

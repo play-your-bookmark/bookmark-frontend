@@ -1,28 +1,22 @@
-import FOLDERS from "./folders.json";
-
-const USE_MOCK_DATA = true;
-
-export function buildTree(level, folderTree) {
-  if (USE_MOCK_DATA) {
-    if (!level) {
-      folderTree.push(FOLDERS[0].id, FOLDERS[0].title, []);
-    }
-
-    const parentId = folderTree[0];
-    const temp = folderTree;
-    for (let i = 1; i < FOLDERS.length; i++) {
-      if (FOLDERS[i]["parent_folder"] === parentId) {
-        temp.push([FOLDERS[i].id, FOLDERS[i].title, FOLDERS[i].bookmark]);
-      }
-    }
-
-    for (let i = 3; i < temp.length; i++) {
-      const subTree = temp[i];
-      buildTree(level + 1, subTree);
-    }
-
-    return folderTree;
+export function buildTree(folderList, level, folderTree) {
+  if (!level) {
+    folderTree.push(folderList[0].id, folderList[0].title, []);
   }
+
+  const parentId = folderTree[0];
+  const temp = folderTree;
+  for (let i = 1; i < folderList.length; i++) {
+    if (folderList[i]["parent_folder"] === parentId) {
+      temp.push([folderList[i].id, folderList[i].title, folderList[i].bookmark]);
+    }
+  }
+
+  for (let i = 3; i < temp.length; i++) {
+    const subTree = temp[i];
+    buildTree(folderList, level + 1, subTree);
+  }
+
+  return folderTree;
 }
 
 export function addFolder(category, newFolderCount, title, folderTree, parentId) {
@@ -77,27 +71,25 @@ export function relocateFolder(folderTree, targetId, currentParentId, newParentI
   let targetSubtree = folderTree[0] === newParentId ? folderTree : null;
 
   const findFolder = (tree) => {
-    if (USE_MOCK_DATA) {
-      if (tree.length === 0) {
-        return;
+    if (tree.length === 0) {
+      return;
+    }
+
+    for (let i = 3; i < tree.length; i++) {
+      const subtree = tree[i];
+      if (subtree[0] === currentParentId) {
+        currentSubtree = tree[i];
       }
 
-      for (let i = 3; i < tree.length; i++) {
-        const subtree = tree[i];
-        if (subtree[0] === currentParentId) {
-          currentSubtree = tree[i];
-        }
-
-        if (subtree[0] === newParentId) {
-          targetSubtree = tree[i];
-        }
-
-        if (targetSubtree && currentSubtree) {
-          break;
-        }
-
-        findFolder(subtree);
+      if (subtree[0] === newParentId) {
+        targetSubtree = tree[i];
       }
+
+      if (targetSubtree && currentSubtree) {
+        break;
+      }
+
+      findFolder(subtree);
     }
   };
 
