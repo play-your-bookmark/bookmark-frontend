@@ -14,7 +14,7 @@ export const fetchCreatedFolder = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   },
-)
+);
 
 const folderSlices = createSlice({
   name: "folders",
@@ -36,9 +36,9 @@ const folderSlices = createSlice({
     [fetchCreatedFolder.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
 export const { moveFolder } = folderSlices.actions;
 export default folderSlices.reducer;

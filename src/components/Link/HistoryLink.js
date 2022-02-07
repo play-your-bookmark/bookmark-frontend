@@ -39,19 +39,15 @@ const LinkWrap = styled.div`
   }
 `;
 
-export default function Link({ linkInfo }) {
+export default function HistoryLink({ linkInfo }) {
   return (
     <LinkWrap>
       <div className="LinkWrap">
-        <div className="LinkWrap-Title ">
-          { linkInfo.title }
-        </div>
+        <div className="LinkWrap-Title ">{linkInfo.title}</div>
         <div className="LinkWrap-Url">
-          <a href={ linkInfo.url }>
-            { linkInfo.url }
-          </a>
+          <a href={linkInfo.url}>{linkInfo.url}</a>
         </div>
       </div>
     </LinkWrap>
   );
-};
+}
