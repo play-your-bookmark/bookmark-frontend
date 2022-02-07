@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { useDispatch, useSelector } from "react-redux";
 import { dragOver, dragStart, dragEnd, drop } from "../../utils/dnd";
 import { buildTree } from "../../utils/tree";
 import { fetchCreatedFolder, moveFolder } from "../../redux/slices/folderSlices";
-import { useDispatch, useSelector } from "react-redux";
 
 function Dnd() {
   const dispatch = useDispatch();
-  const folderList = useSelector(state => state.folder.folderList);
-  const [ grabFolder, setGrabFolder ] = useState(null);
+  const folderList = useSelector((state) => state.folder.folderList);
+  const [grabFolder, setGrabFolder] = useState(null);
 
   useEffect(() => {
     dispatch(fetchCreatedFolder());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     console.log("변경");
@@ -34,15 +34,15 @@ function Dnd() {
   };
 
   const handleDrop = (e) => {
+    const { target } = e;
     const grabLocation = grabFolder.dataset.parent;
-    const targetLocation = e.target.dataset.id;
+    const targetLocation = target.dataset.id;
 
     if (targetLocation !== grabLocation) {
-      const targetId = e.target.dataset.id;
-      const grabFolderIndex = drop(e.target, folderList, grabFolder);
-      dispatch(moveFolder({ targetId, grabFolderIndex }));
+      const grabFolderIndex = drop(target, folderList, grabFolder);
+      dispatch(moveFolder({ targetLocation, grabFolderIndex }));
     }
-  }
+  };
 
   return (
     <DndWrap>
@@ -50,59 +50,57 @@ function Dnd() {
         <div className="data-box">
           <ul>
             root
-            {
-              folderList &&
-              Object.values(folderList).map((folder, index) => {
+            {folderList &&
+              Object.values(folderList).map((folder) => {
                 if (folder.parent_folder === undefined) {
                   return null;
                 }
 
                 return (
-                  <li
-                    key={index}
-                    className="folder"
-                    data-id={folder.id}
-                    data-parent={folder.parent_folder}
-                    draggable
-                    onDragOver={handleDragOver}
-                    onDragStart={handleDragStart}
-                    onDragEnd={handleDragEnd}
-                    onDrop={handleDrop}
-                  >
-                    {folder.title}
-                  </li>
+                  <div>
+                    <li
+                      className="folder"
+                      data-id={folder.id}
+                      data-parent={folder.parent_folder}
+                      draggable
+                      onDragOver={handleDragOver}
+                      onDragStart={handleDragStart}
+                      onDragEnd={handleDragEnd}
+                      onDrop={handleDrop}
+                    >
+                      {folder.title}
+                    </li>
+                  </div>
                 );
-              })
-            }
+              })}
           </ul>
         </div>
         <div className="data-box">
           <ul>
             search history
-            {
-              folderList &&
-              Object.values(folderList).map((folder, index) => {
+            {folderList &&
+              Object.values(folderList).map((folder) => {
                 if (folder.parent_folder === undefined) {
                   return null;
                 }
 
                 return (
-                  <li
-                    key={index}
-                    className="folder"
-                    data-id={folder.id}
-                    data-parent={folder.parent_folder}
-                    draggable
-                    onDragOver={handleDragOver}
-                    onDragStart={handleDragStart}
-                    onDragEnd={handleDragEnd}
-                    onDrop={handleDrop}
-                  >
-                    {folder.title}
-                  </li>
+                  <div>
+                    <li
+                      className="folder"
+                      data-id={folder.id}
+                      data-parent={folder.parent_folder}
+                      draggable
+                      onDragOver={handleDragOver}
+                      onDragStart={handleDragStart}
+                      onDragEnd={handleDragEnd}
+                      onDrop={handleDrop}
+                    >
+                      {folder.title}
+                    </li>
+                  </div>
                 );
-              })
-            }
+              })}
           </ul>
         </div>
       </div>
@@ -139,7 +137,6 @@ const DndWrap = styled.div`
 
   .drag-target {
     background-color: blue;
-    opacity: 0.4;
     cursor: grabbing;
   }
 `;
