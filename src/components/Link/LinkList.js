@@ -35,10 +35,7 @@ export default function LinkList() {
 
   return (
     <LinkListWrap>
-      {LinkLists &&
-        LinkLists.map((info, index) => (
-          <HistoryLink linkInfo={info} key={info.key} />
-        ))}
+      {LinkLists && LinkLists.map((info, index) => <HistoryLink linkInfo={info} key={info.key} />)}
       <div ref={setTarget} className="Target-Element">
         {isLoaded && <Loader />}
       </div>

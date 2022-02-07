@@ -23,20 +23,17 @@ const req = (
     .catch((e) => {
       if (!e.response || e.message === "Network Error") {
         console.log("Server Error!");
-        return; // 왠지 이 return문은 eslint 오류가 발생하지 않습니다..
+        return;
       }
 
       const { status, data, config } = e.response;
 
       if (status === 401) {
         Cookies.remove("accessToken");
-        // return;
+        return;
       }
-      // eslint에서 Arrow function expected no return value  consistent-return
-      // 오류가 발생하였는데, 화살표 함수에서는 리턴 값이 없어야한다고 합니다.
-      // return 부분을 지웠을 때 현욱님께서 짜주신 로직에 문제가 생길수도 있어서 일단 주석처리 했습니다!
-      // 확인 부탁드리고 지워도 상관없다면 수정 부탁드립니다~!
-      // return { status, data, config };
+
+      return { status, data, config };
     });
 };
 export default req;
