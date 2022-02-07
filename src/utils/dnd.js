@@ -21,7 +21,7 @@ export const drop = (targetFolder, folderList, grabFolder) => {
   const grabFolderId = grabFolder.dataset.id;
   const grabFolderIndex = folderList.findIndex(folder => folder.id === grabFolderId);
 
-  //css조작
+  //css조작을 위한 임시 코드. 추후 수정 예정.
   targetFolder.appendChild(grabFolder);
   grabFolder.style.display = "block";
 
