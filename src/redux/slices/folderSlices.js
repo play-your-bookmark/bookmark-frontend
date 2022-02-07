@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import req from "../../utils/api"; 
+// import req from "../../utils/api";
 // -> 서버 구축 이후 my_created_folder 불러올 때 사용
-// -> 현재는 public folder에 넣어둔 folderCopy.json mock data 사용 중 
+// -> 현재는 public folder에 넣어둔 folderCopy.json mock data 사용 중
 
 export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
@@ -14,7 +14,7 @@ export const fetchCreatedFolder = createAsyncThunk(
       return rejectWithValue(error.response.data);
     }
   },
-)
+);
 
 const folderSlices = createSlice({
   name: "folders",
@@ -30,8 +30,8 @@ const folderSlices = createSlice({
     [fetchCreatedFolder.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
 export default folderSlices.reducer;
