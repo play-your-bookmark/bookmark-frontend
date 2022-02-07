@@ -7,10 +7,6 @@ export function buildTree(level, folderTree) {
     if (!level) {
       folderTree.push(FOLDERS[0].id, FOLDERS[0].title, []);
     }
-    // 이 부분에서 오류가 나서 if 문으로 수정하였는데 level이 null이나 undefined도 허용된다면 수정한
-    // 코드 지우고 기존의 코드를 사용하시면 될 것 같습니다!
-    // 만약 위 코드대로 작성해도 상관없으시다면 재수정 부탁드립니다~
-    // level === 0 && folderTree.push(FOLDERS[0].id, FOLDERS[0].title, []);
 
     const parentId = folderTree[0];
     const temp = folderTree;
@@ -27,7 +23,7 @@ export function buildTree(level, folderTree) {
 
     return folderTree;
   }
-};
+}
 
 export function addFolder(category, newFolderCount, title, folderTree, parentId) {
   if (!folderTree[3]) {
@@ -43,14 +39,10 @@ export function addFolder(category, newFolderCount, title, folderTree, parentId)
 
     addFolder(category, newFolderCount, title, folderTree[i], parentId);
   }
-};
+}
 
 const createFolder = (category, parentId, newFolderCount, title) => {
-  return [
-    `${category} ${newFolderCount} ${parentId}`,
-    title,
-    [],
-  ];
+  return [`${category} ${newFolderCount} ${parentId}`, title, []];
 };
 
 export function removeFolder(targetId, parentId, folderTree) {
@@ -78,7 +70,7 @@ export function removeFolder(targetId, parentId, folderTree) {
       return;
     }
   }
-};
+}
 
 export function relocateFolder(folderTree, targetId, currentParentId, newParentId) {
   let currentSubtree = folderTree[0] === currentParentId ? folderTree : null;
@@ -118,7 +110,7 @@ export function relocateFolder(folderTree, targetId, currentParentId, newParentI
       break;
     }
   }
-};
+}
 
 export function addLink(folderTree, targetId, parentId, bookmark) {
   if (!folderTree[3]) {
@@ -145,7 +137,7 @@ export function addLink(folderTree, targetId, parentId, bookmark) {
       return;
     }
   }
-};
+}
 
 export function removeLink(folderTree, targetId, parentId, bookmark) {
   if (!folderTree[3]) {
@@ -181,4 +173,4 @@ export function removeLink(folderTree, targetId, parentId, bookmark) {
       return;
     }
   }
-};
+}

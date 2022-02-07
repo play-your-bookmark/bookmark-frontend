@@ -14,7 +14,8 @@
       {
         "trailingComma": "all",
         "endOfLine": "auto",
-        "semi": "true"
+        "semi": true,
+        "printWidth": 100
       }
     ],
     "quotes": [
@@ -36,6 +37,8 @@
     "no-use-before-define": 0,
     "arrow-body-style": 0,
     "operator-linebreak": 0,
-    "dot-notation": 0
+    "dot-notation": 0,
+    "consistent-return": 0,
+    "max-len": [1, { "code": 100 }]
   }
 }

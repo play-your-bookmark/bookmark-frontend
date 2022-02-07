@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  fetchLinkHistory,
-  toggleIsLoaded,
-} from "../../redux/slices/linkSlices";
+import { fetchLinkHistory, toggleIsLoaded } from "../../redux/slices/linkSlices";
 
 export default function useInfinityScroll(target) {
   const dispatch = useDispatch();

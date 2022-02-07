@@ -7,9 +7,7 @@ class Authenticate {
   async login(name) {
     const provider = this.getProvider(name);
     const data = await authService.signInWithPopup(provider);
-    const IdToken = await authService.currentUser
-      .getIdToken()
-      .then((data) => data);
+    const IdToken = await authService.currentUser.getIdToken().then((data) => data);
 
     Cookies.set("accessToken", IdToken);
 
