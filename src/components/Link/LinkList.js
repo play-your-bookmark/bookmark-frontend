@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 
-import Link from "./Link";
+import HistoryLink from "./HistoryLink";
 import Loader from "../Loader/Loader";
-import useInfinityScroll from '../hooks/useInfinityScroll';
+import useInfinityScroll from "../hooks/useInfinityScroll";
 
 const LinkListWrap = styled.div`
   width: 100%;
@@ -28,22 +28,20 @@ const LinkListWrap = styled.div`
 
 export default function LinkList() {
   const [target, setTarget] = useState(null);
-  const LinkLists = useSelector(state => state.link.linkList);
-  const isLoaded = useSelector(state => state.link.isLoaded);
+  const LinkLists = useSelector((state) => state.link.linkList);
+  const isLoaded = useSelector((state) => state.link.isLoaded);
 
   useInfinityScroll(target);
 
   return (
     <LinkListWrap>
-      {
-        LinkLists &&
-        LinkLists.map((info, index) => {
-          return <Link linkInfo={info} key={index} />;
-        })
-      }
+      {LinkLists &&
+        LinkLists.map((info, index) => (
+          <HistoryLink linkInfo={info} key={info.key} />
+        ))}
       <div ref={setTarget} className="Target-Element">
-        { isLoaded && <Loader /> }
+        {isLoaded && <Loader />}
       </div>
     </LinkListWrap>
   );
-};
+}

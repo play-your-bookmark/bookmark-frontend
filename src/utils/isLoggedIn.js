@@ -1,7 +1,5 @@
 import Cookies from "js-cookie";
 
-const isLoggedIn = () => {
+export default function isLoggedIn() {
   return Cookies.get("accessToken");
 }
-
-export default isLoggedIn;

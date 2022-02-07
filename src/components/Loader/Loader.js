@@ -16,4 +16,4 @@ export default function Loader() {
       <ReactLoading type="spin" color="#A593E0" />
     </LoaderWrap>
   );
-};
+}

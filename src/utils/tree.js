@@ -2,9 +2,15 @@ import FOLDERS from "./folders.json";
 
 const USE_MOCK_DATA = true;
 
-export const buildTree = (level, folderTree) => {
+export function buildTree(level, folderTree) {
   if (USE_MOCK_DATA) {
-    level === 0 && folderTree.push(FOLDERS[0].id, FOLDERS[0].title, []);
+    if (!level) {
+      folderTree.push(FOLDERS[0].id, FOLDERS[0].title, []);
+    }
+    // 이 부분에서 오류가 나서 if 문으로 수정하였는데 level이 null이나 undefined도 허용된다면 수정한
+    // 코드 지우고 기존의 코드를 사용하시면 될 것 같습니다!
+    // 만약 위 코드대로 작성해도 상관없으시다면 재수정 부탁드립니다~
+    // level === 0 && folderTree.push(FOLDERS[0].id, FOLDERS[0].title, []);
 
     const parentId = folderTree[0];
     const temp = folderTree;
@@ -13,17 +19,17 @@ export const buildTree = (level, folderTree) => {
         temp.push([FOLDERS[i].id, FOLDERS[i].title, FOLDERS[i].bookmark]);
       }
     }
-  
+
     for (let i = 3; i < temp.length; i++) {
       const subTree = temp[i];
       buildTree(level + 1, subTree);
-    }  
+    }
 
     return folderTree;
   }
-}
+};
 
-export const addFolder = (category, newFolderCount, title, folderTree, parentId) => {
+export function addFolder(category, newFolderCount, title, folderTree, parentId) {
   if (!folderTree[3]) {
     return;
   }
@@ -37,17 +43,17 @@ export const addFolder = (category, newFolderCount, title, folderTree, parentId)
 
     addFolder(category, newFolderCount, title, folderTree[i], parentId);
   }
-}
+};
 
 const createFolder = (category, parentId, newFolderCount, title) => {
   return [
     `${category} ${newFolderCount} ${parentId}`,
     title,
     [],
-  ]
-}
+  ];
+};
 
-export const removeFolder = (targetId, parentId, folderTree) => {
+export function removeFolder(targetId, parentId, folderTree) {
   let targetArray = null;
   if (!folderTree[3]) {
     return;
@@ -72,14 +78,14 @@ export const removeFolder = (targetId, parentId, folderTree) => {
       return;
     }
   }
-}
+};
 
-export const relocateFolder = (folderTree, targetId, currentParentId, newParentId) => {
+export function relocateFolder(folderTree, targetId, currentParentId, newParentId) {
   let currentSubtree = folderTree[0] === currentParentId ? folderTree : null;
   let targetSubtree = folderTree[0] === newParentId ? folderTree : null;
 
   const findFolder = (tree) => {
-    if (USE_MOCK_DATA){
+    if (USE_MOCK_DATA) {
       if (tree.length === 0) {
         return;
       }
@@ -98,10 +104,10 @@ export const relocateFolder = (folderTree, targetId, currentParentId, newParentI
           break;
         }
 
-        findFolder (subtree);
+        findFolder(subtree);
       }
-    }  
-  }
+    }
+  };
 
   findFolder(folderTree);
 
@@ -112,9 +118,9 @@ export const relocateFolder = (folderTree, targetId, currentParentId, newParentI
       break;
     }
   }
-}
+};
 
-export const addLink = (folderTree, targetId, parentId, bookmark) => {
+export function addLink(folderTree, targetId, parentId, bookmark) {
   if (!folderTree[3]) {
     return;
   }
@@ -139,9 +145,9 @@ export const addLink = (folderTree, targetId, parentId, bookmark) => {
       return;
     }
   }
-}
+};
 
-export const removeLink = (folderTree, targetId, parentId, bookmark) => {
+export function removeLink(folderTree, targetId, parentId, bookmark) {
   if (!folderTree[3]) {
     return;
   }
@@ -175,4 +181,4 @@ export const removeLink = (folderTree, targetId, parentId, bookmark) => {
       return;
     }
   }
-}
+};
