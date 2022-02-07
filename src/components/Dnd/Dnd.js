@@ -8,14 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Dnd() {
   const dispatch = useDispatch();
+  const folderList = useSelector(state => state.folder.folderList);
+  const [ grabFolder, setGrabFolder ] = useState(null);
 
   useEffect(() => {
     dispatch(fetchCreatedFolder());
   }, []);
-
-  const folderList = useSelector(state => state.folder.folderList);
-  const [ grabFolder, setGrabFolder ] = useState(null);
-  //const [ nestedFolder, setNestedFolder ] = useState([]);
 
   useEffect(() => {
     console.log("변경");
