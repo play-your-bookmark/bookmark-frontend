@@ -5,6 +5,7 @@ import Login from "../Login/Login";
 import RankPage from "../RankPage/RankPage";
 import FolderEditPage from "../FolderEditPage/FolderEditPage";
 import Header from "../Layout/Header/Header";
+import Dnd from "../Dnd/Dnd";
 
 const routes = (auth) => [
   {
