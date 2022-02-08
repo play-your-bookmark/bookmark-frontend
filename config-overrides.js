@@ -8,7 +8,7 @@ function devServerConfig() {
       hot: true,
       proxy: {
         "/api": {
-          target: "http://localhost:7000",
+          target: "http://localhost:7001",
           changeOrigin: true,
           pathRewrite: {
             "^/api": "/",

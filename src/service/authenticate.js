@@ -11,7 +11,7 @@ class Authenticate {
 
     Cookies.set("accessToken", IdToken);
 
-    await req("post", "/users/new", (result) => result.data, { data });
+    await req("post", "/user/new", (result) => result.data, { data });
   }
 
   async logout() {

@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 axios.defaults.withCredentials = true;
 
-const BASE_URL = "http://localhost:7000/api";
+const BASE_URL = "http://localhost:7001";
 const req = (
   method,
   url,
