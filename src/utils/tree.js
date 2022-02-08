@@ -6,6 +6,7 @@ export function buildTree(folderList, level, folderTree) {
   const parentId = folderTree[0];
   const temp = folderTree;
 
+
   for (let i = 1; i < folderList.length; i++) {
     if (folderList[i]["parent_folder"] === parentId) {
       temp.push([folderList[i].id, folderList[i].title, folderList[i].bookmark]);
