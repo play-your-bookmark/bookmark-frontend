@@ -5,8 +5,6 @@ import Login from "../Login/Login";
 import RankPage from "../RankPage/RankPage";
 import FolderEditPage from "../FolderEditPage/FolderEditPage";
 import Header from "../Header/Header";
-import Category from "./Category/Category";
-import Tree from "../Tree/Tree";
 
 const routes = (auth) => [
   {
@@ -25,12 +23,7 @@ const routes = (auth) => [
   {
     path: "/auth",
     element: <Outlet />,
-    children: [
-      { path: "/auth/login", element: <Category /> },
-      { path: "/auth/tree", element: <Tree /> },
-    ],
-
-    // <Login auth={auth} />
+    children: [{ path: "/auth/login", element: <Login auth={auth} /> }],
   },
 ];
 
