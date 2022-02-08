@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
 import Modal from "../Modal/Modal";
 import SelectBox from "./SelectBox";
-
 import category from "../../utils/category.json";
 
 const ButtonWrapper = styled.div`
