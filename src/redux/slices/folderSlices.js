@@ -21,8 +21,8 @@ const folderSlices = createSlice({
   initialState: {},
   reducers: {
     moveFolder: (state, action) => {
-      const { targetId, grabFolderIndex } = action.payload;
-      state.folderList[grabFolderIndex].parent_folder = targetId;
+      const { targetLocation, grabFolderIndex } = action.payload;
+      state.folderList[grabFolderIndex].parent_folder = targetLocation;
     },
   },
   extraReducers: {
