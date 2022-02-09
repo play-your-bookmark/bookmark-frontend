@@ -12,7 +12,10 @@ ul {
 }
 
 li {
+<<<<<<< HEAD
   list-style: none;
+=======
+>>>>>>> origin/master
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
   padding: 10px;
