@@ -24,10 +24,7 @@ const routes = (auth) => [
   {
     path: "/auth",
     element: <Outlet />,
-    children: [
-      { path: "/auth/login", element: <Login auth={auth} /> },
-      { path: "/auth/tree", element: <Tree /> },
-    ],
+    children: [{ path: "/auth/login", element: <Login auth={auth} /> }],
   },
 ];
 

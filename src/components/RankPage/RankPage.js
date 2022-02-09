@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import MainRankPage from "./MainRankPage/MainRankPage";
+import SubRankPage from "./SubRankPage/SubRankPage";
 
-export default function RankPage({ auth }) {
-  return (
-    <div>
-      <h1>랭크페이지입니다</h1>
-    </div>
-  );
+export default function RankPage() {
+  const [isSearching, setIsSearching] = useState(false);
+
+  return <div>{!isSearching ? <MainRankPage /> : <SubRankPage />}</div>;
 }
