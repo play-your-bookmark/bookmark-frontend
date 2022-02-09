@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import List from "../../List/List";
-
+// mockdata 사용중
 import folders from "../../../utils/folders.json";
 
 const ListWrapper = styled.div`
@@ -15,12 +15,14 @@ const TitleWrapper = styled.h2`
   justify-content: center;
 `;
 
-export default function SubRankPage({ keyword }) {
+export default function SubRankPage() {
+  const keyword = useSelector((state) => state.keyword.keyword);
+  // mock data 사용 중 (원래 selectedFolder 초기값 null);
   const [selectedFolder, setSelectedFolder] = useState(folders[1]);
 
   return (
     <ListWrapper>
-      <List category={keyword} />
+      <List category={keyword} onSelect={setSelectedFolder} />
       <List selectedFolder={selectedFolder} />
     </ListWrapper>
   );

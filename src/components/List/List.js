@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 // mockdata 사용
 import folders from "../../utils/folders.json";
 import Card from "./Card";
@@ -21,13 +22,29 @@ const FolderTitleWrapper = styled.div`
 
 const LinkWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  margin: 5px;
+  background: white;
+`;
+
+const Hyperlink = styled.a`
+  :link {
+    color: black;
+    text-decoration: none;
+  }
+  :visited {
+    color: black;
+    text-decoration: none;
+  }
+  :hover {
+    font-weight: bolder;
+    color: black;
+  }
 `;
 
 export default function List({ category, selectedFolder }) {
   // mockdata 사용 (원래는 axios로 카테고리에 맞는 폴더 전부요청)
+  const MAX_LINK_LENGTH = 40;
 
-  console.log(selectedFolder);
   const folderArray = category
     ? folders.map((folder, index) => {
         if (index === 0) return;
@@ -48,12 +65,21 @@ export default function List({ category, selectedFolder }) {
           if (!folder) return;
 
           return (
-            <FolderTitleWrapper key={folder.title}>
+            <FolderTitleWrapper key={folder.id}>
               <Card folder={folder} />
             </FolderTitleWrapper>
           );
         })}
-      {selectedFolder && selectedFolder.bookmark.map((link) => <LinkWrapper>{link}</LinkWrapper>)}
+      {selectedFolder &&
+        selectedFolder.bookmark.map((link) => (
+          <LinkWrapper>
+            <Hyperlink key={link.url} href={link.url}>
+              {link.title.length > MAX_LINK_LENGTH
+                ? `${link.title.substring(0, MAX_LINK_LENGTH - 3)}...`
+                : link.title}
+            </Hyperlink>
+          </LinkWrapper>
+        ))}
     </CardWrapper>
   );
 }

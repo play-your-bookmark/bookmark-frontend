@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// mockdata 사용
 import category from "../../../utils/category.json";
 import List from "../../List/List";
 
