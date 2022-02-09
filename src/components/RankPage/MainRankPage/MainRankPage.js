@@ -6,21 +6,27 @@ import List from "../../List/List";
 
 const ListWrapper = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const TitleWrapper = styled.h2`
+  display: flex;
+  justify-content: center;
 `;
 
 export default function MainRankPage() {
   return (
     <ListWrapper>
       <div>
-        <h2># {category.mainCategory[0].name}</h2>
+        <TitleWrapper># {category.mainCategory[0].name}</TitleWrapper>
         <List category={category.mainCategory[0].name} />
       </div>
       <div>
-        <h2># {category.mainCategory[1].name}</h2>
+        <TitleWrapper># {category.mainCategory[1].name}</TitleWrapper>
         <List category={category.mainCategory[1].name} />
       </div>
       <div>
-        <h2># {category.mainCategory[2].name}</h2>
+        <TitleWrapper># {category.mainCategory[2].name}</TitleWrapper>
         <List category={category.mainCategory[2].name} />
       </div>
     </ListWrapper>
