@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-import axios from "axios";
 import { nanoid } from "nanoid";
+
+import req from "../../utils/api";
 
 export const fetchLinkHistory = createAsyncThunk(
   "get/links",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      // 아직 벡엔드와 연결이 안되어있어 mock data를 사용했습니다.
-      const { data } = await axios.get("/linksCopy.json");
+      const { data } = await req("get", "/link/", { params: payload }, true, (res) => res);
+
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -21,6 +21,7 @@ const linkSlices = createSlice({
   initialState: {
     linkList: [],
     isLoaded: false,
+    calculatedDate: "",
   },
   reducers: {
     toggleIsLoaded(state) {
