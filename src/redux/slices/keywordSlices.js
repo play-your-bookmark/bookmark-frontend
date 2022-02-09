@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const keywordSlices = createSlice({
   name: "keyword",
   initialState: {
-    keyword: "ReactJS", // 임의로 설정 중
+    keyword: "ReactJS", // Mock으로 설정 중
   },
   reducer: {
     setKeyword: (state, action) => {

@@ -41,7 +41,7 @@ const Hyperlink = styled.a`
   }
 `;
 
-export default function List({ category, selectedFolder }) {
+export default function List({ category, selectedFolder, onSelect, origin }) {
   // mockdata 사용 (원래는 axios로 카테고리에 맞는 폴더 전부요청)
   const MAX_LINK_LENGTH = 40;
 
@@ -66,14 +66,14 @@ export default function List({ category, selectedFolder }) {
 
           return (
             <FolderTitleWrapper key={folder.id}>
-              <Card folder={folder} />
+              <Card folder={folder} origin={origin} onSelect={onSelect} />
             </FolderTitleWrapper>
           );
         })}
       {selectedFolder &&
         selectedFolder.bookmark.map((link) => (
-          <LinkWrapper>
-            <Hyperlink key={link.url} href={link.url}>
+          <LinkWrapper key={link.url}>
+            <Hyperlink href={link.url}>
               {link.title.length > MAX_LINK_LENGTH
                 ? `${link.title.substring(0, MAX_LINK_LENGTH - 3)}...`
                 : link.title}

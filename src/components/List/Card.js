@@ -10,17 +10,25 @@ const FolderWrapper = styled.button`
   width: 400px;
 `;
 
-function handleClickRetrieveLinks(e) {
+function handleClickRetrieveLinks(origin, onSelect, e) {
   e.preventDefault();
-  console.log(e.target.value);
+  // 폴더 클릭 시 담긴 링크 조회하는 이벤트
+
+  if (origin === "keywordCategory") {
+    // 모달 띄워서 조회X
+    onSelect(e.target.value);
+  } else if (origin === "mainCategory") {
+    // 모달 띄워서 조회O
+  }
 }
 
-export default function Card({ folder }) {
+export default function Card({ folder, origin, onSelect }) {
   return (
     <FolderWrapper
       type="button"
-      onClick={() => {
-        handleClickRetrieveLinks();
+      value={folder}
+      onClick={(e) => {
+        handleClickRetrieveLinks(origin, onSelect, e);
       }}
     >
       {folder.title}

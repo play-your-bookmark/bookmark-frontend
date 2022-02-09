@@ -16,10 +16,10 @@ const TitleWrapper = styled.h2`
 export default function MainRankPage() {
   return (
     <ListWrapper>
-      {category.mainCategory.map((index) => (
-        <div>
+      {category.mainCategory.map((element, index) => (
+        <div key={element.name}>
           <TitleWrapper># {category.mainCategory[index].name}</TitleWrapper>
-          <List category={category.mainCategory[index].name} />
+          <List category={category.mainCategory[index].name} origin="mainCategory" />
         </div>
       ))}
     </ListWrapper>
