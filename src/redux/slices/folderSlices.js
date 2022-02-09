@@ -18,7 +18,9 @@ export const fetchCreatedFolder = createAsyncThunk(
 
 const folderSlices = createSlice({
   name: "folders",
-  initialState: {},
+  initialState: {
+    selectedFolder: null,
+  },
   reducers: {
     moveFolder: (state, action) => {
       const { targetLocationId, grabFolderId } = action.payload;
@@ -62,6 +64,9 @@ const folderSlices = createSlice({
       const targetFolder = state.folderList[targetFolderIndex];
       targetFolder.bookmark.push(action.payload.newBookmark);
     },
+    selectFolder: (state, action) => {
+      state.selectedFolder = action.payload;
+    },
   },
   extraReducers: {
     [fetchCreatedFolder.pending]: (state, action) => {
@@ -78,5 +83,5 @@ const folderSlices = createSlice({
   },
 });
 
-export const { moveFolder, addFolder, addBookmark } = folderSlices.actions;
+export const { moveFolder, addFolder, addBookmark, selectFolder } = folderSlices.actions;
 export default folderSlices.reducer;

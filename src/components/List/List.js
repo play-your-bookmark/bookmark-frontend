@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 // mockdata 사용
@@ -41,9 +42,10 @@ const Hyperlink = styled.a`
   }
 `;
 
-export default function List({ category, selectedFolder, onSelect, origin }) {
+export default function List({ category, origin }) {
   // mockdata 사용 (원래는 axios로 카테고리에 맞는 폴더 전부요청)
   const MAX_LINK_LENGTH = 40;
+  const selectedFolder = useSelector((state) => state.folder.selectedFolder);
 
   const folderArray = category
     ? folders.map((folder, index) => {
@@ -66,11 +68,12 @@ export default function List({ category, selectedFolder, onSelect, origin }) {
 
           return (
             <FolderTitleWrapper key={folder.id}>
-              <Card folder={folder} origin={origin} onSelect={onSelect} />
+              <Card folder={folder} origin={origin} />
             </FolderTitleWrapper>
           );
         })}
-      {selectedFolder &&
+      {!category &&
+        selectedFolder &&
         selectedFolder.bookmark.map((link) => (
           <LinkWrapper key={link.url}>
             <Hyperlink href={link.url}>
