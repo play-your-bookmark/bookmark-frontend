@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const FolderWrapper = styled.div`
+const FolderWrapper = styled.button`
   display: flex;
   justify-content: center;
   background-color: white;
@@ -10,10 +10,20 @@ const FolderWrapper = styled.div`
   width: 400px;
 `;
 
+function handleClickRetrieveLinks(e) {
+  e.preventDefault();
+  console.log(e.target.value);
+}
+
 export default function Card({ folder }) {
   return (
-    <FolderWrapper>
-      <div>{folder.title}</div>
+    <FolderWrapper
+      type="button"
+      onClick={() => {
+        handleClickRetrieveLinks();
+      }}
+    >
+      {folder.title}
     </FolderWrapper>
   );
 }

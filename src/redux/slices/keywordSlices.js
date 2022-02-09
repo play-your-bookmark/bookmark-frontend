@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const keywordSlices = createSlice({
   name: "keyword",
-  initialState: {},
+  initialState: {
+    keyword: null,
+  },
   reducer: {
     setKeyword: (state, action) => {
       state.keyword = action.payload;

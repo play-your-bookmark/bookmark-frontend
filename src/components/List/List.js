@@ -19,26 +19,41 @@ const FolderTitleWrapper = styled.div`
   justify-content: center;
 `;
 
-export default function List({ category }) {
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export default function List({ category, selectedFolder }) {
   // mockdata 사용 (원래는 axios로 카테고리에 맞는 폴더 전부요청)
 
-  const folderArray = folders.map((folder, index) => {
-    if (index === 0) return;
+  console.log(selectedFolder);
+  const folderArray = category
+    ? folders.map((folder, index) => {
+        if (index === 0) return;
+        const categoryArray = folders[index].category.split("/");
 
-    return folder.category.split("/")[0] === category ? folder : null;
-  });
+        if (category === categoryArray[0] || category === categoryArray[1]) {
+          return folder;
+        }
+
+        return null;
+      })
+    : null;
 
   return (
     <CardWrapper>
-      {folderArray.map((folder) => {
-        if (!folder) return;
+      {category &&
+        folderArray.map((folder) => {
+          if (!folder) return;
 
-        return (
-          <FolderTitleWrapper key={folder.title}>
-            <Card folder={folder} />
-          </FolderTitleWrapper>
-        );
-      })}
+          return (
+            <FolderTitleWrapper key={folder.title}>
+              <Card folder={folder} />
+            </FolderTitleWrapper>
+          );
+        })}
+      {selectedFolder && selectedFolder.bookmark.map((link) => <LinkWrapper>{link}</LinkWrapper>)}
     </CardWrapper>
   );
 }

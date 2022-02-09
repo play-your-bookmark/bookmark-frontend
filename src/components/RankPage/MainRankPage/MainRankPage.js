@@ -17,18 +17,12 @@ const TitleWrapper = styled.h2`
 export default function MainRankPage() {
   return (
     <ListWrapper>
-      <div>
-        <TitleWrapper># {category.mainCategory[0].name}</TitleWrapper>
-        <List category={category.mainCategory[0].name} />
-      </div>
-      <div>
-        <TitleWrapper># {category.mainCategory[1].name}</TitleWrapper>
-        <List category={category.mainCategory[1].name} />
-      </div>
-      <div>
-        <TitleWrapper># {category.mainCategory[2].name}</TitleWrapper>
-        <List category={category.mainCategory[2].name} />
-      </div>
+      {category.mainCategory.map((index) => (
+        <div>
+          <TitleWrapper># {category.mainCategory[index].name}</TitleWrapper>
+          <List category={category.mainCategory[index].name} />
+        </div>
+      ))}
     </ListWrapper>
   );
 }
