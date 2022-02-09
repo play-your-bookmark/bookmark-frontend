@@ -29,7 +29,7 @@ export default function Tree() {
   return (
     <div className="container">
       <div className="data-box">
-        <ul className="folder-list">{tree && <FolderTree subTree={tree} />}</ul>
+        <div className="folder-list">{tree && <FolderTree subTree={tree} />}</div>
       </div>
       <div className="history-box">
         <LinkList />

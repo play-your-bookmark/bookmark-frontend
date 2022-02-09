@@ -40,6 +40,7 @@ const LinkWrap = styled.div`
 `;
 
 export default function HistoryLink({ linkInfo }) {
+  console.log("정보", linkInfo);
   return (
     <LinkWrap>
       <div className="LinkWrap">

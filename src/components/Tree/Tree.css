@@ -12,6 +12,7 @@ ul {
 }
 
 li {
+  list-style: none;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
   padding: 10px;

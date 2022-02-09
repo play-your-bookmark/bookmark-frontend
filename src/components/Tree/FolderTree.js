@@ -36,7 +36,7 @@ export default function FolderTree({ subTree }) {
   };
 
   return (
-    <li
+    <div
       key={subTree[0]}
       data-id={subTree[0]}
       draggable
@@ -46,7 +46,7 @@ export default function FolderTree({ subTree }) {
       onDrop={handleDrop}
     >
       <div className="folder" data-id={subTree[0]}>
-        - {subTree[1]}
+        {subTree[0] === "root" ? "" : "-"} {subTree[1]}
       </div>
       {subTree.length >= 3 &&
         subTree.map((child, index) => {
@@ -55,11 +55,11 @@ export default function FolderTree({ subTree }) {
           }
 
           return (
-            <ul>
+            <li>
               <FolderTree subTree={child} />
-            </ul>
+            </li>
           );
         })}
-    </li>
+    </div>
   );
 }
