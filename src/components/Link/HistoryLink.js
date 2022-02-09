@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { dragEnter, dragLeave, dragOver, dragStart } from "../../utils/dnd";
 
 const LinkWrap = styled.div`
   .LinkWrap {
@@ -40,10 +41,29 @@ const LinkWrap = styled.div`
 `;
 
 export default function HistoryLink({ linkInfo }) {
-  console.log("정보", linkInfo);
+  const handleDragOver = (e) => {
+    dragOver(e);
+  };
+
+  const handleDragStart = (e) => {
+    dragStart(e);
+    console.log(e.target);
+  };
+
   return (
     <LinkWrap>
-      <div className="LinkWrap">
+      <div
+        className="LinkWrap"
+        data-title={linkInfo.title}
+        data-url={linkInfo.url}
+        data-visitTime={linkInfo.utc_time}
+        draggable
+        onDragOver={handleDragOver}
+        onDragStart={handleDragStart}
+        //   onDragEnd={handleDragEnd}
+        //   onDrop={handleDrop}
+        //
+      >
         <div className="LinkWrap-Title ">{linkInfo.title}</div>
         <div className="LinkWrap-Url">
           <a href={linkInfo.url}>{linkInfo.url}</a>

@@ -25,6 +25,9 @@ const folderSlices = createSlice({
       const grabFolderIndex = state.folderList.findIndex((folder) => folder.id === grabFolderId);
       state.folderList[grabFolderIndex].parent_folder = targetLocationId;
     },
+    addFolder: (state, action) => {
+      state.folderList.push(action.payload);
+    },
   },
   extraReducers: {
     [fetchCreatedFolder.pending]: (state, action) => {
@@ -41,5 +44,5 @@ const folderSlices = createSlice({
   },
 });
 
-export const { moveFolder } = folderSlices.actions;
+export const { moveFolder, addFolder } = folderSlices.actions;
 export default folderSlices.reducer;
