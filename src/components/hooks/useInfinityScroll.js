@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import { fetchLinkHistory, toggleIsLoaded } from "../../redux/slices/linkSlices";
@@ -6,6 +6,7 @@ import { fetchLinkHistory, toggleIsLoaded } from "../../redux/slices/linkSlices"
 export default function useInfinityScroll(target) {
   const dispatch = useDispatch();
   const [isFetching, setIsFetching] = useState(false);
+  const dateRef = useRef(new Date());
 
   function onIntersect([entry], observer) {
     if (entry.isIntersecting) {
@@ -31,8 +32,11 @@ export default function useInfinityScroll(target) {
 
   useEffect(() => {
     function getMoreLinks() {
+      const date = new Date(dateRef.current);
+
       dispatch(toggleIsLoaded());
-      dispatch(fetchLinkHistory());
+      dispatch(fetchLinkHistory({ minute: 120, date: date.toISOString() }));
+      dateRef.current = date.setMinutes(date.getMinutes() - 120);
       dispatch(toggleIsLoaded());
     }
 

@@ -22,10 +22,13 @@ const LinkWrap = styled.div`
     border-top-right-radius: 6px;
     background-color: #e2e5e7;
     color: #566270;
-    font-size: 1.5rem;
+    font-size: 1rem;
     justify-content: center;
     text-align: center;
     align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .LinkWrap-Url {
