@@ -1,4 +1,12 @@
+export function dragEnter(e) {
+  e.preventDefault();
+}
+
 export function dragOver(e) {
+  e.preventDefault();
+}
+
+export function dragLeave(e) {
   e.preventDefault();
 }
 
