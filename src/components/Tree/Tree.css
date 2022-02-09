@@ -12,6 +12,7 @@ ul {
 }
 
 li {
+  list-style: none;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
   padding: 10px;
@@ -48,9 +49,19 @@ li {
 .folder {
   width: 100%;
   height: 30px;
+  padding: 5px;
+  border: 1px solid black;
 }
 
 .drag-target {
   background-color: rgb(184, 184, 250);
   cursor: grabbing;
+}
+
+.clicked {
+  background-color: aqua;
+}
+
+.droppable {
+  opacity: 0.4;
 }

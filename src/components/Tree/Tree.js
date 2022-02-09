@@ -26,53 +26,27 @@ export default function Tree() {
     }
   }, [folderList]);
 
+  const handleSaveButton = () => {
+    console.log("save");
+  };
+
   return (
-    <div className="container">
-      <div className="data-box">
-        <ul className="folder-list">{tree && <FolderTree subTree={tree} />}</ul>
+    <>
+      <div className="container">
+        <div className="data-box">
+          <div className="folder-list">
+            <ul>{tree && <FolderTree subTree={tree} />}</ul>
+          </div>
+        </div>
+        <div className="data-box">
+          <div className="history-box">
+            <LinkList />
+          </div>
+        </div>
       </div>
-      <div className="history-box">
-        <LinkList />
-      </div>
-    </div>
+      <button type="button" onClick={handleSaveButton}>
+        저장하기
+      </button>
+    </>
   );
 }
-
-// const DndWrapper = styled.div`
-//   display: flex;
-//   width: 100%;
-//   margin: 10px;
-
-//   ul {
-//     list-style: none;
-//     margin: 0;
-//     padding: 0;
-//   }
-
-//   li {
-//     background-color: white;
-//   }
-
-//   .data-box,
-//   .history-box {
-//     display: flex;
-//     width: 45%;
-//     height: auto;
-//     overflow: hidden;
-//     margin: 0 auto;
-//     padding: 15px;
-//   }
-
-//   .data-box {
-//     background-color: #5587f5;
-//   }
-
-//   .history-box {
-//     background-color: #f2c84d;
-//   }
-
-//   .drag-target {
-//     background-color: blue;
-//     cursor: grabbing;
-//   }
-// `;

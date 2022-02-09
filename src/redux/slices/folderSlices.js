@@ -23,7 +23,44 @@ const folderSlices = createSlice({
     moveFolder: (state, action) => {
       const { targetLocationId, grabFolderId } = action.payload;
       const grabFolderIndex = state.folderList.findIndex((folder) => folder.id === grabFolderId);
-      state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      const targetFolderIndex = state.folderList.findIndex(
+        (folder) => folder.id === targetLocationId,
+      );
+      const targetFolder = state.folderList[targetFolderIndex];
+
+      const checkParent = (grabIndex, targetIndex) => {
+        const grabFolder = state.folderList[grabIndex];
+        const targetFolder = state.folderList[targetIndex];
+
+        if (targetFolder.parent_folder === "root") {
+          return true;
+        }
+
+        if (grabFolder.id === targetFolder.parent_folder) {
+          return false;
+        }
+
+        const upperFolderIndex = state.folderList.findIndex(
+          (folder) => folder.id === targetFolder.parent_folder,
+        );
+
+        return checkParent(grabIndex, upperFolderIndex);
+      };
+
+      if (targetFolder.id === "root" || checkParent(grabFolderIndex, targetFolderIndex)) {
+        state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      }
+    },
+    addFolder: (state, action) => {
+      state.folderList.push(action.payload);
+    },
+    addBookmark: (state, action) => {
+      const { targetLocationId } = action.payload;
+      const targetFolderIndex = state.folderList.findIndex(
+        (folder) => folder.id === targetLocationId,
+      );
+      const targetFolder = state.folderList[targetFolderIndex];
+      targetFolder.bookmark.push(action.payload.newBookmark);
     },
   },
   extraReducers: {
@@ -41,5 +78,5 @@ const folderSlices = createSlice({
   },
 });
 
-export const { moveFolder } = folderSlices.actions;
+export const { moveFolder, addFolder, addBookmark } = folderSlices.actions;
 export default folderSlices.reducer;

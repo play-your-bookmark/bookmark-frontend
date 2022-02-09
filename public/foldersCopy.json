@@ -8,7 +8,26 @@
     "title": "초보자용 리액트 링크모음",
     "publisher": "흥민",
     "likes": 10,
-    "bookmark": ["wwww.react-basic.com"],
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "root"
   },
   {
@@ -16,7 +35,26 @@
     "title": "중급자용 리액트 링크모음",
     "publisher": "희찬",
     "likes": 9,
-    "bookmark": ["wwww.react-intermediate.com"],
+    "bookmark": [
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "shlee39/bookmark-frontend",
+        "utc_time": "2022-02-05 09:45:05",
+        "url": "https://github.com/shlee39/bookmark-frontend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Forks · play-your-bookmark/bookmark-frontend",
+        "utc_time": "2022-02-05 09:50:54",
+        "url": "https://github.com/play-your-bookmark/bookmark-frontend/network/members",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "root"
   },
   {
@@ -24,7 +62,26 @@
     "title": "고급자용 리액트 링크모음",
     "publisher": "진수",
     "likes": 134,
-    "bookmark": ["wwww.react-advanced.com"],
+    "bookmark": [
+      {
+        "title": "Merge pull request #2 from Hyunwooksuh/master · play-your-bookmark/bookmark-frontend@4bcf282",
+        "utc_time": "2022-02-05 09:51:04",
+        "url": "https://github.com/play-your-bookmark/bookmark-frontend/commit/4bcf28264deb110cc191dbc9c199c32f03cfd810",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark",
+        "utc_time": "2022-02-05 09:56:57",
+        "url": "https://github.com/play-your-bookmark",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-frontend",
+        "utc_time": "2022-02-05 09:56:59",
+        "url": "https://github.com/play-your-bookmark/bookmark-frontend",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "a"
   },
   {
@@ -32,7 +89,26 @@
     "title": "초보자용 노드 링크모음",
     "publisher": "의조",
     "likes": 33,
-    "bookmark": ["wwww.nodejs-basic.com"],
+    "bookmark": [
+      {
+        "title": "깃헙플로우 작업 방법 - Google 검색",
+        "utc_time": "2022-02-05 09:57:28",
+        "url": "https://www.google.com/search?q=%EA%B9%83%ED%97%99%ED%94%8C%EB%A1%9C%EC%9A%B0+%EC%9E%91%EC%97%85+%EB%B0%A9%EB%B2%95&oq=%EA%B9%83%ED%97%99%ED%94%8C%EB%A1%9C%EC%9A%B0+%EC%9E%91%EC%97%85+%EB%B0%A9%EB%B2%95&aqs=chrome..69i57j33i10i160.5074j0j7&sourceid=chrome&ie=UTF-8",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "[Git] GitHub로 협업하기 - Forking Workflow",
+        "utc_time": "2022-02-05 09:57:42",
+        "url": "https://velog.io/@hyowon_lee/Git-GitHub%EB%A1%9C-%ED%98%91%EC%97%85%ED%95%98%EA%B8%B0-Forking-Workflow",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "[Git] GIT 협업 방법! - (Forking Workflow)",
+        "utc_time": "2022-02-05 09:58:51",
+        "url": "https://gh402.tistory.com/9",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "a"
   },
   {
@@ -40,14 +116,46 @@
     "title": "중급자용 노드 링크모음",
     "publisher": "규성",
     "likes": 77,
-    "bookmark": ["wwww.nodejs-intermediate.com"],
+    "bookmark": [
+      {
+        "title": "[git, github] Git-flow 정리 및 프로젝트 적용 :: Hyeonic's Blog",
+        "utc_time": "2022-02-05 10:00:15",
+        "url": "https://hyeonic.tistory.com/188",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "깃헙플로우 작업 방법 fork - Google 검색",
+        "utc_time": "2022-02-05 10:00:25",
+        "url": "https://www.google.com/search?q=%EA%B9%83%ED%97%99%ED%94%8C%EB%A1%9C%EC%9A%B0+%EC%9E%91%EC%97%85+%EB%B0%A9%EB%B2%95+fork&sxsrf=APq-WBuJ3DYxacYvNItkIBvBtLUlRd1asQ%3A1644055048220&ei=CEr-YbPzDMaIhwPO_4a4CA&ved=0ahUKEwizl4-ppuj1AhVGxGEKHc6_AYcQ4dUDCA4&uact=5&oq=%EA%B9%83%ED%97%99%ED%94%8C%EB%A1%9C%EC%9A%B0+%EC%9E%91%EC%97%85+%EB%B0%A9%EB%B2%95+fork&gs_lcp=Cgdnd3Mtd2l6EAMyAggAMgIIADICCAA6BwgAEEcQsAM6BAgjECc6CQghEAoQoAEQKjoHCCEQChCgAUoECEEYAEoECEYYAFCGBlizC2CGDWgBcAJ4AIABnwGIAcAFkgEDMC41mAEAoAEByAEKwAEB&sclient=gws-wiz",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "d"
   },
   {
     "id": "f",
     "title": "고급자용 노드 링크모음",
     "publisher": "재성",
-    "bookmark": ["wwww.nodejs-advanced.com"],
+    "bookmark": [
+      {
+        "title": "Git - GitHub 프로젝트에 기여하기",
+        "utc_time": "2022-02-05 10:00:29",
+        "url": "https://git-scm.com/book/ko/v2/GitHub-GitHub-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-%EA%B8%B0%EC%97%AC%ED%95%98%EA%B8%B0",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "react require - Google 검색",
+        "utc_time": "2022-02-05 10:04:13",
+        "url": "https://www.google.com/search?q=react+require&oq=react+require&aqs=chrome.0.69i59j0i512l6j69i60.4689j0j7&sourceid=chrome&ie=UTF-8",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "hatae94 (하태용)",
+        "utc_time": "2022-02-05 10:05:13",
+        "url": "https://github.com/hatae94",
+        "browser": "Google Chrome"
+      }
+    ],
     "likes": 156,
     "parent_folder": "b"
   },
@@ -56,7 +164,20 @@
     "title": "자바스크립트 기초부터(링크모음)",
     "publisher": "인범",
     "likes": 658,
-    "bookmark": ["wwww.javascript-promise.com"],
+    "bookmark": [
+      {
+        "title": "Your Repositories",
+        "utc_time": "2022-02-05 10:05:14",
+        "url": "https://github.com/hatae94?tab=repositories",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "hatae94/bookmark-frontend",
+        "utc_time": "2022-02-05 10:05:16",
+        "url": "https://github.com/hatae94/bookmark-frontend",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "f"
   }
 ]
