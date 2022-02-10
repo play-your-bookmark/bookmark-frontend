@@ -33,7 +33,6 @@ const req = (
         Cookies.remove("accessToken");
         return;
       }
-
       return { status, data, config };
     });
 };
