@@ -17,13 +17,11 @@ const TitleWrapper = styled.h2`
 
 export default function SubRankPage() {
   const keyword = useSelector((state) => state.keyword.keyword);
-  // mock data 사용 중 selectedFolder 리덕스처리 필요
-  const [selectedFolder, setSelectedFolder] = useState(folders[1]);
 
   return (
     <ListWrapper>
-      <List category={keyword} onSelect={setSelectedFolder} origin="keywordCategory" />
-      <List selectedFolder={selectedFolder} />
+      <List category={keyword} origin="keywordCategory" />
+      <List />
     </ListWrapper>
   );
 }
