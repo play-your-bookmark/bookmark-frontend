@@ -1,13 +1,20 @@
 [
   {
-    "title": "기타 북마크(ROOT)",
-    "id": "root"
+    "title": "ROOT",
+    "id": "62050667b651f6b250bbcf81",
+    "bookmark": [],
+    "likes": [],
+    "category": "",
+    "publisher": "62051db148e052889017c58d",
+    "parent_folder": "62050667b651f6b250bbcf81"
   },
   {
-    "id": "a",
+    "id": "62051a7ab651f6b250c01187",
     "title": "초보자용 리액트 링크모음",
-    "publisher": "흥민",
-    "likes": 10,
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
+    "likes": [],
+    "category": "ReactJS",
     "bookmark": [
       {
         "title": "바닐라코딩 부트캠프 가이드 v11",
@@ -28,13 +35,15 @@
         "browser": "Google Chrome"
       }
     ],
-    "parent_folder": "root"
+    "parent_folder": "62050667b651f6b250bbcf81"
   },
   {
-    "id": "b",
+    "id": "62051a7ab651f6b250c011af",
     "title": "중급자용 리액트 링크모음",
-    "publisher": "희찬",
-    "likes": 9,
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
+    "likes": [],
+    "category": "ReactJS",
     "bookmark": [
       {
         "title": "Confirm access",
@@ -55,13 +64,15 @@
         "browser": "Google Chrome"
       }
     ],
-    "parent_folder": "root"
+    "parent_folder": "62050667b651f6b250bbcf81"
   },
   {
-    "id": "c",
+    "id": "62051a7ab651f6b250c01196",
     "title": "고급자용 리액트 링크모음",
-    "publisher": "진수",
-    "likes": 134,
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
+    "likes": [],
+    "category": "ReactJS",
     "bookmark": [
       {
         "title": "Merge pull request #2 from Hyunwooksuh/master · play-your-bookmark/bookmark-frontend@4bcf282",
@@ -82,13 +93,15 @@
         "browser": "Google Chrome"
       }
     ],
-    "parent_folder": "a"
+    "parent_folder": "62051a7ab651f6b250c01187"
   },
   {
-    "id": "d",
+    "id": "62051a7ab651f6b250c0119d",
     "title": "초보자용 노드 링크모음",
-    "publisher": "의조",
-    "likes": 33,
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
+    "likes": [],
+    "category": "NodeJS",
     "bookmark": [
       {
         "title": "깃헙플로우 작업 방법 - Google 검색",
@@ -109,13 +122,15 @@
         "browser": "Google Chrome"
       }
     ],
-    "parent_folder": "a"
+    "parent_folder": "62051a7ab651f6b250c01187"
   },
   {
-    "id": "e",
+    "id": "62051a7ab651f6b250c011d1",
     "title": "중급자용 노드 링크모음",
-    "publisher": "규성",
-    "likes": 77,
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
+    "likes": [],
+    "category": "NodeJS",
     "bookmark": [
       {
         "title": "[git, github] Git-flow 정리 및 프로젝트 적용 :: Hyeonic's Blog",
@@ -130,12 +145,13 @@
         "browser": "Google Chrome"
       }
     ],
-    "parent_folder": "d"
+    "parent_folder": "62051a7ab651f6b250c0119d"
   },
   {
-    "id": "f",
+    "id": "62051a7ab651f6b250c011d4",
     "title": "고급자용 노드 링크모음",
-    "publisher": "재성",
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
     "bookmark": [
       {
         "title": "Git - GitHub 프로젝트에 기여하기",
@@ -156,14 +172,17 @@
         "browser": "Google Chrome"
       }
     ],
-    "likes": 156,
-    "parent_folder": "b"
+    "likes": [],
+    "category": "NodeJS",
+    "parent_folder": "62051a7ab651f6b250c011af"
   },
   {
-    "id": "g",
+    "id": "62051a7ab651f6b250c011d9",
     "title": "자바스크립트 기초부터(링크모음)",
-    "publisher": "인범",
-    "likes": 658,
+    "publisher": "62051db148e052889017c58d",
+    "published_at": "2020-01-11 11:16:58",
+    "likes": [],
+    "category": "JavaScript",
     "bookmark": [
       {
         "title": "Your Repositories",
@@ -178,6 +197,6 @@
         "browser": "Google Chrome"
       }
     ],
-    "parent_folder": "f"
+    "parent_folder": "62051a7ab651f6b250c011d4"
   }
 ]

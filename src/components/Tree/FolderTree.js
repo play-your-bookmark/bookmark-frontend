@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { moveFolder, addFolder, addBookmark } from "../../redux/slices/folderSlices";
+import {
+  moveFolder,
+  addFolder,
+  addBookmark,
+  deleteFolder,
+  deleteFolderInDB,
+  fetchCreatedFolder,
+} from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
 
 export default function FolderTree({ subTree }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [grabFolder, setGrabFolder] = useState("");
   // const [isToggled, setIsToggled] = useState(false);
@@ -61,20 +70,27 @@ export default function FolderTree({ subTree }) {
   };
 
   const handleAddFolderButton = (e) => {
-    if (e.target.tagName === "BUTTON") {
+    // 유저 정보 불러오기로 Object_id 구한 뒤 publisher에 넣을 예정
+    // 현재는 시현의 정보로 들어가있음.
+    if (e.target.className === "add") {
       const targetLocation = e.currentTarget.dataset.id;
-      const newFolderId = `react ${Math.random()} ${targetLocation}`;
-      const newFolderName = "새폴더";
+      const newFolderId = `category ${Math.random()} ${targetLocation}`;
+      const newFolderName = `새폴더 ${Math.random()}`;
       const newFolder = {
-        id: newFolderId,
+        _id: newFolderId,
         title: newFolderName,
-        publisher: "",
-        likes: 0,
+        publisher: "62051dcb055fe08037037fd2",
+        likes: [],
         bookmark: [],
         parent_folder: targetLocation,
       };
 
       dispatch(addFolder(newFolder));
+    }
+
+    if (e.target.className === "delete") {
+      const targetFolder = e.currentTarget.dataset.id;
+      dispatch(deleteFolderInDB(targetFolder));
     }
   };
 
@@ -93,7 +109,12 @@ export default function FolderTree({ subTree }) {
       >
         <div className="folder" data-id={subTree[0]} onClick={handleAddFolderButton}>
           - {subTree[1]}
-          <button type="button">click</button>
+          <button className="add" type="button">
+            add
+          </button>
+          <button className="delete" type="button">
+            delete
+          </button>
         </div>
         {subTree.length >= 3 &&
           subTree.map((child, index) => {

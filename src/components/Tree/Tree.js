@@ -4,7 +4,7 @@ import styled from "styled-components";
 import "./Tree.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCreatedFolder } from "../../redux/slices/folderSlices";
+import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices";
 import { buildTree } from "../../utils/tree";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
@@ -27,7 +27,7 @@ export default function Tree() {
   }, [folderList]);
 
   const handleSaveButton = async () => {
-    console.log("save");
+    dispatch(saveFolders(folderList));
   };
 
   return (
