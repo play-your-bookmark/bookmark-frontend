@@ -5,7 +5,7 @@
   { "main": "언어(Language)", "sub": "타입스크립트(Typescript)" },
   { "main": "언어(Language)", "sub": "고(Go)" },
   { "main": "언어(Language)", "sub": "파이썬(Python)" },
-  { "main": "언어(Language)", "sub": "스칼라()" },
+  { "main": "언어(Language)", "sub": "스칼라(Scala)" },
   { "main": "언어(Language)", "sub": "C언어(C/C++)" },
   { "main": "언어(Language)", "sub": "스위프트(Swift)" },
   { "main": "프론트엔드(Frontend)", "sub": "리액트(ReactJS)" },
