@@ -26,7 +26,7 @@ export default function Tree() {
     }
   }, [folderList]);
 
-  const handleSaveButton = () => {
+  const handleSaveButton = async () => {
     console.log("save");
   };
 

@@ -16,6 +16,16 @@ export const fetchCreatedFolder = createAsyncThunk(
   },
 );
 
+export const saveFolders = createAsyncThunk("post/folders", 
+  async (payload, { rejectWithValue }) => {
+    try {
+      
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const folderSlices = createSlice({
   name: "folders",
   initialState: {
