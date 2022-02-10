@@ -26,6 +26,7 @@ function handleClickRetrieveLinks(origin, folder, dispatch, e) {
 
 export default function Card({ folder, origin }) {
   const dispatch = useDispatch();
+
   return (
     <FolderWrapper
       type="button"
