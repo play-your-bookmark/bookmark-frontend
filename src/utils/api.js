@@ -2,13 +2,14 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 axios.defaults.withCredentials = true;
+
 const BASE_URL = "http://localhost:7001";
 const req = (
   method,
   url,
   { params = {}, data = {}, headers = {}, responseType = "json" },
-  isBased = false,
   callback = () => {},
+  isBased = true,
 ) => {
   const accessToken = Cookies.get("accessToken") || undefined;
   return axios({

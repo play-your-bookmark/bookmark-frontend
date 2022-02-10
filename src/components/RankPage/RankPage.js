@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-export default function RankPage({ auth }) {
-  return (
-    <div>
-      <h1>랭크페이지입니다</h1>
-    </div>
-  );
+import MainRankPage from "./MainRankPage/MainRankPage";
+import SubRankPage from "./SubRankPage/SubRankPage";
+
+export default function RankPage() {
+  const keyword = useSelector((state) => state.keyword.keyword);
+
+  return <div>{!keyword ? <MainRankPage /> : <SubRankPage />}</div>;
 }

@@ -8,7 +8,33 @@
     "title": "초보자용 리액트 링크모음",
     "publisher": "흥민",
     "likes": 10,
-    "bookmark": ["wwww.react-basic.com"],
+    "category": "Frontend/ReactJS",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11v1188888888888888888888888888888888888888888888888888888",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],
     "parent_folder": "root"
   },
   {
@@ -16,39 +42,164 @@
     "title": "중급자용 리액트 링크모음",
     "publisher": "희찬",
     "likes": 9,
-    "bookmark": ["wwww.react-intermediate.com"],
-    "parent_folder": "root"
+    "category": "Frontend/ReactJS",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 프렙 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "ㅇdont;adsgnk Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],    "parent_folder": "root"
   },
   {
     "id": "c",
     "title": "고급자용 리액트 링크모음",
     "publisher": "진수",
     "likes": 134,
-    "bookmark": ["wwww.react-advanced.com"],
-    "parent_folder": "a"
+    "category": "Frontend/ReactJS",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],    "parent_folder": "a"
   },
   {
     "id": "d",
     "title": "초보자용 노드 링크모음",
     "publisher": "의조",
     "likes": 33,
-    "bookmark": ["wwww.nodejs-basic.com"],
-    "parent_folder": "a"
+    "category": "Backend/NodeJS",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],    "parent_folder": "a"
   },
   {
     "id": "e",
     "title": "중급자용 노드 링크모음",
     "publisher": "규성",
     "likes": 77,
-    "bookmark": ["wwww.nodejs-intermediate.com"],
-    "parent_folder": "d"
+    "category": "Backend/NodeJS",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],    "parent_folder": "d"
   },
   {
     "id": "f",
     "title": "고급자용 노드 링크모음",
     "publisher": "재성",
-    "bookmark": ["wwww.nodejs-advanced.com"],
-    "likes": 156,
+    "category": "Backend/NodeJS",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],    "likes": 156,
     "parent_folder": "b"
   },
   {
@@ -56,7 +207,32 @@
     "title": "자바스크립트 기초부터(링크모음)",
     "publisher": "인범",
     "likes": 658,
-    "bookmark": ["wwww.javascript-promise.com"],
-    "parent_folder": "f"
+    "category": "Language/JavaScript",
+    "bookmark": [
+      {
+        "title": "바닐라코딩 부트캠프 가이드 v11",
+        "utc_time": "2022-02-05 09:38:37",
+        "url": "https://www.notion.so/vanillacoding/v11-48760d7cd5e943f08d89963a017f4a24",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Installing Slack",
+        "utc_time": "2022-02-05 09:39:06",
+        "url": "https://github.com/apps/slack/installations/new?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlnZ2VyX2lkIjoiMzA1NDcyNDk5MDkxOC4xNjczOTE0NTc3MzIuMmVkODBhMjczNDA5NGNhY2Y0NmE1OGMwNGExM2Y0ZjUiLCJ0ZWFtSWQiOiJUNFhCSERGTUoiLCJjbGllbnREb21haW4iOiJ2YW5pbGxhY29kaW5nIiwidXNlcklkIjoiVTAyOEJUSlFMNjkiLCJjaGFubmVsSWQiOiJDMDJWQjBRVFhESiIsInRyaWdnZXJpbmdBcHAiOiJBMDFCUDdSNEtOWSIsInJlcGxheUNvbW1hbmQiOnRydWUsImlhdCI6MTY0NDA1MjY3NCwiZXhwIjoxNjQ0MDU2Mjc0fQ.jkGAGTDcC3EqbXuTVzXqdRgFRiXXTH00NTWsK7EDw0M",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "play-your-bookmark/bookmark-backend",
+        "utc_time": "2022-02-05 09:40:35",
+        "url": "https://github.com/play-your-bookmark/bookmark-backend",
+        "browser": "Google Chrome"
+      },
+      {
+        "title": "Confirm access",
+        "utc_time": "2022-02-05 09:42:19",
+        "url": "https://github.com/apps/slack/installations/22974213",
+        "browser": "Google Chrome"
+      }
+    ],    "parent_folder": "f"
   }
 ]
