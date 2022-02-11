@@ -74,6 +74,7 @@ export default function FolderTree({ subTree }) {
       const targetLocation = e.currentTarget.dataset._id;
       const newFolderId = `${new ObjectId().toString()} new`;
       const newFolderName = `새폴더 ${Math.random()}`;
+
       const newFolder = {
         _id: newFolderId,
         title: newFolderName,
