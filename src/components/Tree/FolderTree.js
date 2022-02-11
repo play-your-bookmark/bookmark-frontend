@@ -1,9 +1,8 @@
-import { ObjectId } from "bson";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import { ObjectId } from "bson";
 import {
   moveFolder,
   addFolder,
@@ -88,6 +87,7 @@ export default function FolderTree({ subTree }) {
 
       dispatch(addFolder(newFolder));
     }
+
     if (e.target.className === "delete") {
       const targetFolder = e.currentTarget.dataset._id;
       dispatch(deleteFolderInDB(targetFolder));
