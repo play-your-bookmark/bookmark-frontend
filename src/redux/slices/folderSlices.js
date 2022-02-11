@@ -5,6 +5,7 @@ export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
+      // 현재 접속중인 유저가 생성한 모든 folderList를 불러올 때
       const { data } = await req("get", "/folder/main", true, (res) => res);
 
       return data;
@@ -19,6 +20,7 @@ export const saveFolders = createAsyncThunk(
   async (payload, { rejectWithValue, dispatch }) => {
     try {
       await req("post", "/folder/new", { data: payload }, true, (res) => res);
+      dispatch(fetchCreatedFolder());
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -32,6 +34,7 @@ export const deleteFolderInDB = createAsyncThunk(
       if (payload.split(" ")[1]) {
         // 새폴더 일 경우 store에서만 삭제
         dispatch(deleteFolder(payload));
+
         return;
       }
 
@@ -52,33 +55,13 @@ const folderSlices = createSlice({
     moveFolder: (state, action) => {
       const { targetLocationId, grabFolderId } = action.payload;
       const grabFolderIndex = state.folderList.findIndex((folder) => folder._id === grabFolderId);
-      const targetFolderIndex = state.folderList.findIndex(
-        (folder) => folder._id === targetLocationId,
-      );
-      const targetFolder = state.folderList[targetFolderIndex];
-      const rootFolder = state.folderList[0];
 
-      const checkParent = (grabIndex, targetIndex) => {
-        const grabFolder = state.folderList[grabIndex];
-        const targetFolder = state.folderList[targetIndex];
-        if (targetFolder.parent_folder === rootFolder._id) {
-          return true;
-        }
-
-        if (grabFolder._id === targetFolder.parent_folder) {
-          return false;
-        }
-
-        const upperFolderIndex = state.folderList.findIndex(
-          (folder) => folder._id === targetFolder.parent_folder,
-        );
-
-        return checkParent(grabIndex, upperFolderIndex);
-      };
-
-      if (targetFolder._id === rootFolder._id || checkParent(grabFolderIndex, targetFolderIndex)) {
-        state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      const grabFolder = state.folderList[grabFolderIndex];
+      if (grabFolder.parent_folder === targetLocationId) {
+        return;
       }
+
+      state.folderList[grabFolderIndex].parent_folder = targetLocationId;
     },
     addFolder: (state, action) => {
       state.folderList.push(action.payload);
@@ -107,11 +90,6 @@ const folderSlices = createSlice({
       state.loading = true;
     },
     [fetchCreatedFolder.fulfilled]: (state, action) => {
-      // buildTree를 돌리기 위해 root folder를 0번 인덱스로 두는 작업
-      const fetchedFolderList = action.payload;
-      const rootIndex = fetchedFolderList.findIndex((folder) => folder.title === "ROOT");
-      const rootFolder = fetchedFolderList.splice(rootIndex, 1);
-      fetchedFolderList.splice(0, 0, rootFolder[0]);
       state.folderList = action.payload;
       state.loading = false;
     },
