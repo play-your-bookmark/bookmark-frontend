@@ -79,8 +79,6 @@ export default function FolderTree({ subTree }) {
       const newFolder = {
         _id: newFolderId,
         title: newFolderName,
-        publisher: "62051dcb055fe08037037fd2",
-        likes: [],
         bookmark: [],
         parent_folder: targetLocation,
       };
