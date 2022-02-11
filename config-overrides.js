@@ -26,4 +26,9 @@ function devServerConfig() {
 
 module.exports = {
   devServer: overrideDevServer(devServerConfig()),
+  resolve: {
+    fallback: {
+      crypto: require.resolve("crypto-browserify"),
+    },
+  },
 };
