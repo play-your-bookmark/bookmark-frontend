@@ -89,10 +89,10 @@ const folderSlices = createSlice({
     },
     [fetchCreatedFolder.fulfilled]: (state, action) => {
       // buildTree를 돌리기 위해 root folder를 0번 인덱스로 두는 작업
-      const fetchedFolderList = action.payload;
-      const rootIndex = fetchedFolderList.findIndex((folder) => folder.title === "ROOT");
-      const rootFolder = fetchedFolderList.splice(rootIndex, 1);
-      fetchedFolderList.splice(0, 0, rootFolder[0]);
+      // const fetchedFolderList = action.payload;
+      // const rootIndex = fetchedFolderList.findIndex((folder) => folder.title === "ROOT");
+      // const rootFolder = fetchedFolderList.splice(rootIndex, 1);
+      // fetchedFolderList.splice(0, 0, rootFolder[0]);
       state.folderList = action.payload;
       state.loading = false;
     },

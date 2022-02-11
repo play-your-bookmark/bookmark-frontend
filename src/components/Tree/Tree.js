@@ -18,11 +18,8 @@ export default function Tree() {
   }, [dispatch]);
 
   useEffect(() => {
-    // 생성된 폴더가 없는 경우, fetch를 하면 [undefined] (boolean값 true)로 나옴. 즉 fetch 여부를 파악하기 위해 로직유지
-    if (folderList) {
-      const tree = buildTree(folderList, 0, []);
-      setTree(tree);
-    }
+    const tree = buildTree(folderList, 0, []);
+    setTree(tree);
   }, [folderList]);
 
   const handleSaveButton = async () => {
