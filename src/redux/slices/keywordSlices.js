@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const keywordSlices = createSlice({
+const keywordSlices = createSlice({
   name: "keyword",
   initialState: {
-    keyword: "ReactJS", // Mock으로 설정 중
+    keyword: null,
   },
-  reducer: {
+  reducers: {
     setKeyword: (state, action) => {
       state.keyword = action.payload;
     },
