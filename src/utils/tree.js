@@ -3,6 +3,11 @@ export function buildTree(folderList, level, folderTree) {
     folderTree.push("root", "root", []);
   }
 
+  // folderList의 0번째 값이 undefined인 경우, 즉 생성한 폴더가 없는 경우
+  if (!folderList[0]) {
+    return folderTree;
+  }
+
   const parentId = folderTree[0];
   const temp = folderTree;
 

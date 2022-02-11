@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import req from "../../utils/api";
 
-// mockdata 사용
-import folders from "../../utils/folders.json";
 import Card from "./Card";
+import Modal from "../Modal/Modal";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -43,35 +43,55 @@ const Hyperlink = styled.a`
 `;
 
 export default function List({ category, origin }) {
-  // mockdata 사용 (원래는 axios로 카테고리에 맞는 폴더 전부요청)
   const MAX_LINK_LENGTH = 40;
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
+  const [categoryFolder, setCategoryFolder] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const folderArray = category
-    ? folders.map((folder, index) => {
-        if (index === 0) return;
-        const categoryArray = folders[index].category.split("/");
+  useEffect(() => {
+    async function getCategoryFolder() {
+      const result = await req(
+        "get",
+        "/folder/category",
+        { params: [origin, category] },
+        (res) => setCategoryFolder(res.data),
+        true,
+      );
+    }
 
-        if (category === categoryArray[0] || category === categoryArray[1]) {
-          return folder;
-        }
-
-        return null;
-      })
-    : null;
+    getCategoryFolder();
+  }, []);
 
   return (
     <CardWrapper>
       {category &&
-        folderArray.map((folder) => {
+        categoryFolder &&
+        categoryFolder.map((folder) => {
           if (!folder) return;
 
           return (
-            <FolderTitleWrapper key={folder.id}>
-              <Card folder={folder} origin={origin} />
+            <FolderTitleWrapper key={folder._id}>
+              <Card
+                folder={folder}
+                origin={origin}
+                setIsModalOpen={() => setIsModalOpen(!isModalOpen)}
+              />
             </FolderTitleWrapper>
           );
         })}
+      {selectedFolder && (
+        <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          {selectedFolder.bookmark.map((link) => (
+            <LinkWrapper key={link.url}>
+              <Hyperlink href={link.url}>
+                {link.title.length > MAX_LINK_LENGTH
+                  ? `${link.title.substring(0, MAX_LINK_LENGTH - 3)}...`
+                  : link.title}
+              </Hyperlink>
+            </LinkWrapper>
+          ))}
+        </Modal>
+      )}
       {!category &&
         selectedFolder &&
         selectedFolder.bookmark.map((link) => (
