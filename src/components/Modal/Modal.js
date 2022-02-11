@@ -10,6 +10,7 @@ const ModalStyle = styled.div`
   position: fixed;
   top: 30%;
   left: 50%;
+  width: 20rem;
   height: 20rem;
   transform: translate(-50%, -50%);
   background-color: beige;
@@ -34,7 +35,7 @@ export default function Modal({ open, onClose, children }) {
   return ReactDOM.createPortal(
     <>
       <OverlayStyle onClick={onClose} />
-      <ModalStyle>{children}</ModalStyle>
+      <ModalStyle>{children.length > 0 ? children : <div>빈 폴더입니다!</div>}</ModalStyle>
     </>,
     document.getElementById("modal"),
   );

@@ -1,6 +1,5 @@
 /* eslint-disable react/no-children-prop */
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import "./Tree.css";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +7,6 @@ import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices
 import { buildTree } from "../../utils/tree";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
-// import CATEGORY from "../../utils/category.json";
 
 export default function Tree() {
   const dispatch = useDispatch();
