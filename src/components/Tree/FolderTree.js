@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import { ObjectId } from "bson";
 import {
   moveFolder,
   addFolder,
@@ -49,8 +49,8 @@ export default function FolderTree({ subTree }) {
     const dataType = e.dataTransfer.getData("type");
 
     if (dataType === "folder") {
-      const grabFolderId = grabFolder.dataset.id;
-      const targetLocationId = e.target.dataset.id;
+      const grabFolderId = grabFolder.dataset._id;
+      const targetLocationId = e.target.dataset._id;
       if (targetLocationId !== grabFolderId) {
         dispatch(moveFolder({ targetLocationId, grabFolderId }));
 
@@ -58,7 +58,7 @@ export default function FolderTree({ subTree }) {
       }
     }
 
-    const targetLocationId = e.target.dataset.id;
+    const targetLocationId = e.target.dataset._id;
 
     const newBookmark = {
       title: e.dataTransfer.getData("title"),
@@ -69,17 +69,19 @@ export default function FolderTree({ subTree }) {
     dispatch(addBookmark({ newBookmark, targetLocationId }));
   };
 
-  const handleAddFolderButton = (e) => {
-    // 유저 정보 불러오기로 Object_id 구한 뒤 publisher에 넣을 예정
-    // 현재는 시현의 정보로 들어가있음.
+  const handleFolderButton = (e) => {
     if (e.target.className === "add") {
-      const targetLocation = e.currentTarget.dataset.id;
-      const newFolderId = `category ${Math.random()} ${targetLocation}`;
+      const targetLocation = e.currentTarget.dataset._id;
+      const newFolderId = `${new ObjectId().toString()} new`;
       const newFolderName = `새폴더 ${Math.random()}`;
       const newFolder = {
         _id: newFolderId,
         title: newFolderName,
+        publisher: "",
+        likes: [],
         bookmark: [],
+        main_category: "",
+        sub_category: "",
         parent_folder: targetLocation,
       };
 
@@ -87,42 +89,40 @@ export default function FolderTree({ subTree }) {
     }
 
     if (e.target.className === "delete") {
-      const targetFolder = e.currentTarget.dataset.id;
+      const targetFolder = e.currentTarget.dataset._id;
       dispatch(deleteFolderInDB(targetFolder));
     }
   };
 
   return (
-    <li>
-      <div
-        key={subTree[0]}
-        data-id={subTree[0]}
-        draggable
-        onDragEnter={handleDragEnter}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragleave}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDrop={handleDrop}
-      >
-        <div className="folder" data-id={subTree[0]} onClick={handleAddFolderButton}>
-          - {subTree[1]}
-          <button className="add" type="button">
-            add
-          </button>
-          <button className="delete" type="button">
-            delete
-          </button>
-        </div>
-        {subTree.length >= 3 &&
-          subTree.map((child, index) => {
-            if (index < 3) {
-              return;
-            }
-
-            return <FolderTree subTree={child} />;
-          })}
+    <li
+      key={subTree[0]}
+      data-_id={subTree[0]}
+      draggable
+      onDragEnter={handleDragEnter}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragleave}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onDrop={handleDrop}
+    >
+      <div className="folder" data-_id={subTree[0]} onClick={handleFolderButton}>
+        - {subTree[1]}
+        <button className="add" type="button">
+          add
+        </button>
+        <button className="delete" type="button">
+          delete
+        </button>
       </div>
+      {subTree.length >= 3 &&
+        subTree.map((child, index) => {
+          if (index < 3) {
+            return;
+          }
+
+          return <FolderTree subTree={child} />;
+        })}
     </li>
   );
 }

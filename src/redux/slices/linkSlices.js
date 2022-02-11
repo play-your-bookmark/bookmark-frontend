@@ -7,7 +7,7 @@ export const fetchLinkHistory = createAsyncThunk(
   "get/links",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { data } = await req("get", "/link/", { params: payload }, true, (res) => res);
+      const { data } = await req("get", "/link/", { params: payload }, (res) => res, true);
 
       return data;
     } catch (error) {
