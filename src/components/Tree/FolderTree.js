@@ -51,9 +51,7 @@ export default function FolderTree({ subTree }) {
 
     if (dataType === "folder") {
       const grabFolderId = grabFolder.dataset._id;
-      console.log("잡은 폴더 아이디", grabFolderId);
       const targetLocationId = e.target.dataset._id;
-      console.log("놓을 폴더 아이디", targetLocationId);
       if (targetLocationId !== grabFolderId) {
         dispatch(moveFolder({ targetLocationId, grabFolderId }));
 
@@ -83,6 +81,8 @@ export default function FolderTree({ subTree }) {
         publisher: "",
         likes: [],
         bookmark: [],
+        main_category: "",
+        sub_category: "",
         parent_folder: targetLocation,
       };
 
