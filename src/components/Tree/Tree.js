@@ -1,6 +1,5 @@
 /* eslint-disable react/no-children-prop */
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import "./Tree.css";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +7,6 @@ import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices
 import { buildTree } from "../../utils/tree";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
-// import CATEGORY from "../../utils/category.json";
 
 export default function Tree() {
   const dispatch = useDispatch();
@@ -20,6 +18,7 @@ export default function Tree() {
   }, [dispatch]);
 
   useEffect(() => {
+    // 생성된 폴더가 없는 경우, fetch를 하면 [undefined] (boolean값 true)로 나옴. 즉 fetch 여부를 파악하기 위해 로직유지
     if (folderList) {
       const tree = buildTree(folderList, 0, []);
       setTree(tree);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { setKeyword } from "../../redux/slices/keywordSlices";
 import CATEGORY from "../../utils/customCategory.json";
@@ -32,13 +32,14 @@ export default function SearchBar() {
   const [search, setSearch] = useState("");
   const wrapperRef = useRef(null);
   const dispatch = useDispatch();
+  const keyword = useSelector((state) => state.keyword.keyword);
 
   function setKeywordOnInput(keyword) {
     // 폴더 찾을 시, 쉽게 찾기 위해 정규 표현식으로 불필요한 부분 trimming -> 폴더 저장에 따라 수정 필요
     const folderKeyword = keyword.replace(/[^A-Za-z]/gi, "");
     dispatch(setKeyword(folderKeyword));
 
-    setSearch(keyword);
+    setSearch("");
     setDisplay(false);
   }
 
@@ -67,6 +68,9 @@ export default function SearchBar() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+      {keyword && (
+        <button onClick={() => dispatch(setKeyword())}>메인 랭크페이지로 되돌아가기</button>
+      )}
       {display && (
         <OptionWrapper>
           {options
