@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import req from "../../utils/api";
 
 import Card from "./Card";
 import Modal from "../Modal/Modal";
+import LikeButton from "./LikeButton";
+import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -43,30 +45,22 @@ const Hyperlink = styled.a`
 `;
 
 export default function List({ category, origin }) {
+  // category에 맞는 folder를 스토어에서 관리해야 like를 즉각 반영하기가 편함
   const MAX_LINK_LENGTH = 40;
+  const dispatch = useDispatch();
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
-  const [categoryFolder, setCategoryFolder] = useState(null);
+  const fetchedCategoryFolder = useSelector((state) => state.categoryFolder.fetchedCategoryFolder);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    async function getCategoryFolder() {
-      const result = await req(
-        "get",
-        "/folder/category",
-        { params: [origin, category] },
-        (res) => setCategoryFolder(res.data),
-        true,
-      );
-    }
-
-    getCategoryFolder();
+    dispatch(fetchCategoryFolder({ origin, category }));
   }, []);
 
   return (
     <CardWrapper>
       {category &&
-        categoryFolder &&
-        categoryFolder.map((folder) => {
+        fetchedCategoryFolder[category] &&
+        fetchedCategoryFolder[category].map((folder, index) => {
           if (!folder) return;
 
           return (
@@ -76,6 +70,8 @@ export default function List({ category, origin }) {
                 origin={origin}
                 setIsModalOpen={() => setIsModalOpen(!isModalOpen)}
               />
+              <div>{folder.likes.length}</div>
+              <LikeButton folder={folder} index={index} origin={origin} />
             </FolderTitleWrapper>
           );
         })}
