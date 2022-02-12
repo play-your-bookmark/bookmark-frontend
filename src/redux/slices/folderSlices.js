@@ -48,7 +48,9 @@ export const deleteFolderInDB = createAsyncThunk(
 const folderSlices = createSlice({
   name: "folders",
   initialState: {
+    folderList: [],
     selectedFolder: null,
+    category: {},
   },
   reducers: {
     moveFolder: (state, action) => {
@@ -81,6 +83,13 @@ const folderSlices = createSlice({
         (folder) => folder._id === targetFolderId,
       );
       state.folderList.splice(targetFolderIndex, 1);
+    },
+    selectCategory: (state, action) => {
+      state.category = action.payload;
+      console.log(action.payload);
+      const newFolderIndex = state.folderList.findIndex((folder) => folder.main_category === "");
+      state.folderList[newFolderIndex].main_category = state.category.mainCategory;
+      state.folderList[newFolderIndex].sub_category = state.category.subCategory;
     },
   },
   extraReducers: {
@@ -118,6 +127,6 @@ const folderSlices = createSlice({
   },
 });
 
-export const { moveFolder, addFolder, addBookmark, selectFolder, deleteFolder } =
+export const { moveFolder, addFolder, addBookmark, selectFolder, deleteFolder, selectCategory } =
   folderSlices.actions;
 export default folderSlices.reducer;
