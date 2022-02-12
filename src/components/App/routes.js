@@ -6,6 +6,7 @@ import RankPage from "../RankPage/RankPage";
 import FolderEditPage from "../FolderEditPage/FolderEditPage";
 import Header from "../Header/Header";
 import Category from "../Category/Category";
+import UserPage from "../UserPage/UserPage";
 
 const routes = (auth) => [
   {
@@ -14,6 +15,8 @@ const routes = (auth) => [
     children: [
       { path: "/app/rankpage", element: <RankPage /> },
       { path: "/app/editpage", element: <FolderEditPage /> },
+      { path: "/app/mypage", element: <UserPage /> },
+      { path: "/app/userpage/:id", element: <UserPage /> },
       { path: "/app", element: <Navigate to="/app/rankpage" /> },
     ],
   },
