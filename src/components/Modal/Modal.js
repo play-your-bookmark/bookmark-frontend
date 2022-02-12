@@ -32,10 +32,14 @@ export default function Modal({ open, onClose, children }) {
     return null;
   }
 
+  const objectChildrenLength = Object.keys(children).length;
+
   return ReactDOM.createPortal(
     <>
       <OverlayStyle onClick={onClose} />
-      <ModalStyle>{children.length > 0 ? children : <div>빈 폴더입니다!</div>}</ModalStyle>
+      <ModalStyle>
+        {children.length > 0 || objectChildrenLength > 0 ? children : <div>빈 폴더입니다!</div>}
+      </ModalStyle>
     </>,
     document.getElementById("modal"),
   );
