@@ -12,10 +12,13 @@ import {
   fetchCreatedFolder,
 } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
+import Button from "./Button";
+import Category from "../Category/Category";
 
 export default function FolderTree({ subTree }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const [grabFolder, setGrabFolder] = useState("");
   // const [isToggled, setIsToggled] = useState(false);
 
@@ -69,32 +72,34 @@ export default function FolderTree({ subTree }) {
     dispatch(addBookmark({ newBookmark, targetLocationId }));
   };
 
-  const handleFolderButton = (e) => {
-    if (e.target.className === "add") {
-      const targetLocation = e.currentTarget.dataset._id;
-      const newFolderId = `${new ObjectId().toString()} new`;
-      const newFolderName = `새폴더 ${Math.random()}`;
+  const handleAddButton = (e) => {
+    e.stopPropagation();
+    const targetLocation = subTree[0];
+    const newFolderId = `${new ObjectId().toString()} new`;
+    const newFolderName = `새폴더 ${Math.random()}`;
 
-      const newFolder = {
-        _id: newFolderId,
-        title: newFolderName,
-        publisher: "",
-        likes: [],
-        bookmark: [],
-        main_category: "",
-        sub_category: "",
-        parent_folder: targetLocation,
-      };
+    const newFolder = {
+      _id: newFolderId,
+      title: newFolderName,
+      publisher: "",
+      likes: [],
+      bookmark: [],
+      main_category: "",
+      sub_category: "",
+      parent_folder: targetLocation,
+    };
 
-      dispatch(addFolder(newFolder));
-    }
-
-    if (e.target.className === "delete") {
-      const targetFolder = e.currentTarget.dataset._id;
-      dispatch(deleteFolderInDB(targetFolder));
-    }
+    dispatch(addFolder(newFolder));
+    setIsOpen(true);
   };
 
+  const handleDeleteButton = (e) => {
+    e.stopPropagation();
+    const targetFolder = subTree[0];
+    dispatch(deleteFolderInDB(targetFolder));
+  };
+
+  const handleFolderDetailButton = (e) => {};
   return (
     <li
       key={subTree[0]}
@@ -106,16 +111,14 @@ export default function FolderTree({ subTree }) {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDrop={handleDrop}
+      onDoubleClick={handleFolderDetailButton}
     >
-      <div className="folder" data-_id={subTree[0]} onClick={handleFolderButton}>
+      <div className="folder" data-_id={subTree[0]}>
         - {subTree[1]}
-        <button className="add" type="button">
-          add
-        </button>
-        <button className="delete" type="button">
-          delete
-        </button>
       </div>
+      <Category isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Button name="add" type="button" onClickAction={handleAddButton} />
+      <Button name="delete" type="button" onClickAction={handleDeleteButton} />
       {subTree.length >= 3 &&
         subTree.map((child, index) => {
           if (index < 3) {
