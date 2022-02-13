@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import req from "../../utils/api";
 
 import Card from "./Card";
 import Modal from "../Modal/Modal";
@@ -44,7 +43,7 @@ const Hyperlink = styled.a`
   }
 `;
 
-export default function List({ category, origin }) {
+export default function List({ category, origin, userCreatedFolders = [] }) {
   // category에 맞는 folder를 스토어에서 관리해야 like를 즉각 반영하기가 편함
   const MAX_LINK_LENGTH = 40;
   const dispatch = useDispatch();
@@ -54,10 +53,21 @@ export default function List({ category, origin }) {
 
   useEffect(() => {
     dispatch(fetchCategoryFolder({ origin, category }));
-  }, []);
+  }, [dispatch, origin, category]);
 
   return (
     <CardWrapper>
+      {userCreatedFolders.length &&
+        userCreatedFolders.map((folder, index) => {
+          return (
+            <Card
+              key={folder._id}
+              folder={folder}
+              origin={origin}
+              setIsModalOpen={() => setIsModalOpen(!isModalOpen)}
+            />
+          );
+        })}
       {category &&
         fetchedCategoryFolder[category] &&
         fetchedCategoryFolder[category].map((folder, index) => {

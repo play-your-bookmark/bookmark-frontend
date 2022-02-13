@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import UserProfile from "../User/UserProfile";
 import List from "../List/List";
+import { fetchCreatedFolder } from "../../redux/slices/folderSlices";
+import DoughnutChart from "../Chart/DoughnutChart";
 
 const BoxWrap = styled.div`
   width: 100%;
@@ -29,6 +34,13 @@ const ProfileBox = styled.div`
 `;
 
 export default function UserPage() {
+  const dispatch = useDispatch();
+  const userObjectId = useParams();
+  const createdFolders = useSelector((state) => state.folder.folderList);
+
+  useEffect(() => {
+    dispatch(fetchCreatedFolder({ userObjectId }));
+  }, [dispatch, userObjectId]);
   return (
     <BoxWrap>
       <Box>
@@ -36,22 +48,11 @@ export default function UserPage() {
           <ProfileBox>
             <UserProfile />
           </ProfileBox>
-          {/* <svg width={500} height={500}>
-            <circle
-              cx="50"
-              cy="50"
-              r="20"
-              fill="none"
-              stroke="blue"
-              strokeWidth="10"
-              strokeDasharray={(10, 5)}
-            />
-          </svg> */}
+          <DoughnutChart userCreatedfolders={createdFolders} />
         </div>
-        {/* <div className="FolderInfo-Box">
-          <List />
-          <List />
-        </div> */}
+        <div className="FolderInfo-Box">
+          <List category="category" origin="mainCategory" userCreatedFolders={createdFolders} />
+        </div>
       </Box>
     </BoxWrap>
   );
