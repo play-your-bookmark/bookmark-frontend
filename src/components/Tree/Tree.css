@@ -9,6 +9,8 @@ ul {
   border-radius: 25px;
   background-color: rgb(255, 255, 255);
   margin: 0;
+  width: 500px;
+  overflow-y: scroll;
 }
 
 li {
@@ -18,24 +20,20 @@ li {
   padding: 10px;
 }
 
-.data-box,
-.history-box {
+.data-box {
   display: flex;
   justify-content: center;
   border-radius: 25px;
-  width: 45%;
+  width: 40%;
   margin: 0 auto;
   padding: 15px;
-}
-
-.data-box {
   max-height: 700px;
   border-radius: 25px;
   background-color: #5587f5;
 }
 
 .history-box {
-  overflow: hidden;
+  overflow-y: scroll;
   border-radius: 25px;
   background-color: #f2c84d;
 }
@@ -47,7 +45,7 @@ li {
 }
 
 .folder {
-  width: 100%;
+  width: 70%;
   height: 30px;
   padding: 5px;
   border: 1px solid black;
