@@ -21,4 +21,6 @@ export function dragEnd(e) {
   e.dataTransfer.dropEffect = "move";
 }
 
-export function drop(e, grabFolder) {}
+export function drop(e, grabFolder) {
+  e.preventDefault();
+}

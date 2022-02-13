@@ -22,28 +22,23 @@ export default function Category({ isOpen, setIsOpen }) {
   const handleCloseButton = (e) => {
     const mainCategory = category.mainCategory[mainCategoryIndex].name;
     const subCategory = category.mainCategory[mainCategoryIndex].subCategory[subCategoryIndex].name;
+
     dispatch(selectCategory({ mainCategory, subCategory }));
     setIsOpen(false);
   };
 
   return (
     <div>
-      {/* <button onClick={() => setIsOpen(true)}>open modal</button> */}
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        폴더 카테고리 설정
+        폴더의 카테고리를 지정해주세요!
         <ButtonWrapper>
+          <SelectBox category={category.mainCategory} onSelectCategory={setMainCategory} />
           <SelectBox
-            boxTitle="대분류 선택"
-            category={category.mainCategory}
-            onSelectCategory={setMainCategory}
-          />
-          <SelectBox
-            boxTitle="중분류 선택"
             category={category.mainCategory[mainCategoryIndex].subCategory}
             onSelectCategory={setSubCategory}
           />
         </ButtonWrapper>
-        <button onClick={handleCloseButton}>카테고리 설정완료</button>
+        <button onClick={handleCloseButton}>설정 완료</button>
       </Modal>
     </div>
   );
