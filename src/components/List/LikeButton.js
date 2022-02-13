@@ -15,7 +15,6 @@ export default function LikeButton({ folder, index, origin, category }) {
     if (data === "Folder Not Found") {
       alert("존재하지 않는 폴더입니다.");
 
-      dispatch(deleteFolder(folder._id));
       return;
     }
 
