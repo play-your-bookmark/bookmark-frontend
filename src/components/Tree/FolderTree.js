@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ObjectId } from "bson";
 import {
   moveFolder,
   addFolder,
   addBookmark,
-  deleteFolder,
   deleteFolderInDB,
-  fetchCreatedFolder,
+  getFolderDetail,
 } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
 import Button from "./Button";
 import Category from "../Category/Category";
+import FolderDetail from "./FolderDetail";
 
 export default function FolderTree({ subTree }) {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [grabFolder, setGrabFolder] = useState("");
-  // const [isToggled, setIsToggled] = useState(false);
 
   const handleDragEnter = (e) => {
     dragEnter(e);
@@ -47,21 +45,20 @@ export default function FolderTree({ subTree }) {
   };
 
   const handleDrop = (e) => {
+    drop(e);
     e.target.classList.remove("droppable");
 
     const dataType = e.dataTransfer.getData("type");
+    const targetLocationId = e.target.dataset._id;
 
     if (dataType === "folder") {
       const grabFolderId = grabFolder.dataset._id;
-      const targetLocationId = e.target.dataset._id;
       if (targetLocationId !== grabFolderId) {
         dispatch(moveFolder({ targetLocationId, grabFolderId }));
-
-        return;
       }
-    }
 
-    const targetLocationId = e.target.dataset._id;
+      return;
+    }
 
     const newBookmark = {
       title: e.dataTransfer.getData("title"),
@@ -76,7 +73,7 @@ export default function FolderTree({ subTree }) {
     e.stopPropagation();
     const targetLocation = subTree[0];
     const newFolderId = `${new ObjectId().toString()} new`;
-    const newFolderName = `새폴더 ${Math.random()}`;
+    const newFolderName = "새폴더";
 
     const newFolder = {
       _id: newFolderId,
@@ -90,7 +87,7 @@ export default function FolderTree({ subTree }) {
     };
 
     dispatch(addFolder(newFolder));
-    setIsOpen(true);
+    setIsCategoryOpen(true);
   };
 
   const handleDeleteButton = (e) => {
@@ -99,7 +96,12 @@ export default function FolderTree({ subTree }) {
     dispatch(deleteFolderInDB(targetFolder));
   };
 
-  const handleFolderDetailButton = (e) => {};
+  const handleFolderDetailButton = (e) => {
+    const targetId = e.target.dataset._id;
+    setIsDetailOpen(true);
+    dispatch(getFolderDetail(targetId));
+  };
+
   return (
     <li
       key={subTree[0]}
@@ -111,12 +113,14 @@ export default function FolderTree({ subTree }) {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDrop={handleDrop}
-      onDoubleClick={handleFolderDetailButton}
     >
-      <div className="folder" data-_id={subTree[0]}>
+      <div className="folder" data-_id={subTree[0]} onDoubleClick={handleFolderDetailButton}>
         - {subTree[1]}
       </div>
-      <Category isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isDetailOpen && subTree[0] !== "root" && (
+        <FolderDetail target={subTree[0]} isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
+      )}
+      <Category isOpen={isCategoryOpen} setIsOpen={setIsCategoryOpen} />
       <Button name="add" type="button" onClickAction={handleAddButton} />
       <Button name="delete" type="button" onClickAction={handleDeleteButton} />
       {subTree.length >= 3 &&

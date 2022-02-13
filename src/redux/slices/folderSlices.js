@@ -31,7 +31,6 @@ export const deleteFolderInDB = createAsyncThunk(
   async (payload, { rejectWithValue, dispatch }) => {
     try {
       if (payload.split(" ")[1]) {
-        // 새폴더 일 경우 store에서만 삭제
         dispatch(deleteFolder(payload));
 
         return;
@@ -51,6 +50,7 @@ const folderSlices = createSlice({
     folderList: [],
     selectedFolder: null,
     category: {},
+    targetFolder: {},
   },
   reducers: {
     moveFolder: (state, action) => {
@@ -67,12 +67,24 @@ const folderSlices = createSlice({
       state.folderList.push(action.payload);
     },
     addBookmark: (state, action) => {
-      const { targetLocationId } = action.payload;
+      const { newBookmark, targetLocationId } = action.payload;
       const targetFolderIndex = state.folderList.findIndex(
         (folder) => folder._id === targetLocationId,
       );
       const targetFolder = state.folderList[targetFolderIndex];
-      targetFolder.bookmark.push(action.payload.newBookmark);
+
+      if (targetFolder.bookmark.findIndex((link) => link.url === newBookmark.url) === -1) {
+        targetFolder.bookmark.push(newBookmark);
+      }
+    },
+    deleteBookmark: (state, action) => {
+      const index = action.payload;
+      state.targetFolder.bookmark.splice(index, 1);
+      const targetFolderIndex = state.folderList.findIndex(
+        (folder) => folder._id === state.targetFolder._id,
+      );
+
+      state.folderList[targetFolderIndex].bookmark.splice(index, 1);
     },
     selectFolder: (state, action) => {
       state.selectedFolder = action.payload;
@@ -86,10 +98,23 @@ const folderSlices = createSlice({
     },
     selectCategory: (state, action) => {
       state.category = action.payload;
-      console.log(action.payload);
       const newFolderIndex = state.folderList.findIndex((folder) => folder.main_category === "");
       state.folderList[newFolderIndex].main_category = state.category.mainCategory;
       state.folderList[newFolderIndex].sub_category = state.category.subCategory;
+    },
+    getFolderDetail: (state, action) => {
+      const targetId = action.payload;
+      const targetIndex = state.folderList.findIndex((folder) => folder._id === targetId);
+      state.targetFolder = state.folderList[targetIndex];
+    },
+    changeFolderDetail: (state, action) => {
+      const { target } = action.payload;
+      const targetIndex = state.folderList.findIndex((folder) => folder._id === target);
+      state.folderList[targetIndex] = {
+        ...state.folderList[targetIndex],
+        ...action.payload,
+      };
+      state.targetFolder = { ...state.targetFolder, ...action.payload };
     },
   },
   extraReducers: {
@@ -127,6 +152,15 @@ const folderSlices = createSlice({
   },
 });
 
-export const { moveFolder, addFolder, addBookmark, selectFolder, deleteFolder, selectCategory } =
-  folderSlices.actions;
+export const {
+  moveFolder,
+  addFolder,
+  addBookmark,
+  deleteBookmark,
+  selectFolder,
+  deleteFolder,
+  selectCategory,
+  getFolderDetail,
+  changeFolderDetail,
+} = folderSlices.actions;
 export default folderSlices.reducer;

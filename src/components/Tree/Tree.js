@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import React, { useEffect, useState } from "react";
 import "./Tree.css";
 
