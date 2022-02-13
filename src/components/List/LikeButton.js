@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
-import { handleLike } from "../../redux/slices/categoryFolderSlices";
+import { fetchCategoryFolder, handleLike } from "../../redux/slices/categoryFolderSlices";
 
-export default function LikeButton({ folder, index, origin }) {
+export default function LikeButton({ folder, index, origin, category }) {
   const dispatch = useDispatch();
   const isChecked = useSelector((state) => state.categoryFolder.checkedFolder);
 

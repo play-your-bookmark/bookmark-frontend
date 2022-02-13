@@ -18,7 +18,13 @@ export default function Card({ folder, origin, setIsModalOpen }) {
   return (
     <FolderWrapper
       type="button"
-      onClick={(e) => {
+      onClick={async (e) => {
+        // const isExist = await dispatch(isFolderExist(folder));
+        // if (!isExist) {
+        //   alert("삭제된 폴더입니다!")
+        //   // react spring transition logic
+        // }
+
         dispatch(selectFolder(folder));
 
         if (origin === "mainCategory") {
