@@ -76,8 +76,7 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
         bookmark: folderInfo.bookmark,
       };
     } else {
-      const { main_category } = folderInfo;
-      const { sub_category } = folderInfo;
+      const { main_category, sub_category } = folderInfo;
       changedInfo = {
         target,
         title: title,
