@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import req from "../../utils/api";
+import useInterval from "../../utils/useInterval";
 
 import Card from "./Card";
 import Modal from "../Modal/Modal";
@@ -49,6 +49,7 @@ export default function List({ category, origin }) {
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
   const fetchedCategoryFolder = useSelector((state) => state.categoryFolder.fetchedCategoryFolder);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     dispatch(fetchCategoryFolder({ origin, category }));
@@ -56,30 +57,7 @@ export default function List({ category, origin }) {
 
   useInterval(() => {
     dispatch(fetchCategoryFolder({ origin, category }));
-    console.log(process.env.MAX_LINK_LENGTH);
-  }, 5000);
-
-  // process.env.RANK_PAGE_LOADING_DELAY
-
-  function useInterval(callback, delay) {
-    const savedCallback = useRef();
-
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-
-    useEffect(() => {
-      function fetchToUpdateCategoryFolders() {
-        savedCallback.current();
-      }
-
-      if (delay !== null) {
-        const id = setInterval(fetchToUpdateCategoryFolders, delay);
-
-        return () => clearInterval(id);
-      }
-    });
-  }
+  }, process.env.REACT_APP_RANK_PAGE_LOADING_DELAY);
 
   return (
     <CardWrapper>
@@ -105,8 +83,8 @@ export default function List({ category, origin }) {
           {selectedFolder.bookmark.map((link) => (
             <LinkWrapper key={link.url}>
               <Hyperlink href={link.url}>
-                {link.title.length > process.env.MAX_LINK_LENGTH
-                  ? `${link.title.substring(0, process.env.MAX_LINK_LENGTH - 3)}...`
+                {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
+                  ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
                   : link.title}
               </Hyperlink>
             </LinkWrapper>
@@ -118,8 +96,8 @@ export default function List({ category, origin }) {
         selectedFolder.bookmark.map((link) => (
           <LinkWrapper key={link.url}>
             <Hyperlink href={link.url}>
-              {link.title.length > process.env.MAX_LINK_LENGTH
-                ? `${link.title.substring(0, process.env.MAX_LINK_LENGTH - 3)}...`
+              {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
+                ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
                 : link.title}
             </Hyperlink>
           </LinkWrapper>
