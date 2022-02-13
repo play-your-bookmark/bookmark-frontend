@@ -51,7 +51,17 @@ const categoryFolderSlices = createSlice({
       state.loading = true;
     },
     [fetchCategoryFolder.fulfilled]: (state, action) => {
-      state.fetchedCategoryFolder[action.payload.category] = action.payload.folders;
+      const { category, folders, userId } = action.payload;
+      state.fetchedCategoryFolder[category] = folders;
+
+      state.fetchedCategoryFolder[category].forEach((folder) => {
+        folder.likes.forEach((like) => {
+          if (like === userId) {
+            state.checkedFolder[folder._id] = true;
+          }
+        });
+      });
+
       state.loading = false;
     },
     [fetchCategoryFolder.rejected]: (state, action) => {

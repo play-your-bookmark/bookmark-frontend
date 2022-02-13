@@ -10,10 +10,10 @@ const LoaderWrap = styled.div`
   align-items: center;
 `;
 
-export default function Loader() {
+export default function Loader({ height = 64, width = 64 }) {
   return (
     <LoaderWrap>
-      <ReactLoading type="spin" color="#A593E0" />
+      <ReactLoading type="spin" color="#A593E0" height={height} width={width} />
     </LoaderWrap>
   );
 }
