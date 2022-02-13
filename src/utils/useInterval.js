@@ -17,5 +17,5 @@ export default function useInterval(callback, delay) {
 
       return () => clearInterval(id);
     }
-  });
+  }, [delay]);
 }

@@ -5,7 +5,8 @@ import folderReducer from "../slices/folderSlices";
 import linkReducer from "../slices/linkSlices";
 import keywordReducer from "../slices/keywordSlices";
 import categoryFolderReducer from "../slices/categoryFolderSlices";
-import userSlices from "../slices/userSlices";
+import userReducer from "../slices/userSlices";
+import timerReducer from "../slices/timerSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     categoryFolder: categoryFolderReducer,
     link: linkReducer,
     keyword: keywordReducer,
-    user: userSlices,
+    user: userReducer,
+    timer: timerReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

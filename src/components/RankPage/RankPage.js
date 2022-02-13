@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -25,15 +25,18 @@ const CounterWrapper = styled.div`
 
 export default function RankPage() {
   const keyword = useSelector((state) => state.keyword.keyword);
+  const loadingTime = useSelector((state) => state.timer.second);
 
   return (
     <div>
       <RankHeader>
         <SearchBar />
-        <LoaderWrapper>
-          <Loader height={30} width={30} />
-          {/* <CounterWrapper>{second / 1000}초 뒤 업데이트</CounterWrapper> */}
-        </LoaderWrapper>
+        {!keyword && (
+          <LoaderWrapper>
+            <Loader height={30} width={30} />
+            <CounterWrapper>{loadingTime}초 뒤 업데이트</CounterWrapper>
+          </LoaderWrapper>
+        )}
       </RankHeader>
       {!keyword ? <MainRankPage /> : <SubRankPage />}
     </div>
