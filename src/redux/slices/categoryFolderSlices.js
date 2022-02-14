@@ -45,13 +45,29 @@ const categoryFolderSlices = createSlice({
     fetchedCategoryFolder: {},
     checkedFolder: {},
   },
-  reducers: {},
+  reducers: {
+    deleteUniqueCategoryFolder: (state, action) => {
+      const { category, index } = action.payload;
+
+      state.fetchedCategoryFolder[category].splice(index, 1);
+    },
+  },
   extraReducers: {
     [fetchCategoryFolder.pending]: (state, action) => {
       state.loading = true;
     },
     [fetchCategoryFolder.fulfilled]: (state, action) => {
-      state.fetchedCategoryFolder[action.payload.category] = action.payload.folders;
+      const { category, folders, userId } = action.payload;
+      state.fetchedCategoryFolder[category] = folders;
+
+      state.fetchedCategoryFolder[category].forEach((folder) => {
+        folder.likes.forEach((like) => {
+          if (like === userId) {
+            state.checkedFolder[folder._id] = true;
+          }
+        });
+      });
+
       state.loading = false;
     },
     [fetchCategoryFolder.rejected]: (state, action) => {
@@ -91,4 +107,5 @@ const categoryFolderSlices = createSlice({
   },
 });
 
+export const { deleteUniqueCategoryFolder } = categoryFolderSlices.actions;
 export default categoryFolderSlices.reducer;

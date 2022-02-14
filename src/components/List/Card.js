@@ -18,7 +18,8 @@ export default function Card({ folder, origin, setIsModalOpen }) {
   return (
     <FolderWrapper
       type="button"
-      onClick={(e) => {
+      onClick={async (e) => {
+        // 여전히 조회는 가능하고, like button만 막음
         dispatch(selectFolder(folder));
 
         if (origin === "mainCategory") {

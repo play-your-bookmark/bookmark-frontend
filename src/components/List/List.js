@@ -6,6 +6,7 @@ import Card from "./Card";
 import Modal from "../Modal/Modal";
 import LikeButton from "./LikeButton";
 import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
+import UserPageButton from "./UserPageButton";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -44,8 +45,6 @@ const Hyperlink = styled.a`
 `;
 
 export default function List({ category, origin, userCreatedFolders = [], userLikedFolders = [] }) {
-  // category에 맞는 folder를 스토어에서 관리해야 like를 즉각 반영하기가 편함
-  const MAX_LINK_LENGTH = 40;
   const dispatch = useDispatch();
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
   const fetchedCategoryFolder = useSelector((state) => state.categoryFolder.fetchedCategoryFolder);
@@ -92,17 +91,18 @@ export default function List({ category, origin, userCreatedFolders = [], userLi
                 setIsModalOpen={() => setIsModalOpen(!isModalOpen)}
               />
               <div>{folder.likes.length}</div>
-              <LikeButton folder={folder} index={index} origin={origin} />
+              <LikeButton folder={folder} index={index} origin={origin} category={category} />
             </FolderTitleWrapper>
           );
         })}
       {selectedFolder && (
         <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <UserPageButton userId={selectedFolder.publisher} />
           {selectedFolder.bookmark.map((link) => (
             <LinkWrapper key={link.url}>
               <Hyperlink href={link.url}>
-                {link.title.length > MAX_LINK_LENGTH
-                  ? `${link.title.substring(0, MAX_LINK_LENGTH - 3)}...`
+                {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
+                  ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
                   : link.title}
               </Hyperlink>
             </LinkWrapper>
@@ -114,8 +114,8 @@ export default function List({ category, origin, userCreatedFolders = [], userLi
         selectedFolder.bookmark.map((link) => (
           <LinkWrapper key={link.url}>
             <Hyperlink href={link.url}>
-              {link.title.length > MAX_LINK_LENGTH
-                ? `${link.title.substring(0, MAX_LINK_LENGTH - 3)}...`
+              {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
+                ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
                 : link.title}
             </Hyperlink>
           </LinkWrapper>

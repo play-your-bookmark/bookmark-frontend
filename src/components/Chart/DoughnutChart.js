@@ -8,7 +8,8 @@ const ChartWrap = styled.div`
   align-items: center;
 `;
 
-export default function DoughnutChart({ userCreatedfolders }) {
+export default function DoughnutChart({ userCreatedfolders = [] }) {
+  console.log("asdfasdfadsf", userCreatedfolders);
   const colors = ["#ddd", "#bbb", "#aaa", "#888", "#666"];
   const radius = 20;
   const convertToBookmarkCountArray = userCreatedfolders.map((folder) => {

@@ -5,6 +5,7 @@ export const getGitubUserInfo = createAsyncThunk(
   "get/user/github",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
+      console.log(payload);
       const userObjectId = payload.userId.id;
       const { data } = await req(
         "get",
