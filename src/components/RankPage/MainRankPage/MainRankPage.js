@@ -22,28 +22,28 @@ export default function MainRankPage() {
   const loadingTime = useSelector((state) => state.timer.second);
   const dispatch = useDispatch();
 
-  // useInterval(
-  //   async () => {
-  //     if (loadingTime === 0) {
-  //       setIsRunning(false);
+  useInterval(
+    async () => {
+      if (loadingTime === 0) {
+        setIsRunning(false);
 
-  //       category.mainCategory.map(async (index) => {
-  //         await dispatch(
-  //           fetchCategoryFolder({
-  //             origin: "mainCategory",
-  //             category: category.mainCategory[index].name,
-  //           }),
-  //         );
-  //       });
+        category.mainCategory.map(async (index) => {
+          await dispatch(
+            fetchCategoryFolder({
+              origin: "mainCategory",
+              category: category.mainCategory[index].name,
+            }),
+          );
+        });
 
-  //       dispatch(updateSecond(process.env.REACT_APP_RANK_PAGE_LOADING_DELAY / 1000));
-  //       setIsRunning(true);
-  //     } else {
-  //       dispatch(updateSecond(-1));
-  //     }
-  //   },
-  //   isRunning ? 1000 : null,
-  // );
+        dispatch(updateSecond(process.env.REACT_APP_RANK_PAGE_LOADING_DELAY / 1000));
+        setIsRunning(true);
+      } else {
+        dispatch(updateSecond(-1));
+      }
+    },
+    isRunning ? 1000 : null,
+  );
 
   return (
     <ListWrapper>
