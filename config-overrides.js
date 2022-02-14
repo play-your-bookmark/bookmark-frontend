@@ -1,34 +1,11 @@
-const { overrideDevServer } = require("customize-cra");
+module.exports = function override(config, env) {
+  const loaders = config.resolve;
 
-function devServerConfig() {
-  return (config) => {
-    return {
-      ...config,
-      historyApiFallback: true,
-      hot: true,
-      proxy: {
-        "/api": {
-          target: "http://localhost:7001",
-          changeOrigin: true,
-          pathRewrite: {
-            "^/api": "/",
-          },
-        },
-      },
-      onBeforeSetupMiddleware: (devServer) => {
-        devServer.app.get("/api/key", (req, res) => {
-          res.json([{ key: "aaa" }]);
-        });
-      },
-    };
+  loaders.fallback = {
+    crypto: require.resolve("crypto-browserify"),
+    stream: require.resolve("stream-browserify"),
+    buffer: require.resolve("buffer"),
   };
-}
 
-module.exports = {
-  devServer: overrideDevServer(devServerConfig()),
-  resolve: {
-    fallback: {
-      crypto: require.resolve("crypto-browserify"),
-    },
-  },
+  return config;
 };
