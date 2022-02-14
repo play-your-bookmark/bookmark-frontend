@@ -3,7 +3,6 @@ import { useNavigate, Navigate } from "react-router-dom";
 import isLoggedIn from "../../utils/isLoggedIn";
 
 export default function Login({ auth, restricted }) {
-  console.log(restricted);
   const navigate = useNavigate();
   const onLogin = (e) => {
     auth.login(e.target.name).then((data) => {

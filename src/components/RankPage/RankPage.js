@@ -9,11 +9,13 @@ import Loader from "../Loader/Loader";
 
 const RankHeader = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
 const LoaderWrapper = styled.div`
   display: flex;
+  padding-right: 50px;
 `;
 
 const CounterWrapper = styled.div`
