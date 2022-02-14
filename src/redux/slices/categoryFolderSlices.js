@@ -45,7 +45,13 @@ const categoryFolderSlices = createSlice({
     fetchedCategoryFolder: {},
     checkedFolder: {},
   },
-  reducers: {},
+  reducers: {
+    deleteUniqueCategoryFolder: (state, action) => {
+      const { category, index } = action.payload;
+
+      state.fetchedCategoryFolder[category].splice(index, 1);
+    },
+  },
   extraReducers: {
     [fetchCategoryFolder.pending]: (state, action) => {
       state.loading = true;
@@ -101,4 +107,5 @@ const categoryFolderSlices = createSlice({
   },
 });
 
+export const { deleteUniqueCategoryFolder } = categoryFolderSlices.actions;
 export default categoryFolderSlices.reducer;

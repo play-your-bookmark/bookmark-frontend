@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import useInterval from "../../utils/useInterval";
 
 import Card from "./Card";
 import Modal from "../Modal/Modal";
@@ -49,15 +48,10 @@ export default function List({ category, origin }) {
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
   const fetchedCategoryFolder = useSelector((state) => state.categoryFolder.fetchedCategoryFolder);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     dispatch(fetchCategoryFolder({ origin, category }));
   }, []);
-
-  useInterval(() => {
-    dispatch(fetchCategoryFolder({ origin, category }));
-  }, process.env.REACT_APP_RANK_PAGE_LOADING_DELAY);
 
   return (
     <CardWrapper>

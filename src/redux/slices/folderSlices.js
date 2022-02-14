@@ -5,7 +5,7 @@ export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { data } = await req("get", "/folder/main", true, (res) => res);
+      const { data } = await req("get", "/folder/main", (res) => res, true);
 
       return data;
     } catch (error) {
@@ -18,7 +18,7 @@ export const saveFolders = createAsyncThunk(
   "post/folders",
   async (payload, { rejectWithValue, dispatch }) => {
     try {
-      await req("post", "/folder/new", { data: payload }, true, (res) => res);
+      await req("post", "/folder/new", { data: payload }, (res) => res, true);
       dispatch(fetchCreatedFolder());
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -36,7 +36,7 @@ export const deleteFolderInDB = createAsyncThunk(
         return;
       }
 
-      await req("delete", `/folder/${payload}`, { params: payload }, true, (res) => res);
+      await req("delete", `/folder/${payload}`, { params: payload }, (res) => res, true);
       dispatch(fetchCreatedFolder());
     } catch (error) {
       return rejectWithValue(error.response.data);
