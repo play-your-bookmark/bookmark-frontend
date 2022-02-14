@@ -5,7 +5,7 @@ export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { data } = await req("get", "/folder/main", (res) => res, true);
+      const { data } = await req("get", "/folder/main", {}, (res) => res, true);
 
       return data;
     } catch (error) {
