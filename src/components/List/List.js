@@ -7,6 +7,7 @@ import Modal from "../Modal/Modal";
 import LikeButton from "./LikeButton";
 import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
 import UserPageButton from "./UserPageButton";
+import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ const Hyperlink = styled.a`
 export default function List({ category, origin, userCreatedFolders = [], userLikedFolders = [] }) {
   const dispatch = useDispatch();
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
+  const selectedUserName = useSelector((state) => state.user.selectedUserName);
   const fetchedCategoryFolder = useSelector((state) => state.categoryFolder.fetchedCategoryFolder);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -54,6 +56,9 @@ export default function List({ category, origin, userCreatedFolders = [], userLi
     dispatch(fetchCategoryFolder({ origin, category }));
   }, [dispatch, origin, category]);
 
+  if (selectedFolder) {
+    dispatch(getUserOfSelectedFolder(selectedFolder.publisher));
+  }
   return (
     <CardWrapper>
       {!!userLikedFolders.length &&
@@ -97,7 +102,11 @@ export default function List({ category, origin, userCreatedFolders = [], userLi
         })}
       {selectedFolder && (
         <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <UserPageButton userId={selectedFolder.publisher} />
+          <UserPageButton
+            onClick={() => setIsModalOpen(false)}
+            userName={selectedUserName}
+            userObjectId={selectedFolder.publisher}
+          />
           {selectedFolder.bookmark.map((link) => (
             <LinkWrapper key={link.url}>
               <Hyperlink href={link.url}>

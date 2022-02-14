@@ -40,10 +40,22 @@ export const setGitubUserInfo = createAsyncThunk(
   },
 );
 
+export const getUserOfSelectedFolder = createAsyncThunk(
+  "put/user/selected",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const { data } = await req("get", `/user/${payload}`, { params: payload }, (res) => res);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const userSlices = createSlice({
   name: "user",
   initialState: {
-    myObjectId: null,
     userGithubInfo: {
       url: null,
       avatarUrl: null,
@@ -74,6 +86,13 @@ const userSlices = createSlice({
       };
     },
     [setGitubUserInfo.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
+    [getUserOfSelectedFolder.pending]: (state, action) => {},
+    [getUserOfSelectedFolder.fulfilled]: (state, action) => {
+      state.selectedUserName = action.payload.name;
+    },
+    [getUserOfSelectedFolder.rejected]: (state, action) => {
       state.error = action.payload;
     },
   },

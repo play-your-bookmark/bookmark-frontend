@@ -11,6 +11,7 @@ const ChartWrap = styled.div`
 export default function DoughnutChart({ userCreatedfolders = [] }) {
   const colors = ["#ddd", "#bbb", "#aaa", "#888", "#666"];
   const radius = 20;
+  const diameter = 2 * Math.PI * radius;
   const convertToBookmarkCountArray = userCreatedfolders.map((folder) => {
     if (folder.bookmark) {
       return folder.bookmark.length;
@@ -55,24 +56,39 @@ export default function DoughnutChart({ userCreatedfolders = [] }) {
       key: nanoid(8),
     };
   });
+  console.log(coordInfoObjectForChart);
   return (
     <ChartWrap>
       {!!totalCount && (
         <svg viewBox="0 0 100 100">
-          {coordInfoObjectForChart.map((count, index) => {
-            const isLarge = count.degree > Math.PI ? 1 : 0;
+          {convertToBookmarkCountArray.map((count, index) => {
+            // const isLarge = count.degree > Math.PI ? 1 : 0;
+            const ratio = count / totalCount;
+            const fillSpace = diameter * ratio;
+            const emptySpace = diameter - fillSpace;
+            const offset = (accCountList[index] / totalCount) * diameter;
             return (
-              <path
-                d={`
-                M ${count.startX} ${count.startY}
-                A ${radius} ${radius} 0 ${isLarge} 1 ${count.finishX} ${count.finishY}
-                L ${count.finishX} ${count.finishY}
-              `}
-                stroke={colors[colors.length - index]}
-                strokeWidth="20"
+              <circle
+                cx="50"
+                cy="50"
+                r={String(radius)}
                 fill="transparent"
-                key={count.key}
+                stroke={colors[index]}
+                strokeWidth="10"
+                strokeDasharray={`${fillSpace} ${emptySpace}`}
+                strokeDashoffset={String(-offset)}
               />
+              // <path
+              //   d={`
+              //   M ${count.startX} ${count.startY}
+              //   A ${radius} ${radius} 0 0 1 ${count.finishX} ${count.finishY}
+              //   L ${count.finishX} ${count.finishY}
+              // `}
+              //   stroke={colors[colors.length - index]}
+              //   strokeWidth="20"
+              //   fill="transparent"
+              //   key={count.key}
+              // />
             );
           })}
         </svg>
