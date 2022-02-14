@@ -51,7 +51,7 @@ export default function HistoryLink({ linkInfo }) {
   const handleDragStart = (e) => {
     dragStart(e);
 
-    const target = e.target.dataset;
+    const target = e.currentTarget.dataset;
     e.dataTransfer.setData("type", "link");
     e.dataTransfer.setData("title", target.title);
     e.dataTransfer.setData("url", target.url);
