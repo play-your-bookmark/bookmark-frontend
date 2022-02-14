@@ -27,7 +27,7 @@ export default function MainRankPage() {
       if (loadingTime === 0) {
         setIsRunning(false);
 
-        category.mainCategory.map(async (index) => {
+        category.mainCategory.map(async (element, index) => {
           await dispatch(
             fetchCategoryFolder({
               origin: "mainCategory",
