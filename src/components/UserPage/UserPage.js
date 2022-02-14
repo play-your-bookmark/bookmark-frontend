@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import UserProfile from "../User/UserProfile";
 import List from "../List/List";
-import { fetchCreatedFolder } from "../../redux/slices/folderSlices";
+import { fetchCreatedFolder, fetchLikeFolder } from "../../redux/slices/folderSlices";
 import DoughnutChart from "../Chart/DoughnutChart";
 
 const BoxWrap = styled.div`
@@ -23,8 +23,19 @@ const Box = styled.div`
   }
 
   .FolderInfo-Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 60%;
+    height: 100%;
     border-style: solid;
+  }
+
+  .LikeList {
+  }
+
+  .CreatedList {
   }
 `;
 
@@ -37,10 +48,13 @@ export default function UserPage() {
   const dispatch = useDispatch();
   const userObjectId = useParams();
   const createdFolders = useSelector((state) => state.folder.folderList);
+  const likedFolders = useSelector((state) => state.folder.likedFolder);
 
   useEffect(() => {
     dispatch(fetchCreatedFolder({ userObjectId }));
+    dispatch(fetchLikeFolder({ userObjectId }));
   }, [dispatch, userObjectId]);
+
   return (
     <BoxWrap>
       <Box>
@@ -51,7 +65,14 @@ export default function UserPage() {
           <DoughnutChart userCreatedfolders={createdFolders} />
         </div>
         <div className="FolderInfo-Box">
-          <List category="category" origin="mainCategory" userCreatedFolders={createdFolders} />
+          <div className="LikeList">
+            <div>Like Folder</div>
+            <List category="category" origin="mainCategory" userLikedFolders={likedFolders} />
+          </div>
+          <div className="CreatedList">
+            <div>Create Folder</div>
+            <List category="category" origin="mainCategory" userCreatedFolders={createdFolders} />
+          </div>
         </div>
       </Box>
     </BoxWrap>

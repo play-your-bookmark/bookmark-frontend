@@ -43,7 +43,7 @@ const Hyperlink = styled.a`
   }
 `;
 
-export default function List({ category, origin, userCreatedFolders = [] }) {
+export default function List({ category, origin, userCreatedFolders = [], userLikedFolders = [] }) {
   // category에 맞는 folder를 스토어에서 관리해야 like를 즉각 반영하기가 편함
   const MAX_LINK_LENGTH = 40;
   const dispatch = useDispatch();
@@ -57,7 +57,18 @@ export default function List({ category, origin, userCreatedFolders = [] }) {
 
   return (
     <CardWrapper>
-      {userCreatedFolders.length &&
+      {!!userLikedFolders.length &&
+        userLikedFolders.map((folder) => {
+          return (
+            <Card
+              key={folder._id}
+              folder={folder}
+              origin={origin}
+              setIsModalOpen={() => setIsModalOpen(!isModalOpen)}
+            />
+          );
+        })}
+      {!!userCreatedFolders.length &&
         userCreatedFolders.map((folder, index) => {
           return (
             <Card
