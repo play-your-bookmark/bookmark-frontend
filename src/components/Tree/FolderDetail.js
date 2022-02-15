@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import category from "../../utils/category.json";
-import {
-  changeFolderDetail,
-  deleteBookmark,
-  getFolderDetail,
-  selectCategory,
-} from "../../redux/slices/folderSlices";
+import { changeFolderDetail, getFolderDetail } from "../../redux/slices/folderSlices";
 import SelectBox from "../Category/SelectBox";
 import TreeModal from "./TreeModal";
 import Bookmark from "./Bookmark";
@@ -56,6 +51,7 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
   const [subCategoryIndex, setSubCategory] = useState(0);
   const [showCategorySelectBox, setShowCategorySelectBox] = useState(false);
   const [title, setTitle] = useState(folderInfo.title);
+  const SAVE_CHANGE_MESSAGE = "수정 하시겠습니까?";
 
   useEffect(() => {
     dispatch(getFolderDetail(target));
@@ -85,7 +81,11 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
         bookmark: folderInfo.bookmark,
       };
     }
-    dispatch(changeFolderDetail(changedInfo));
+
+    if (window.confirm(SAVE_CHANGE_MESSAGE)) {
+      dispatch(changeFolderDetail(changedInfo));
+    }
+
     setIsOpen(false);
   };
 
@@ -127,7 +127,7 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
             </BookmarkWrapper>
           </div>
           <button type="button" onClick={handleSaveButton}>
-            저장하기
+            수정하기
           </button>
         </DetailWrapper>
       </TreeModal>
