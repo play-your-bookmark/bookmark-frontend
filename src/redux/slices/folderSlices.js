@@ -88,7 +88,8 @@ const folderSlices = createSlice({
       const checkParent = (grabFolderIndex, targetFolderIndex) => {
         const grabFolder = state.folderList[grabFolderIndex];
         const targetFolder = state.folderList[targetFolderIndex];
-        if (targetFolder.parent_folder === "root") {
+
+        if (!targetFolder.parent_folder || targetFolder._id === "root") {
           return true;
         }
 
@@ -103,7 +104,7 @@ const folderSlices = createSlice({
         return checkParent(grabFolderIndex, upperFolderIndex);
       };
 
-      if (grabFolderIndex._id === "root" || checkParent(grabFolderIndex, targetFolderIndex)) {
+      if (grabFolderId !== "root" || checkParent(grabFolderIndex, targetFolderIndex)) {
         state.folderList[grabFolderIndex].parent_folder = targetLocationId;
       }
     },

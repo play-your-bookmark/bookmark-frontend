@@ -9,6 +9,7 @@ import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
 import logo_blue from "../../src_assets/logo_blue.png";
 import logo_yellow from "../../src_assets/logo_yellow.png";
+import Button from "./Button";
 
 const TreeWrapper = styled.div`
   display: flex;
@@ -142,9 +143,11 @@ const TreeWrapper = styled.div`
 
   .save {
     width: 100px;
+    justify-content: center;
+    font-size: 1.3rem;
     text-align: center;
     position: absolute;
-    right: 3%;
+    right: 3.5%;
     top: 14%;
     cursor: pointer;
   }
@@ -185,9 +188,7 @@ export default function Tree() {
           History
         </h1>
       </div>
-      <div className="save" onClick={handleSaveButton}>
-        SAVE
-      </div>
+      <Button name="save" type="button" onClickAction={handleSaveButton} />
       <div className="container">
         <div className="data-box1">
           <div className="outter-list">

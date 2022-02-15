@@ -20,12 +20,19 @@ const FolderWrapper = styled.div`
     align-items: center;
     padding: 10px 10px;
     box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+    cursor: pointer;
   }
 
   .buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+
+  .add,
+  .delete {
+    color: #5587f5;
+    cursor: pointer;
   }
 `;
 

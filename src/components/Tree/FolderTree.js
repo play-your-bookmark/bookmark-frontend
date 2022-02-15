@@ -17,7 +17,7 @@ const FolderTreeWrapper = styled.ul`
     cursor: grabbing;
   }
 
-  .droppable:not(ul, li, button) {
+  .droppable:not(ul, li, .add, .delete, button) {
     background-color: #5587f5;
     width: 330px;
     height: 45px;
@@ -33,7 +33,9 @@ export default function FolderTree({ subTree }) {
 
   const handleDragEnter = (e) => {
     dragEnter(e);
-    e.target.classList.add("droppable");
+    if (!e.target.classList.contains("buttons")) {
+      e.target.classList.add("droppable");
+    }
   };
 
   const handleDragleave = (e) => {
@@ -68,6 +70,7 @@ export default function FolderTree({ subTree }) {
 
     if (dataType === "folder") {
       const grabFolderId = grabFolder.dataset._id;
+
       if (targetLocationId !== grabFolderId) {
         dispatch(moveFolder({ targetLocationId, grabFolderId }));
       }

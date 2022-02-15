@@ -22,6 +22,7 @@ const LinkWrap = styled.div`
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: #ebebeb;
+    cursor: pointer;
   }
 
   .LinkWrap-Url {
