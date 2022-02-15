@@ -17,6 +17,20 @@ const LoginWrapper = styled.div`
 
   .bottom-logo {
     position: relative;
+
+    .logo-blue {
+      width: 200px;
+    }
+
+    .top-logo {
+      position: absolute;
+      top: -5px;
+      left: -25px;
+
+      .logo-yellow {
+        width: 200px;
+      }
+    }
   }
 
   h1 {
@@ -49,9 +63,9 @@ export default function Login({ auth, restricted }) {
   return !isLoggedIn() ? (
     <LoginWrapper>
       <div className="bottom-logo">
-        <img className="logo-blue" src={logoBlue} alt="logo1" style={{ width: "200px" }} />
-        <div className="top-logo" style={{ position: "absolute", top: "-5px", left: "-25px" }}>
-          <img className="logo-yellow" src={logoyellow} alt="logo2" style={{ width: "200px" }} />
+        <img className="logo-blue" src={logoBlue} alt="logo1" />
+        <div className="top-logo">
+          <img className="logo-yellow" src={logoyellow} alt="logo2" />
         </div>
       </div>
       <div className="title">
