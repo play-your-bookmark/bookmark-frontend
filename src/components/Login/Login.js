@@ -1,7 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import isLoggedIn from "../../utils/isLoggedIn";
 
-export default function Login({ auth }) {
+export default function Login({ auth, restricted }) {
   const navigate = useNavigate();
   const onLogin = (e) => {
     auth.login(e.target.name).then((data) => {
@@ -9,7 +10,7 @@ export default function Login({ auth }) {
     });
   };
 
-  return (
+  return !isLoggedIn() ? (
     <div>
       <h1>Play your bookmark</h1>
       <div>
@@ -18,5 +19,7 @@ export default function Login({ auth }) {
         </button>
       </div>
     </div>
+  ) : (
+    <Navigate to="/app/rankpage" />
   );
 }
