@@ -8,60 +8,54 @@ import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
 
 const TreeWrapper = styled.div`
-  .container {
+  display: flex;
+  flex-direction: column;
+
+  .title {
     display: flex;
-    width: 100%;
-    margin: 10px;
+    height: 100px;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 
-  ul {
-    list-style: none;
-    border-radius: 25px;
-    margin: 0;
+  .container {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-around;
+    align-items: center;
     width: 100%;
-    /* scroll 관련 */
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      border-radius: 15px;
-      background-color: #f2c84d;
-    }
-
-    ::-webkit-scrollbar-track {
-      border-radius: 15px;
-      height: 80%;
-      background-color: white;
-    }
-  }
-
-  li {
-    list-style: none;
-    border-radius: 15px;
-    padding: 10px;
+    height: 752px;
+    /* 배경! #ffffff 으로 갈 계획! */
+    background-color: gray;
   }
 
   .data-box {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    background-color: #5587f5;
+    width: 600px;
+    height: 90%;
     border-radius: 15px;
-    width: 40%;
-    margin: 0 auto;
-    padding: 15px;
-    max-height: 700px;
-    border-radius: 25px;
-    background-color: #ebebeb;
+  }
+
+  .folder-list {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 93%;
+    border-radius: 15px;
+    background-color: #ffffff;
   }
 
   .history-box {
+    display: flex;
+    width: 90%;
+    height: 93%;
     border-radius: 15px;
-    justify-content: space-between;
-    background-color: #f2c84d;
-    /* scroll */
+    background-color: #ffffff;
     overflow-y: scroll;
     overflow-x: hidden;
     ::-webkit-scrollbar {
@@ -78,40 +72,6 @@ const TreeWrapper = styled.div`
       height: 80%;
       background-color: white;
     }
-  }
-
-  .folder-list {
-    display: flex;
-    border-radius: 15px;
-    justify-content: center;
-    background-color: #5587f5;
-    width: 80%;
-  }
-
-  .folder {
-    color: white;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    // width: 20rem;
-    // height: 2.5rem;
-    margin: 1rem;
-    // padding: 1rem;
-    border-radius: 10px;
-    //background-color: #ffffff;
-  }
-
-  .drag-target {
-    background-color: rgb(184, 184, 250);
-    cursor: grabbing;
-  }
-
-  .clicked {
-    background-color: aqua;
-  }
-
-  .droppable {
-    opacity: 0.4;
   }
 `;
 
@@ -140,23 +100,23 @@ export default function Tree() {
 
   return (
     <TreeWrapper>
+      <div className="title">
+        <h1>Folders</h1>
+        <h1>History</h1>
+      </div>
       <div className="container">
         <div className="data-box">
-          <div className="folder-list">
-            <ul>
-              <li>{tree && <FolderTree subTree={tree} />}</li>
-            </ul>
-          </div>
+          <div className="folder-list">{tree && <FolderTree subTree={tree} />}</div>
         </div>
         <div className="data-box">
           <div className="history-box">
             <LinkList />
           </div>
         </div>
+        <button type="button" onClick={handleSaveButton}>
+          저장하기
+        </button>
       </div>
-      <button type="button" onClick={handleSaveButton}>
-        저장하기
-      </button>
     </TreeWrapper>
   );
 }

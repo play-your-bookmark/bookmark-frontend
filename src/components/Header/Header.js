@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const OutletWrapper = styled.div`
-  padding-top: 100px;
+  padding-top: 0;
 `;
 
 export default function Header({ auth }) {

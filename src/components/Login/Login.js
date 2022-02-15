@@ -39,6 +39,7 @@ const LoginWrapper = styled.div`
     font-weight: 430;
     top: 270px;
   }
+
   .title {
     display: flex;
     flex-direction: column;

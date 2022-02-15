@@ -3,6 +3,17 @@ import { dragEnd, dragOver, dragStart } from "../../utils/dnd";
 
 const LinkWrap = styled.div`
   .LinkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 30rem;
+    height: 5rem;
+    border-radius: 15px;
+    background-color: brown;
+    margin: 10px 10px;
+  }
+  /* .LinkWrap {
     width: 40rem;
     height: 5rem;
     display: flex;
@@ -40,7 +51,7 @@ const LinkWrap = styled.div`
     overflow: hidden;
     font-size: 1rem;
     justify-content: center;
-  }
+  } */
 `;
 
 export default function HistoryLink({ linkInfo }) {

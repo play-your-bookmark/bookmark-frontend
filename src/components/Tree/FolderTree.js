@@ -1,8 +1,24 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 import { moveFolder, addBookmark } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
 import Folder from "./Folder";
+
+const FolderTreeWrapper = styled.ul`
+  .drag-target {
+    background-color: rgb(184, 184, 250);
+    cursor: grabbing;
+  }
+
+  .clicked {
+    background-color: aqua;
+  }
+
+  .droppable {
+    opacity: 0.4;
+  }
+`;
 
 export default function FolderTree({ subTree }) {
   const dispatch = useDispatch();
@@ -63,32 +79,30 @@ export default function FolderTree({ subTree }) {
   };
 
   return (
-    <div
-      key={subTree[0]}
-      data-_id={subTree[0]}
-      draggable
-      onDragEnter={handleDragEnter}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragleave}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      onDrop={handleDrop}
-    >
-      <Folder folder={subTree} />
-      {subTree.length >= 3 &&
-        subTree.map((child, index) => {
-          if (index < 3) {
-            return;
-          }
+    <FolderTreeWrapper>
+      <il>
+        <div
+          key={subTree[0]}
+          data-_id={subTree[0]}
+          draggable
+          onDragEnter={handleDragEnter}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragleave}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDrop={handleDrop}
+        >
+          <Folder folder={subTree} />
+          {subTree.length >= 3 &&
+            subTree.map((child, index) => {
+              if (index < 3) {
+                return;
+              }
 
-          return (
-            <ul>
-              <li>
-                <FolderTree subTree={child} />
-              </li>
-            </ul>
-          );
-        })}
-    </div>
+              return <FolderTree subTree={child} />;
+            })}
+        </div>
+      </il>
+    </FolderTreeWrapper>
   );
 }

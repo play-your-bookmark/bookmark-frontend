@@ -8,7 +8,26 @@ import Loader from "../Loader/Loader";
 import useInfinityScroll from "../hooks/useInfinityScroll";
 
 const LinkListWrap = styled.div`
+  display: flex;
   width: 100%;
+  height: 100%;
+  margin: 10px 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* background 삭제 예정 */
+  background-color: aquamarine;
+
+  .Target-Element {
+    width: 40rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  /* width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -23,7 +42,7 @@ const LinkListWrap = styled.div`
     justify-content: center;
     text-align: center;
     align-items: center;
-  }
+  } */
 `;
 
 export default function LinkList() {
