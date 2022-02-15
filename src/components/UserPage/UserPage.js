@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import UserProfile from "../User/UserProfile";
 import List from "../List/List";
+import { fetchCreatedFolder, fetchLikeFolder } from "../../redux/slices/folderSlices";
+import DoughnutChart from "../Chart/DoughnutChart";
 
 const BoxWrap = styled.div`
   width: 100%;
@@ -18,8 +23,19 @@ const Box = styled.div`
   }
 
   .FolderInfo-Box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 60%;
+    height: 100%;
     border-style: solid;
+  }
+
+  .LikeList {
+  }
+
+  .CreatedList {
   }
 `;
 
@@ -29,6 +45,16 @@ const ProfileBox = styled.div`
 `;
 
 export default function UserPage() {
+  const dispatch = useDispatch();
+  const userObjectId = useParams();
+  const createdFolders = useSelector((state) => state.folder.folderList);
+  const likedFolders = useSelector((state) => state.folder.likedFolder);
+
+  useEffect(() => {
+    dispatch(fetchCreatedFolder({ userObjectId }));
+    dispatch(fetchLikeFolder({ userObjectId }));
+  }, [dispatch, userObjectId]);
+
   return (
     <BoxWrap>
       <Box>
@@ -36,22 +62,18 @@ export default function UserPage() {
           <ProfileBox>
             <UserProfile />
           </ProfileBox>
-          {/* <svg width={500} height={500}>
-            <circle
-              cx="50"
-              cy="50"
-              r="20"
-              fill="none"
-              stroke="blue"
-              strokeWidth="10"
-              strokeDasharray={(10, 5)}
-            />
-          </svg> */}
+          <DoughnutChart userCreatedfolders={createdFolders} />
         </div>
-        {/* <div className="FolderInfo-Box">
-          <List />
-          <List />
-        </div> */}
+        <div className="FolderInfo-Box">
+          <div className="LikeList">
+            <div>Like Folder</div>
+            <List category="category" origin="mainCategory" userLikedFolders={likedFolders} />
+          </div>
+          <div className="CreatedList">
+            <div>Create Folder</div>
+            <List category="category" origin="mainCategory" userCreatedFolders={createdFolders} />
+          </div>
+        </div>
       </Box>
     </BoxWrap>
   );
