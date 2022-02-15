@@ -19,7 +19,7 @@ const FolderWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
-    box-shadow: 1px 1px 5px #000;
+    box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
   }
 
   .buttons {

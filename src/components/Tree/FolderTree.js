@@ -17,7 +17,7 @@ const FolderTreeWrapper = styled.ul`
     cursor: grabbing;
   }
 
-  .droppable:not(ul, li) {
+  .droppable:not(ul, li, button) {
     background-color: #5587f5;
     width: 330px;
     height: 45px;

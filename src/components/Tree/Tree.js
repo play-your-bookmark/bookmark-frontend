@@ -7,6 +7,8 @@ import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices
 import { buildTree } from "../../utils/tree";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
+import logo_blue from "../../src_assets/logo_blue.png";
+import logo_yellow from "../../src_assets/logo_yellow.png";
 
 const TreeWrapper = styled.div`
   display: flex;
@@ -21,11 +23,25 @@ const TreeWrapper = styled.div`
     .title1 {
       position: absolute;
       left: 18%;
+
+      .logo-blue {
+        position: relative;
+        right: 10%;
+        top: 8px;
+        width: 30px;
+      }
     }
 
     .title2 {
       position: absolute;
       right: 29%;
+
+      .logo-yellow {
+        position: relative;
+        width: 30px;
+        right: 10%;
+        top: 8px;
+      }
     }
   }
 
@@ -35,7 +51,7 @@ const TreeWrapper = styled.div`
     justify-content: space-evenly;
     align-content: space-around;
     width: 100%;
-    height: 79.4vh;
+    height: 77.6vh;
     background-color: #ffffff;
   }
 
@@ -160,8 +176,14 @@ export default function Tree() {
   return (
     <TreeWrapper>
       <div className="title">
-        <h1 className="title1">Folders</h1>
-        <h1 className="title2">History</h1>
+        <h1 className="title1">
+          <img className="logo-blue" src={logo_blue} alt="logo_blue" />
+          Folders
+        </h1>
+        <h1 className="title2">
+          <img className="logo-yellow" src={logo_yellow} alt="logo_yellow" />
+          History
+        </h1>
       </div>
       <div className="save" onClick={handleSaveButton}>
         SAVE

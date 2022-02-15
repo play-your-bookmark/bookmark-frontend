@@ -11,7 +11,14 @@ export function dragLeave(e) {
 }
 
 export function dragStart(e) {
-  const targetFolder = e.target;
+  let targetFolder;
+
+  if (e.target.tagName === "a") {
+    targetFolder = e.currentTarget;
+  } else {
+    targetFolder = e.target;
+  }
+
   targetFolder.classList.add("drag-target");
   e.dataTransfer.effectAllowed = "move";
 }

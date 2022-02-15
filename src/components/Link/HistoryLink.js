@@ -7,51 +7,29 @@ const LinkWrap = styled.div`
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    width: 30rem;
+    width: 50rem;
     height: 5rem;
-    border-radius: 15px;
-    background-color: brown;
-    margin: 10px 10px;
-  }
-  /* .LinkWrap {
-    width: 40rem;
-    height: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    margin: 1rem;
+    border-radius: 5px;
+    margin: 20px 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 6px;
   }
 
   .LinkWrap-Title {
     display: flex;
-    width: 40rem;
-    height: 5rem;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    background-color: #e2e5e7;
-    color: #566270;
-    font-size: 1rem;
     justify-content: center;
-    text-align: center;
     align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    height: 3rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #ebebeb;
   }
 
   .LinkWrap-Url {
-    width: 30rem;
-    height: 4.5rem;
-    margin: 16px;
-    border-radius: 4px;
-    overflow: hidden;
-    font-size: 1rem;
+    display: flex;
     justify-content: center;
-  } */
+    align-items: center;
+    height: 2rem;
+  }
 `;
 
 export default function HistoryLink({ linkInfo }) {
@@ -62,11 +40,10 @@ export default function HistoryLink({ linkInfo }) {
   const handleDragStart = (e) => {
     dragStart(e);
 
-    const target = e.currerget.dataset;
+    const target = e.currentTarget.dataset;
     e.dataTransfer.setData("type", "link");
     e.dataTransfer.setData("title", target.title);
     e.dataTransfer.setData("url", target.url);
-    e.dataTransfer.setData("visit_time", target.visit_time);
   };
 
   const handleDragEnd = (e) => {
