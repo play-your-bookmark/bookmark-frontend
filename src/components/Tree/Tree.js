@@ -8,13 +8,7 @@ import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
 
 const TreeWrapper = styled.div`
-  .container {
-    display: flex;
-    width: 100%;
-    margin: 10px;
-  }
-
-  ul {
+  /* ul {
     list-style: none;
     border-radius: 25px;
     margin: 0;
@@ -43,8 +37,8 @@ const TreeWrapper = styled.div`
     list-style: none;
     border-radius: 15px;
     padding: 10px;
-  }
-
+  } */
+/* 
   .data-box {
     display: flex;
     justify-content: center;
@@ -78,28 +72,7 @@ const TreeWrapper = styled.div`
       height: 80%;
       background-color: white;
     }
-  }
-
-  .folder-list {
-    display: flex;
-    border-radius: 15px;
-    justify-content: center;
-    background-color: #5587f5;
-    width: 80%;
-  }
-
-  .folder {
-    color: white;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    // width: 20rem;
-    // height: 2.5rem;
-    margin: 1rem;
-    // padding: 1rem;
-    border-radius: 10px;
-    //background-color: #ffffff;
-  }
+  } */
 
   .drag-target {
     background-color: rgb(184, 184, 250);
