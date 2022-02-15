@@ -34,7 +34,7 @@ const LinkWrap = styled.div`
 
   .LinkWrap-Url {
     width: 30rem;
-    height: 2.5rem;
+    height: 4.5rem;
     margin: 16px;
     border-radius: 4px;
     overflow: hidden;
@@ -51,7 +51,7 @@ export default function HistoryLink({ linkInfo }) {
   const handleDragStart = (e) => {
     dragStart(e);
 
-    const target = e.currentTarget.dataset;
+    const target = e.currerget.dataset;
     e.dataTransfer.setData("type", "link");
     e.dataTransfer.setData("title", target.title);
     e.dataTransfer.setData("url", target.url);
@@ -73,9 +73,17 @@ export default function HistoryLink({ linkInfo }) {
       onDragEnd={handleDragEnd}
     >
       <div className="LinkWrap">
-        <div className="LinkWrap-Title ">{linkInfo.title}</div>
+        <div className="LinkWrap-Title ">
+          {linkInfo.title
+            ? linkInfo.title.length > 50
+              ? `${linkInfo.title.slice(0, 50)}...`
+              : linkInfo.title
+            : "제목 없음"}
+        </div>
         <div className="LinkWrap-Url">
-          <a href={linkInfo.url}>{linkInfo.url}</a>
+          <a href={linkInfo.url}>
+            {linkInfo.url.length > 50 ? `${linkInfo.url.slice(0, 50)}...` : linkInfo.url}
+          </a>
         </div>
       </div>
     </LinkWrap>

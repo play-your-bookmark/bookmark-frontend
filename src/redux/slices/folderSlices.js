@@ -64,6 +64,7 @@ const folderSlices = createSlice({
       state.folderList[grabFolderIndex].parent_folder = targetLocationId;
     },
     addFolder: (state, action) => {
+      console.log(action.payload);
       state.folderList.push(action.payload);
     },
     addBookmark: (state, action) => {
