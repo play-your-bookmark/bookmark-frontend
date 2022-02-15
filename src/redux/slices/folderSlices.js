@@ -5,9 +5,9 @@ export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      const objectId = payload.userObjectId.id;
+      const objectId = payload?.userObjectId.id;
 
-      if (objectId) {
+      if (!payload) {
         const { data } = await req("get", "/folder/main", { params: objectId }, (res) => res, true);
         return data;
       }
@@ -89,7 +89,6 @@ const folderSlices = createSlice({
       state.folderList[grabFolderIndex].parent_folder = targetLocationId;
     },
     addFolder: (state, action) => {
-      console.log(action.payload);
       state.folderList.push(action.payload);
     },
     addBookmark: (state, action) => {
