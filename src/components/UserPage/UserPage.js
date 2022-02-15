@@ -11,18 +11,20 @@ import DoughnutChart from "../Chart/DoughnutChart";
 const BoxWrap = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-style: solid;
 
   .UserInfo-Box {
-    width: 40%;
+    width: 45%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-style: solid;
   }
 
   .FolderInfo-Box {
@@ -30,26 +32,31 @@ const BoxWrap = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    width: 55%;
+    height: 100%;
     border-style: solid;
   }
 
   .LikeList {
+    width: 100%;
     border-radius: 1rem;
     background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-itmes: center;
   }
 
   .CreatedList {
+    width: 100%;
     border-radius: 1rem;
     background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-itmes: center;
   }
 `;
-
-// const Box = styled.div`
-//   display: flex;
-//   width: 100%;
-//   height: 100%;
-// `;
 
 const ProfileBox = styled.div`
   width: 100%;
@@ -83,8 +90,8 @@ export default function UserPage() {
             category="category"
             origin="mainCategory"
             userLikedFolders={likedFolders}
-            width={450}
-            height={200}
+            width="100%"
+            height="100%"
           />
         </div>
         <div className="CreatedList">
@@ -93,8 +100,8 @@ export default function UserPage() {
             category="category"
             origin="mainCategory"
             userCreatedFolders={createdFolders}
-            width={450}
-            height={200}
+            width="100%"
+            height="100%"
           />
         </div>
       </div>

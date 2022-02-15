@@ -14,8 +14,6 @@ const CardWrapper = styled.div`
   flex-direction: column;
   background-color: #5587f5;
   margin: 10px;
-  height: 600px;
-  width: 600px;
   z-index: 1;
 `;
 

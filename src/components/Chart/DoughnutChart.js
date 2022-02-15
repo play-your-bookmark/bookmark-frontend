@@ -10,7 +10,6 @@ const ChartWrap = styled.div`
   border-radius: 1rem;
   background-color: #ebebeb;
   width: 100%;
-  margin-top: 1rem;
 `;
 
 const LegendBox = styled.div`
@@ -19,8 +18,7 @@ const LegendBox = styled.div`
 `;
 
 export default function DoughnutChart({ userCreatedfolders = [] }) {
-  const radius = 50;
-  const diameter = 2 * Math.PI * radius;
+  const RADIUS = 20;
   const accBookmarkByCategoryObject = {};
 
   if (userCreatedfolders.length) {
@@ -28,11 +26,11 @@ export default function DoughnutChart({ userCreatedfolders = [] }) {
       const subCategory = folder.sub_category;
 
       if (subCategory && !accBookmarkByCategoryObject[subCategory]) {
-        accBookmarkByCategoryObject[subCategory] = 1;
+        accBookmarkByCategoryObject[subCategory] = folder.bookmark.length;
         return;
       }
 
-      accBookmarkByCategoryObject[subCategory] += 1;
+      accBookmarkByCategoryObject[subCategory] += folder.bookmark.length;
     });
   }
 
@@ -46,75 +44,71 @@ export default function DoughnutChart({ userCreatedfolders = [] }) {
     (result, value) => [...result, result[result.length - 1] + value],
     [0],
   );
-  // path 태그를 사용할 시
-  // const coordInfoObjectForChart = accCountList.map((count, index) => {
-  //   const ratio = count / totalCount;
-  //   const degree = ratio * 2 * Math.PI;
+  const coordInfoObjectForChart = accCountList.map((count, index) => {
+    const ratio = count / totalCount;
+    const accDegree = ratio * 2 * Math.PI;
+    const eachDegree = index
+      ? (convertToBookmarkCountArray[index - 1] * 2 * Math.PI) / totalCount
+      : 0;
 
-  //   if (!index || index === 1) {
-  //     return {
-  //       startX: 70,
-  //       startY: 50,
-  //       finishX: 50 + radius * Math.cos(degree),
-  //       finishY: 50 + radius * Math.sin(degree),
-  //       degree,
-  //       category: index ? userCreatedfolders[index - 1].sub_category : "",
-  //       key: nanoid(8),
-  //     };
-  //   }
+    if (!index || index === 1) {
+      return {
+        startX: 70,
+        startY: 50,
+        finishX: 50 + RADIUS * Math.cos(accDegree),
+        finishY: 50 + RADIUS * Math.sin(accDegree),
+        accDegree,
+        eachDegree,
+        category: index ? accBookmarkByCategoryList[index - 1][0] : "",
+        key: nanoid(8),
+      };
+    }
 
-  //   const preRatio = convertToBookmarkCountArray[index - 1] / totalCount;
-  //   const preDegree = preRatio * 2 * Math.PI;
+    const preRatio = accCountList[index - 1] / totalCount;
+    const preAccDegree = preRatio * 2 * Math.PI;
 
-  //   return {
-  //     startX: 50 + radius * Math.cos(preDegree),
-  //     startY: 50 + radius * Math.sin(preDegree),
-  //     finishX: 50 + radius * Math.cos(degree),
-  //     finishY: 50 + radius * Math.sin(degree),
-  //     degree,
-  //     category: userCreatedfolders[index - 1].sub_category,
-  //     key: nanoid(8),
-  //   };
-  // });
+    return {
+      startX: 50 + RADIUS * Math.cos(preAccDegree),
+      startY: 50 + RADIUS * Math.sin(preAccDegree),
+      finishX: 50 + RADIUS * Math.cos(accDegree),
+      finishY: 50 + RADIUS * Math.sin(accDegree),
+      accDegree,
+      eachDegree,
+      category: accBookmarkByCategoryList[index - 1][0],
+      key: nanoid(8),
+    };
+  });
   const colors = [];
 
   convertToBookmarkCountArray.forEach((folder) => {
-    colors.push(`#${Math.round(Math.random() * 0xffffff).toString(16)}`);
+    while (true) {
+      const color = `${Math.round(Math.random() * 0xffffff).toString(16)}`;
+
+      if (color !== "ebebeb") {
+        colors.push(`#${color}`);
+        break;
+      }
+    }
   });
 
   return (
     <ChartWrap>
       {!!totalCount && (
-        <svg viewBox="0 0 200 200">
-          {convertToBookmarkCountArray.map((count, index) => {
-            // const isLarge = count.degree > Math.PI ? 1 : 0;
-            const ratio = count / totalCount;
-            const fillSpace = diameter * ratio;
-            const emptySpace = diameter - fillSpace;
-            const offset = (accCountList[index] / totalCount) * diameter;
+        <svg viewBox="0 0 100 100">
+          {coordInfoObjectForChart.map((count, index) => {
+            const isLarge = count.eachDegree > Math.PI ? 1 : 0;
+            const isEnd = Math.floor(count.finishY) === 49;
             return (
-              <circle
-                key={index}
-                cx="100"
-                cy="100"
-                r={String(radius)}
+              <path
+                d={`
+                  M ${count.startX} ${count.startY}
+                  A ${RADIUS} ${RADIUS} 0 ${isLarge} 1 ${count.finishX} ${count.finishY}
+                `}
+                stroke={index ? colors[index - 1] : ""}
+                strokeWidth="20"
                 fill="transparent"
-                stroke={colors[index]}
-                strokeWidth="50"
-                strokeDasharray={`${fillSpace} ${emptySpace}`}
-                strokeDashoffset={String(-offset)}
+                key={count.key}
               />
-              // <path
-              //   d={`
-              //   M ${count.startX} ${count.startY}
-              //   A ${radius} ${radius} 0 0 1 ${count.finishX} ${count.finishY}
-              //   L ${count.finishX} ${count.finishY}
-              // `}
-              //   stroke={colors[colors.length - index]}
-              //   strokeWidth="20"
-              //   fill="transparent"
-              //   key={count.key}
-              // />
             );
           })}
         </svg>

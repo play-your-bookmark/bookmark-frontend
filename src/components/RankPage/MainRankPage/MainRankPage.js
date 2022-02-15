@@ -51,7 +51,12 @@ export default function MainRankPage() {
       {category.mainCategory.map((element, index) => (
         <div key={element.name}>
           <TitleWrapper># {category.mainCategory[index].name}</TitleWrapper>
-          <List category={category.mainCategory[index].name} origin="mainCategory" />
+          <List
+            category={category.mainCategory[index].name}
+            origin="mainCategory"
+            width={450}
+            height={500}
+          />
         </div>
       ))}
     </ListWrapper>

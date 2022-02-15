@@ -21,7 +21,7 @@ const ProfileWrap = styled.div`
 
 const ImgBox = styled.div`
   .Avartar-Img {
-    width: 5rem;
+    width: 8rem;
     border-radius: 50%;
   }
 
@@ -63,6 +63,7 @@ const NameGithubBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 40%;
+  font-size: 1.5rem;
 
   .Github-Button {
     border-radius: 50%;
