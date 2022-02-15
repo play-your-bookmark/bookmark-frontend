@@ -62,7 +62,7 @@ export default function List({ category, origin, userCreatedFolders = [], userLi
   return (
     <CardWrapper>
       {!!userLikedFolders.length &&
-        userLikedFolders.map((folder) => {
+        userLikedFolders.map((folder, index) => {
           return (
             <Card
               key={folder._id}
