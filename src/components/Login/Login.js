@@ -21,7 +21,9 @@ const LoginWrapper = styled.div`
 
   h1 {
     position: absolute;
-    top: 400px;
+    font-size: 90px;
+    font-weight: 430;
+    top: 270px;
   }
   .title {
     display: flex;
@@ -31,6 +33,7 @@ const LoginWrapper = styled.div`
   }
 
   .google-login {
+    margin-top: 100px;
     cursor: pointer;
   }
 `;
