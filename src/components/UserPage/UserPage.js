@@ -12,36 +12,49 @@ const BoxWrap = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1rem;
-`;
-
-const Box = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
   .UserInfo-Box {
     width: 40%;
-    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .FolderInfo-Box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 60%;
-    height: 100%;
     border-style: solid;
   }
 
   .LikeList {
+    border-radius: 1rem;
+    background-color: #ebebeb;
   }
 
   .CreatedList {
+    border-radius: 1rem;
+    background-color: #ebebeb;
   }
 `;
 
+// const Box = styled.div`
+//   display: flex;
+//   width: 100%;
+//   height: 100%;
+// `;
+
 const ProfileBox = styled.div`
   width: 100%;
-  border-style: solid;
+  border-radius: 1rem;
+  background-color: #ebebeb;
 `;
 
 export default function UserPage() {
@@ -57,24 +70,34 @@ export default function UserPage() {
 
   return (
     <BoxWrap>
-      <Box>
-        <div className="UserInfo-Box">
-          <ProfileBox>
-            <UserProfile />
-          </ProfileBox>
-          <DoughnutChart userCreatedfolders={createdFolders} />
+      <div className="UserInfo-Box">
+        <ProfileBox>
+          <UserProfile />
+        </ProfileBox>
+        <DoughnutChart userCreatedfolders={createdFolders} />
+      </div>
+      <div className="FolderInfo-Box">
+        <div className="LikeList">
+          <div>Like Folder</div>
+          <List
+            category="category"
+            origin="mainCategory"
+            userLikedFolders={likedFolders}
+            width={450}
+            height={200}
+          />
         </div>
-        <div className="FolderInfo-Box">
-          <div className="LikeList">
-            <div>Like Folder</div>
-            <List category="category" origin="mainCategory" userLikedFolders={likedFolders} />
-          </div>
-          <div className="CreatedList">
-            <div>Create Folder</div>
-            <List category="category" origin="mainCategory" userCreatedFolders={createdFolders} />
-          </div>
+        <div className="CreatedList">
+          <div>Create Folder</div>
+          <List
+            category="category"
+            origin="mainCategory"
+            userCreatedFolders={createdFolders}
+            width={450}
+            height={200}
+          />
         </div>
-      </Box>
+      </div>
     </BoxWrap>
   );
 }

@@ -45,7 +45,14 @@ const Hyperlink = styled.a`
   }
 `;
 
-export default function List({ category, origin, userCreatedFolders = [], userLikedFolders = [] }) {
+export default function List({
+  category,
+  origin,
+  userCreatedFolders = [],
+  userLikedFolders = [],
+  width = 450,
+  height = 200,
+}) {
   const dispatch = useDispatch();
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
   const selectedUserName = useSelector((state) => state.user.selectedUserName);
@@ -60,7 +67,7 @@ export default function List({ category, origin, userCreatedFolders = [], userLi
     dispatch(getUserOfSelectedFolder(selectedFolder.publisher));
   }
   return (
-    <CardWrapper>
+    <CardWrapper style={{ width: width, height: height }}>
       {!!userLikedFolders.length &&
         userLikedFolders.map((folder, index) => {
           return (
