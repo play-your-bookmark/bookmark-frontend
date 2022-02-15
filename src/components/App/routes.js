@@ -10,7 +10,7 @@ import UserPage from "../UserPage/UserPage";
 const routes = (auth) => [
   {
     path: "/app",
-    element: isLoggedIn() ? <Header /> : <Navigate to="/auth/login" />,
+    element: isLoggedIn() ? <Header auth={auth} /> : <Navigate to="/auth/login" />,
     children: [
       { path: "/app/rankpage", element: <RankPage /> },
       { path: "/app/editpage", element: <FolderEditPage /> },
