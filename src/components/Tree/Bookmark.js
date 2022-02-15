@@ -19,7 +19,7 @@ export default function Bookmark({ bookmark, index }) {
 
   return (
     <BookmarkWrapper>
-      {bookmark.title}
+      {bookmark.title || "null"}
       <button onClick={handleDeleteButton}>delete</button>
     </BookmarkWrapper>
   );

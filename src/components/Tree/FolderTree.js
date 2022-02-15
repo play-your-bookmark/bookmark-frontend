@@ -6,16 +6,22 @@ import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../
 import Folder from "./Folder";
 
 const FolderTreeWrapper = styled.ul`
-  .drag-target {
-    background-color: rgb(184, 184, 250);
+  display: flex;
+
+  li {
+    margin-top: 15px;
+  }
+
+  .drag-target .folder:not(ul, li) {
+    background-color: #f2c84d;
     cursor: grabbing;
   }
 
-  .clicked {
-    background-color: aqua;
-  }
-
-  .droppable {
+  .droppable:not(ul, li) {
+    background-color: #5587f5;
+    width: 330px;
+    height: 45px;
+    transition: 0.2s;
     opacity: 0.4;
   }
 `;
@@ -80,9 +86,10 @@ export default function FolderTree({ subTree }) {
 
   return (
     <FolderTreeWrapper>
-      <il>
+      <li>
         <div
           key={subTree[0]}
+          className="drag-item"
           data-_id={subTree[0]}
           draggable
           onDragEnter={handleDragEnter}
@@ -102,7 +109,7 @@ export default function FolderTree({ subTree }) {
               return <FolderTree subTree={child} />;
             })}
         </div>
-      </il>
+      </li>
     </FolderTreeWrapper>
   );
 }
