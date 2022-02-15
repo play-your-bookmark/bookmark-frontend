@@ -9,7 +9,8 @@ import { fetchCategoryFolder } from "../../../redux/slices/categoryFolderSlices"
 
 const ListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  padding-top: 40px;
 `;
 
 const TitleWrapper = styled.h2`

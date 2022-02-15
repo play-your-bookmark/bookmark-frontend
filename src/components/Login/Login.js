@@ -1,6 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import styled from "styled-components";
+import isLoggedIn from "../../utils/isLoggedIn";
 import logoBlue from "../../src_assets/logo_blue.png";
 import logoyellow from "../../src_assets/logo_yellow.png";
 import googleLoginButton from "../../src_assets/btn_google_signin_light_focus_web.png";
@@ -34,15 +35,15 @@ const LoginWrapper = styled.div`
   }
 `;
 
-export default function Login({ auth }) {
+export default function Login({ auth, restricted }) {
   const navigate = useNavigate();
-  const onGoogleLogin = (e) => {
+  const onGoogleLogin = () => {
     auth.login("google").then((data) => {
       navigate("/app/rankpage");
     });
   };
 
-  return (
+  return !isLoggedIn() ? (
     <LoginWrapper>
       <div className="bottom-logo">
         <img className="logo-blue" src={logoBlue} alt="logo1" style={{ width: "200px" }} />
@@ -60,5 +61,7 @@ export default function Login({ auth }) {
         />
       </div>
     </LoginWrapper>
+  ) : (
+    <Navigate to="/app/rankpage" />
   );
 }
