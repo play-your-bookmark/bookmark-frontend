@@ -8,7 +8,8 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  height: 100px;
+  background-color: #ebebeb;
 `;
 
 const ButtonWrapper = styled.div`
@@ -20,6 +21,10 @@ const ButtonWrapper = styled.div`
     width: 30px;
     height: 30px;
   }
+`;
+
+const OutletWrapper = styled.div`
+  padding-top: 100px;
 `;
 
 export default function Header({ auth }) {
@@ -37,7 +42,9 @@ export default function Header({ auth }) {
           <GiHamburgerMenu onClick={() => toggleHandler()} className="nav-button" />
         </ButtonWrapper>
       </HeaderWrapper>
-      <Outlet />
+      <OutletWrapper>
+        <Outlet />
+      </OutletWrapper>
     </div>
   );
 }

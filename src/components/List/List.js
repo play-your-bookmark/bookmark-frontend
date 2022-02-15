@@ -10,10 +10,10 @@ import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: skyblue;
+  background-color: #5587f5;
   margin: 10px;
-  height: 500px;
-  width: 450px;
+  height: 600px;
+  width: 600px;
   z-index: 1;
 `;
 

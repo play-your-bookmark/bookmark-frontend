@@ -28,8 +28,15 @@ const Logout = styled.div`
   color: black;
 `;
 
-export default function NavBar({ auth }) {
+export default function NavBar({ auth, toggled }) {
   const navigate = useNavigate();
+  const navbarStyle = useSpring({
+    left: toggled ? window.innerWidth - 1900 : window.innerWidth,
+    position: "absolute",
+    backgroundColor: "#EBEBEB",
+    height: "100px",
+    width: "150vh",
+  });
 
   function handleClickLogout() {
     auth.logout().then((data) => {
@@ -38,7 +45,7 @@ export default function NavBar({ auth }) {
   }
 
   return (
-    <animated.div>
+    <animated.div style={navbarStyle}>
       <MenuContainer>
         <div>
           <StyledLink to="/app/rankpage">Rank Page</StyledLink>
