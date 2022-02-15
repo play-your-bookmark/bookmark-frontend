@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -28,25 +28,25 @@ const CounterWrapper = styled.div`
 const ElapsedTime = styled.div`
   display: flex;
   justify-content: center;
+  font-family: sans-serif;
 `;
 
 export default function RankPage() {
   const keyword = useSelector((state) => state.keyword.keyword);
-  const loadingTime = useSelector((state) => state.timer.second);
+
   const timerProps = {
     isPlaying: true,
     size: 100,
-    strokeWith: 1,
+    strokeWidth: 6,
     duration: 5,
-    initialRemainingTime: process.env.REACT_APP_RANK_PAGE_LOADING_DELAY,
-    colors: ["#004777", "#F7B801", "#A30000", "#A30000"],
-    colorsTime: [7, 5, 2, 0],
+    initialRemainingTime: 5,
+    colors: "#218380",
   };
 
   return (
     <div>
       <RankHeader>
-        <SearchBar />
+        {!keyword ? <SearchBar position="inline-block" /> : <SearchBar position="flex" />}
         {!keyword && (
           <LoaderWrapper>
             <CountdownCircleTimer
@@ -59,7 +59,7 @@ export default function RankPage() {
               {({ elapsedTime }) => {
                 return (
                   <div className="time-wrapper">
-                    <ElapsedTime>{Math.floor(elapsedTime)}</ElapsedTime>
+                    <ElapsedTime>{Math.ceil(5 - elapsedTime)}</ElapsedTime>
                     <div>seconds</div>
                   </div>
                 );

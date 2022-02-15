@@ -3,13 +3,16 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { selectFolder } from "../../redux/slices/folderSlices";
 
-const FolderWrapper = styled.button`
+const FolderWrapper = styled.div`
   display: flex;
   justify-content: center;
   background-color: white;
   margin: 5px;
   padding: 5px;
   width: 400px;
+  border: 3px solid black;
+  cursor: pointer;
+  font-size: 20px;
 `;
 
 export default function Card({ folder, origin, setIsModalOpen }) {

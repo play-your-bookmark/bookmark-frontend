@@ -8,10 +8,10 @@ const ModalStyle = styled.div`
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 30%;
+  top: 40%;
   left: 50%;
-  width: 20rem;
-  height: 20rem;
+  width: 30rem;
+  height: 30rem;
   transform: translate(-50%, -50%);
   background-color: beige;
   z-index: 1000;
