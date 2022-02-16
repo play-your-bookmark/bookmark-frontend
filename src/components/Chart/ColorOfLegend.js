@@ -5,6 +5,9 @@ const ColorWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 8rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
 
   .Color-Box {
     width: 1rem;
