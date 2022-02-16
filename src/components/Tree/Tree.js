@@ -150,6 +150,23 @@ const TreeWrapper = styled.div`
     right: 3.5%;
     top: 14%;
     cursor: pointer;
+    :hover {
+      animation-name: clickButton;
+      animation-iteration-count: infinite;
+      animation-duration: 0.5s;
+    }
+  }
+
+  @keyframes clickButton {
+    0% {
+      background-color: #5587f5;
+    }
+    50% {
+      background-color: #f2c84d;
+    }
+    100% {
+      background-color: #5587f5;
+    }
   }
 `;
 
