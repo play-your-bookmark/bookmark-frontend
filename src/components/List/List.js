@@ -14,7 +14,7 @@ import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: ${(props) => props.color};
   margin: 10px;

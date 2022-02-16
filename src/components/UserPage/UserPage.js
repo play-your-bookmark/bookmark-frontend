@@ -40,10 +40,11 @@ const BoxWrap = styled.div`
     background-color: #ebebeb;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 1.5rem;
     margin: 0.5rem;
+    height: 25rem;
   }
 
   .CreatedList {
@@ -52,9 +53,10 @@ const BoxWrap = styled.div`
     background-color: #ebebeb;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 1.5rem;
+    height: 26rem;
     margin: 0.5rem;
   }
 `;
@@ -94,7 +96,7 @@ export default function UserPage() {
             origin="mainCategory"
             userLikedFolders={likedFolders}
             width="90%"
-            height="14rem"
+            height="20rem"
             color="#5587f5"
           />
         </div>
@@ -105,7 +107,7 @@ export default function UserPage() {
             origin="mainCategory"
             userCreatedFolders={createdFolders}
             width="90%"
-            height="18rem"
+            height="21rem"
             color="#5587f5"
           />
         </div>
