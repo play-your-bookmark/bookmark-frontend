@@ -28,7 +28,7 @@ export default function LikeButton({ folder, index, origin, category }) {
     />
   ) : (
     <HeartFilled
-      style={{ color: "orange", fontSize: "30px", margin: "5px" }}
+      style={{ color: "red", fontSize: "30px", margin: "5px" }}
       onClick={() => handleClickLikeFolder()}
     />
   );

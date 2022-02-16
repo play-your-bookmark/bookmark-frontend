@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Outlet } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
 const HeaderWrapper = styled.div`
@@ -12,35 +11,29 @@ const HeaderWrapper = styled.div`
   background-color: #ebebeb;
 `;
 
-const ButtonWrapper = styled.div`
-  padding: 10px;
-  display: flex;
-  flex-direction: row-reverse;
-
-  .nav-button {
-    width: 30px;
-    height: 30px;
-  }
-`;
-
 const OutletWrapper = styled.div`
   padding-top: 0;
 `;
 
-export default function Header({ auth }) {
-  const [isToggled, setIsToggled] = useState(false);
+const LogoutButton = styled.div`
+  margin-right: 50px;
+  font-size: 20px;
+`;
 
-  function toggleHandler() {
-    setIsToggled(!isToggled);
+export default function Header({ auth }) {
+  const navigate = useNavigate();
+
+  function handleClickLogout() {
+    auth.logout().then((data) => {
+      navigate("/auth/login");
+    });
   }
 
   return (
     <div>
       <HeaderWrapper>
-        <NavBar auth={auth} toggled={isToggled} />
-        <ButtonWrapper>
-          <GiHamburgerMenu onClick={() => toggleHandler()} className="nav-button" />
-        </ButtonWrapper>
+        <NavBar />
+        <LogoutButton onClick={() => handleClickLogout()}>LogOut</LogoutButton>
       </HeaderWrapper>
       <OutletWrapper>
         <Outlet />
