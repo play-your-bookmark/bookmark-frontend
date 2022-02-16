@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -14,21 +16,27 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #5587f5;
+  background-color: ${(props) => props.color};
   margin: 10px;
   z-index: 1;
   overflow: scroll;
+  border: 3px solid skyblue;
 `;
 
 const FolderTitleWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
-  margin: 5px;
+  justify-content: center;
+  padding: 5px;
+  margin: 10px;
   background: white;
+  font-size: 20px;
+  width: 400px;
+  border: 2px solid black;
 `;
 
 const Hyperlink = styled.a`
@@ -46,6 +54,20 @@ const Hyperlink = styled.a`
   }
 `;
 
+const LinkContainer = styled.div`
+  margin: 10px;
+`;
+
+const LikeWrapper = styled.div`
+  margin-top: 7px;
+  font-size: 20px;
+  font-weight: bolder;
+`;
+
+const ModalTitle = styled.div`
+  font-size: 20px;
+`
+
 export default function List({
   category,
   origin,
@@ -53,6 +75,7 @@ export default function List({
   userLikedFolders = [],
   width = 450,
   height = 200,
+  color,
 }) {
   const dispatch = useDispatch();
   const selectedFolder = useSelector((state) => state.folder.selectedFolder);
@@ -67,8 +90,9 @@ export default function List({
   if (selectedFolder) {
     dispatch(getUserOfSelectedFolder(selectedFolder.publisher));
   }
+
   return (
-    <CardWrapper style={{ width: width, height: height }}>
+    <CardWrapper style={{ width: width, height: height }} color={color}>
       {!!userLikedFolders.length &&
         userLikedFolders.map((folder, index) => {
           return (
@@ -103,8 +127,8 @@ export default function List({
                 origin={origin}
                 setIsModalOpen={() => setIsModalOpen(!isModalOpen)}
               />
-              <div>{folder.likes.length}</div>
               <LikeButton folder={folder} index={index} origin={origin} category={category} />
+              <LikeWrapper>{folder.likes.length}</LikeWrapper>
             </FolderTitleWrapper>
           );
         })}
@@ -115,28 +139,31 @@ export default function List({
             userName={selectedUserName}
             userObjectId={selectedFolder.publisher}
           />
+          <ModalTitle>📕 링크 모음</ModalTitle>
           {selectedFolder.bookmark.map((link) => (
             <LinkWrapper key={link.url}>
               <Hyperlink href={link.url}>
                 {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
                   ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
-                  : link.title}
+                  : (link.title.length === 0 ? "(TITLE UNDEFINED)" : link.title)}
               </Hyperlink>
             </LinkWrapper>
           ))}
         </Modal>
       )}
-      {!category &&
-        selectedFolder &&
-        selectedFolder.bookmark.map((link) => (
-          <LinkWrapper key={link.url}>
-            <Hyperlink href={link.url}>
-              {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
-                ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
-                : link.title}
-            </Hyperlink>
-          </LinkWrapper>
-        ))}
+      {!category && selectedFolder && (
+        <LinkContainer>
+          {selectedFolder.bookmark.map((link) => (
+            <LinkWrapper key={link.url} >
+              <Hyperlink href={link.url}>
+                {link.title.length > process.env.REACT_APP_MAX_LINK_LENGTH
+                  ? `${link.title.substring(0, process.env.REACT_APP_MAX_LINK_LENGTH - 3)}...`
+                  : (link.title.length === 0 ? "(TITLE UNDEFINED)" : link.title)}
+              </Hyperlink>
+            </LinkWrapper>
+          ))}
+        </LinkContainer>
+      )}
     </CardWrapper>
   );
 }

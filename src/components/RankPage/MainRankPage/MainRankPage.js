@@ -56,6 +56,7 @@ export default function MainRankPage() {
             origin="mainCategory"
             width={450}
             height={500}
+            color="#5587f5"
           />
         </div>
       ))}

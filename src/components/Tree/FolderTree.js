@@ -1,8 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
+
 import { moveFolder, addBookmark } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
 import Folder from "./Folder";
+
+const FolderTreeWrapper = styled.ul`
+  display: flex;
+
+  li {
+    margin-top: 15px;
+  }
+
+  .drag-target .folder:not(ul, li) {
+    background-color: #f2c84d;
+    cursor: grabbing;
+  }
+
+  .droppable:not(ul, li, .add, .delete, button) {
+    background-color: #5587f5;
+    width: 330px;
+    height: 45px;
+    transition: 0.2s;
+    opacity: 0.4;
+  }
+`;
 
 export default function FolderTree({ subTree }) {
   const dispatch = useDispatch();
@@ -11,7 +34,9 @@ export default function FolderTree({ subTree }) {
 
   const handleDragEnter = (e) => {
     dragEnter(e);
-    e.target.classList.add("droppable");
+    if (!e.target.classList.contains("buttons")) {
+      e.target.classList.add("droppable");
+    }
   };
 
   const handleDragleave = (e) => {
@@ -46,6 +71,7 @@ export default function FolderTree({ subTree }) {
 
     if (dataType === "folder") {
       const grabFolderId = grabFolder.dataset._id;
+
       if (targetLocationId !== grabFolderId) {
         dispatch(moveFolder({ targetLocationId, grabFolderId }));
       }
@@ -63,32 +89,31 @@ export default function FolderTree({ subTree }) {
   };
 
   return (
-    <div
-      key={subTree[0]}
-      data-_id={subTree[0]}
-      draggable
-      onDragEnter={handleDragEnter}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragleave}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      onDrop={handleDrop}
-    >
-      <Folder folder={subTree} />
-      {subTree.length >= 3 &&
-        subTree.map((child, index) => {
-          if (index < 3) {
-            return;
-          }
+    <FolderTreeWrapper>
+      <li>
+        <div
+          key={subTree[0]}
+          className="drag-item"
+          data-_id={subTree[0]}
+          draggable
+          onDragEnter={handleDragEnter}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragleave}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDrop={handleDrop}
+        >
+          <Folder folder={subTree} />
+          {subTree.length >= 3 &&
+            subTree.map((child, index) => {
+              if (index < 3) {
+                return;
+              }
 
-          return (
-            <ul>
-              <li>
-                <FolderTree subTree={child} />
-              </li>
-            </ul>
-          );
-        })}
-    </div>
+              return <FolderTree subTree={child} />;
+            })}
+        </div>
+      </li>
+    </FolderTreeWrapper>
   );
 }

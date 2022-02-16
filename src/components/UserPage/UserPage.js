@@ -13,7 +13,8 @@ const BoxWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-style: solid;
+  width: 100%;
+  height: 100%;
 
   .UserInfo-Box {
     width: 45%;
@@ -22,17 +23,15 @@ const BoxWrap = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-style: solid;
   }
 
   .FolderInfo-Box {
+    width: 55%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 55%;
-    height: 100%;
-    border-style: solid;
   }
 
   .LikeList {
@@ -44,6 +43,7 @@ const BoxWrap = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    margin: 0.5rem;
   }
 
   .CreatedList {
@@ -55,6 +55,7 @@ const BoxWrap = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    margin: 0.5rem;
   }
 `;
 
@@ -92,8 +93,9 @@ export default function UserPage() {
             category="category"
             origin="mainCategory"
             userLikedFolders={likedFolders}
-            width="100%"
-            height="5rem"
+            width="90%"
+            height="14rem"
+            color="#5587f5"
           />
         </div>
         <div className="CreatedList">
@@ -102,8 +104,9 @@ export default function UserPage() {
             category="category"
             origin="mainCategory"
             userCreatedFolders={createdFolders}
-            width="100%"
-            height="27rem"
+            width="90%"
+            height="18rem"
+            color="#5587f5"
           />
         </div>
       </div>

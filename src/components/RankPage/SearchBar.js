@@ -5,8 +5,7 @@ import { setKeyword } from "../../redux/slices/keywordSlices";
 import CATEGORY from "../../utils/customCategory.json";
 
 const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
+  display: ${(props) => props.position};
   padding-left: 50px;
 `;
 
@@ -21,9 +20,13 @@ const Option = styled.div`
   color: black;
   text-decoration: none;
   display: block;
+  margin: 5px;
+  font-size: 15px;
+  font-weight: bolder;
   width: 350px;
+  background-color: beige;
   :hover {
-    background-color: #f1f1f1;
+    background-color: orange;
   }
 `;
 
@@ -31,9 +34,17 @@ const CategoryInput = styled.input`
   width: 200px;
   height: 30px;
   font-size: 20px;
+  padding: 10px;
 `;
 
-export default function SearchBar() {
+const MainRedirectingButton = styled.button`
+  background-color: #f2c84d;
+  border: 3px solid #f2c84d;
+  font-size: 15px;
+  font-weight: bolder;
+`;
+
+export default function SearchBar({ position }) {
   const [display, setDisplay] = useState(false);
   const [options, setOptions] = useState(CATEGORY);
   const [search, setSearch] = useState("");
@@ -66,7 +77,7 @@ export default function SearchBar() {
   }
 
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper ref={wrapperRef} position={position}>
       <CategoryInput
         id="search-input"
         placeholder="🔎 Search category"
@@ -75,7 +86,9 @@ export default function SearchBar() {
         onChange={(e) => setSearch(e.target.value)}
       />
       {keyword && (
-        <button onClick={() => dispatch(setKeyword())}>메인 랭크페이지로 되돌아가기</button>
+        <MainRedirectingButton onClick={() => dispatch(setKeyword())}>
+          메인 랭크페이지로 되돌아가기
+        </MainRedirectingButton>
       )}
       {display && (
         <OptionWrapper>

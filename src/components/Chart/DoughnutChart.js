@@ -113,7 +113,7 @@ export default function DoughnutChart({ userCreatedfolders = [] }) {
       }
     }
   });
-  console.log(userCreatedfolders);
+
   return (
     <ChartWrap>
       <div className="Chart-title">Interests</div>

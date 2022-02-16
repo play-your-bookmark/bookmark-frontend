@@ -8,12 +8,12 @@ import Loader from "../Loader/Loader";
 import useInfinityScroll from "../hooks/useInfinityScroll";
 
 const LinkListWrap = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
+  margin: 10px 10px;
   flex-direction: column;
   justify-content: space-between;
-  text-align: center;
   align-items: center;
 
   .Target-Element {
