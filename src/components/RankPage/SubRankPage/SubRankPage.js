@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import List from "../../List/List";
+import logoYello from "../../../src_assets/logo_yellow.png";
 
 const ListWrapper = styled.div`
   display: flex;
@@ -11,6 +12,11 @@ const ListWrapper = styled.div`
 const TitleWrapper = styled.h2`
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  img {
+    margin-right: 10px;
+  }
 `;
 
 export default function SubRankPage() {
@@ -19,11 +25,14 @@ export default function SubRankPage() {
   return (
     <ListWrapper>
       <div>
-        <TitleWrapper># {keyword}</TitleWrapper>
+        <TitleWrapper># {keyword} </TitleWrapper>
         <List category={keyword} origin="keywordCategory" color="#5587f5" />
       </div>
       <div>
-        <TitleWrapper>📕 FOLDER LINK</TitleWrapper>
+        <TitleWrapper>
+          <img src={logoYello} alt="logo" width="30px" />
+          Links
+        </TitleWrapper>
         <List color="#F2C84D" />
       </div>
     </ListWrapper>
