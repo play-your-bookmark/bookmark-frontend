@@ -1,15 +1,10 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { animated, useSpring } from "react-spring";
-
-const MenuContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 500px;
-  font-size: 20px;
-  padding: 40px;
-`;
+import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+import SidebarData from "./SidebarData";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -22,44 +17,62 @@ const StyledLink = styled(Link)`
   &:active {
     text-decoration: none;
   }
+
+  ${(props) =>
+    props.className === "menu-bars" &&
+    `
+      width: 30px;
+      height: 30px;  
+    `}
 `;
 
-const Logout = styled.div`
-  color: black;
+const OverlayStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
 `;
 
-export default function NavBar({ auth, toggled }) {
-  const navigate = useNavigate();
-  const navbarStyle = useSpring({
-    left: toggled ? window.innerWidth - 1900 : window.innerWidth,
-    position: "absolute",
-    backgroundColor: "#EBEBEB",
-    height: "100px",
-    width: "150vh",
-  });
+const NavWrapper = styled.div`
+  z-index: 1001;
+`;
 
-  function handleClickLogout() {
-    auth.logout().then((data) => {
-      navigate("/auth/login");
-    });
-  }
+export default function NavBar() {
+  const [isToggled, setIsToggled] = useState(false);
+  const toggleHandler = () => setIsToggled(!isToggled);
 
   return (
-    <animated.div style={navbarStyle}>
-      <MenuContainer>
-        <div>
-          <StyledLink to="/app/rankpage">Rank Page</StyledLink>
+    <>
+      {isToggled && <OverlayStyle />}
+      <NavWrapper>
+        <div className="navbar">
+          <Link to="#">
+            <FaBars onClick={toggleHandler} size={40} />
+          </Link>
         </div>
-        <div>
-          <StyledLink to="/app/editpage">Edit Page</StyledLink>
+        <div className={isToggled ? "nav-menu active" : "nav-menu"}>
+          <div className="nav-menu-items" onClick={toggleHandler}>
+            <div className="navbar-toggle">
+              <Link to="#" className="menu-bars">
+                <AiOutlineClose />
+              </Link>
+            </div>
+            {SidebarData.map((item, index) => {
+              return (
+                <div key={index} className={item.cName}>
+                  <StyledLink to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </StyledLink>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div>
-          <StyledLink to="/app/mypage">My Page</StyledLink>
-        </div>
-        <div>
-          <Logout onClick={() => handleClickLogout()}>Logout</Logout>
-        </div>
-      </MenuContainer>
-    </animated.div>
+      </NavWrapper>
+    </>
   );
 }
