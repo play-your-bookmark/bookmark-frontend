@@ -12,7 +12,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const OutletWrapper = styled.div`
-  padding-top: 100px;
+  padding-top: 0;
 `;
 
 const LogoutButton = styled.div`

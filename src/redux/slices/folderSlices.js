@@ -81,12 +81,32 @@ const folderSlices = createSlice({
     moveFolder: (state, action) => {
       const { targetLocationId, grabFolderId } = action.payload;
       const grabFolderIndex = state.folderList.findIndex((folder) => folder._id === grabFolderId);
-      const grabFolder = state.folderList[grabFolderIndex];
-      if (grabFolder.parent_folder === targetLocationId) {
-        return;
-      }
+      const targetFolderIndex = state.folderList.findIndex(
+        (folder) => folder._id === targetLocationId,
+      );
 
-      state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      const checkParent = (grabFolderIndex, targetFolderIndex) => {
+        const grabFolder = state.folderList[grabFolderIndex];
+        const targetFolder = state.folderList[targetFolderIndex];
+
+        if (!targetFolder.parent_folder || targetFolder._id === "root") {
+          return true;
+        }
+
+        if (grabFolder._id === targetFolder.parent_folder) {
+          return false;
+        }
+
+        const upperFolderIndex = state.folderList.findIndex(
+          (folder) => folder._id === targetFolder.parent_folder,
+        );
+
+        return checkParent(grabFolderIndex, upperFolderIndex);
+      };
+
+      if (grabFolderId !== "root" || checkParent(grabFolderIndex, targetFolderIndex)) {
+        state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      }
     },
     addFolder: (state, action) => {
       state.folderList.push(action.payload);

@@ -2,12 +2,23 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { deleteBookmark } from "../../redux/slices/folderSlices";
+import Button from "./Button";
 
 const BookmarkWrapper = styled.div`
-  border: 1px solid black;
-  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  background-color: #ffffff;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+  border-radius: 5px;
   margin: 10px 10px;
   padding: 10px 10px;
+
+  .delete {
+    color: #5587f5;
+  }
 `;
 
 export default function Bookmark({ bookmark, index }) {
@@ -19,8 +30,8 @@ export default function Bookmark({ bookmark, index }) {
 
   return (
     <BookmarkWrapper>
-      {bookmark.title}
-      <button onClick={handleDeleteButton}>delete</button>
+      {bookmark.title || "null"}
+      <Button name="delete" type="button" onClickAction={handleDeleteButton} />
     </BookmarkWrapper>
   );
 }
