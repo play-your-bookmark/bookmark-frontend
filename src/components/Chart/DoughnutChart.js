@@ -10,7 +10,7 @@ const ChartWrap = styled.div`
   border-radius: 1rem;
   background-color: #ebebeb;
   width: 95%;
-  height: 30rem;
+  height: 42rem;
   margin: 0.5rem;
 
   .Chart-title {
