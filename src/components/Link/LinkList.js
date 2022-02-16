@@ -6,6 +6,7 @@ import styled from "styled-components";
 import HistoryLink from "./HistoryLink";
 import Loader from "../Loader/Loader";
 import useInfinityScroll from "../hooks/useInfinityScroll";
+import logo_yellow from "../../src_assets/logo_yellow.png";
 
 const LinkListWrap = styled.div`
   display: flex;
@@ -24,6 +25,10 @@ const LinkListWrap = styled.div`
     text-align: center;
     align-items: center;
   }
+
+  .logo-yellow {
+    width: 1rem;
+  }
 `;
 
 export default function LinkList() {
@@ -36,7 +41,8 @@ export default function LinkList() {
   return (
     <LinkListWrap>
       {LinkLists && LinkLists.map((info, index) => <HistoryLink linkInfo={info} key={info.key} />)}
-      <div ref={setTarget} className="Target-Element">
+      <div className="Target-Element">
+        <img ref={setTarget} className="logo-yellow" src={logo_yellow} alt="logo_yellow" />
         {isLoaded && <Loader />}
       </div>
     </LinkListWrap>
