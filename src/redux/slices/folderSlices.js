@@ -7,13 +7,12 @@ export const fetchCreatedFolder = createAsyncThunk(
     try {
       const objectId = payload?.userObjectId.id;
 
-      if (!payload) {
+      if (objectId) {
         const { data } = await req("get", "/folder/main", { params: objectId }, (res) => res, true);
         return data;
       }
 
       const { data } = await req("get", "/folder/main", {}, (res) => res, true);
-      console.log("ㄴㄴㄴㄴ", data);
       return data;
     } catch (error) {
       console.log(error.stack);

@@ -13,6 +13,7 @@ const ProfileWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  height: 7rem;
 
   .Github-Button-Img {
     width: 1rem;
@@ -21,18 +22,18 @@ const ProfileWrap = styled.div`
 
 const ImgBox = styled.div`
   .Avartar-Img {
-    width: 8rem;
+    width: 100px;
     border-radius: 50%;
   }
 
   .Default-Img {
-    width: 5rem;
-    height: 5rem;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background-color: green;
   }
 `;
-
+// 파:5587F5 회:EBEBEB 노:F2C84D
 const BoxWrap = styled.div`
   .Form {
     display: flex;

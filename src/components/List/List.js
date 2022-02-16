@@ -12,9 +12,12 @@ import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #5587f5;
   margin: 10px;
   z-index: 1;
+  overflow: scroll;
 `;
 
 const FolderTitleWrapper = styled.div`

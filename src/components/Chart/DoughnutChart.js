@@ -9,7 +9,29 @@ const ChartWrap = styled.div`
   align-items: center;
   border-radius: 1rem;
   background-color: #ebebeb;
-  width: 100%;
+  width: 95%;
+  height: 30rem;
+  margin: 0.5rem;
+
+  .Chart-title {
+    font-size: 1.5rem;
+  }
+
+  .path {
+    stroke-miterlimit: 10;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 10s linear alternate infinite;
+  }
+
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
 `;
 
 const LegendBox = styled.div`
@@ -19,6 +41,7 @@ const LegendBox = styled.div`
 
 export default function DoughnutChart({ userCreatedfolders = [] }) {
   const RADIUS = 20;
+  const MAX_COORD_Y = 49.99999;
   const accBookmarkByCategoryObject = {};
 
   if (userCreatedfolders.length) {
@@ -82,27 +105,35 @@ export default function DoughnutChart({ userCreatedfolders = [] }) {
 
   convertToBookmarkCountArray.forEach((folder) => {
     while (true) {
-      const color = `${Math.round(Math.random() * 0xffffff).toString(16)}`;
+      const color = `${Math.round(Math.random() * 16777215).toString(16)}`;
 
-      if (color !== "ebebeb") {
+      if (color !== "ebebeb" && String(color).length === 6 && !colors.includes(`#${color}`)) {
         colors.push(`#${color}`);
         break;
       }
     }
   });
-
+  console.log(userCreatedfolders);
   return (
     <ChartWrap>
+      <div className="Chart-title">Interests</div>
       {!!totalCount && (
         <svg viewBox="0 0 100 100">
           {coordInfoObjectForChart.map((count, index) => {
             const isLarge = count.eachDegree > Math.PI ? 1 : 0;
-            const isEnd = Math.floor(count.finishY) === 49;
+
+            if (Math.floor(count.finishY) === 49) {
+              count.finishY = MAX_COORD_Y;
+            }
+
             return (
               <path
+                className="path"
                 d={`
-                  M ${count.startX} ${count.startY}
-                  A ${RADIUS} ${RADIUS} 0 ${isLarge} 1 ${count.finishX} ${count.finishY}
+                  M ${count.startX.toFixed(5)} ${count.startY.toFixed(5)}
+                  A ${RADIUS} ${RADIUS} 0 ${isLarge} 1 ${count.finishX.toFixed(
+                  5,
+                )} ${count.finishY.toFixed(5)}
                 `}
                 stroke={index ? colors[index - 1] : ""}
                 strokeWidth="20"

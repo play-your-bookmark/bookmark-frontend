@@ -9,8 +9,6 @@ import { fetchCreatedFolder, fetchLikeFolder } from "../../redux/slices/folderSl
 import DoughnutChart from "../Chart/DoughnutChart";
 
 const BoxWrap = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -38,30 +36,34 @@ const BoxWrap = styled.div`
   }
 
   .LikeList {
-    width: 100%;
+    width: 95%;
     border-radius: 1rem;
     background-color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-itmes: center;
+    align-items: center;
+    font-size: 1.5rem;
   }
 
   .CreatedList {
-    width: 100%;
+    width: 95%;
     border-radius: 1rem;
     background-color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-itmes: center;
+    align-items: center;
+    font-size: 1.5rem;
   }
 `;
 
 const ProfileBox = styled.div`
-  width: 100%;
+  width: 95%;
+  height: 25%;
   border-radius: 1rem;
   background-color: #ebebeb;
+  margin: 0.5rem;
 `;
 
 export default function UserPage() {
@@ -85,23 +87,23 @@ export default function UserPage() {
       </div>
       <div className="FolderInfo-Box">
         <div className="LikeList">
-          <div>Like Folder</div>
+          <div>Like List</div>
           <List
             category="category"
             origin="mainCategory"
             userLikedFolders={likedFolders}
             width="100%"
-            height="100%"
+            height="5rem"
           />
         </div>
         <div className="CreatedList">
-          <div>Create Folder</div>
+          <div>Create List</div>
           <List
             category="category"
             origin="mainCategory"
             userCreatedFolders={createdFolders}
             width="100%"
-            height="100%"
+            height="27rem"
           />
         </div>
       </div>

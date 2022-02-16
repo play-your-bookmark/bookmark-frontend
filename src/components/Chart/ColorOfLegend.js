@@ -4,7 +4,7 @@ const ColorWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 6rem;
+  width: 8rem;
 
   .Color-Box {
     width: 1rem;
