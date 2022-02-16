@@ -9,39 +9,62 @@ import { fetchCreatedFolder, fetchLikeFolder } from "../../redux/slices/folderSl
 import DoughnutChart from "../Chart/DoughnutChart";
 
 const BoxWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 100%;
-  margin-top: 1rem;
-`;
-
-const Box = styled.div`
-  display: flex;
 
   .UserInfo-Box {
-    width: 40%;
-    border-style: solid;
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .FolderInfo-Box {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .LikeList {
+    width: 95%;
+    border-radius: 1rem;
+    background-color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60%;
-    height: 100%;
-    border-style: solid;
-  }
-
-  .LikeList {
+    font-size: 1.5rem;
+    margin: 0.5rem;
   }
 
   .CreatedList {
+    width: 95%;
+    border-radius: 1rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 0.5rem;
   }
 `;
 
 const ProfileBox = styled.div`
-  width: 100%;
-  border-style: solid;
+  width: 95%;
+  height: 25%;
+  border-radius: 1rem;
+  background-color: #ebebeb;
+  margin: 0.5rem;
 `;
 
 export default function UserPage() {
@@ -57,24 +80,36 @@ export default function UserPage() {
 
   return (
     <BoxWrap>
-      <Box>
-        <div className="UserInfo-Box">
-          <ProfileBox>
-            <UserProfile />
-          </ProfileBox>
-          <DoughnutChart userCreatedfolders={createdFolders} />
+      <div className="UserInfo-Box">
+        <ProfileBox>
+          <UserProfile />
+        </ProfileBox>
+        <DoughnutChart userCreatedfolders={createdFolders} />
+      </div>
+      <div className="FolderInfo-Box">
+        <div className="LikeList">
+          <div>Like List</div>
+          <List
+            category="category"
+            origin="mainCategory"
+            userLikedFolders={likedFolders}
+            width="90%"
+            height="14rem"
+            color="#5587f5"
+          />
         </div>
-        <div className="FolderInfo-Box">
-          <div className="LikeList">
-            <div>Like Folder</div>
-            <List category="category" origin="mainCategory" userLikedFolders={likedFolders} />
-          </div>
-          <div className="CreatedList">
-            <div>Create Folder</div>
-            <List category="category" origin="mainCategory" userCreatedFolders={createdFolders} />
-          </div>
+        <div className="CreatedList">
+          <div>Create List</div>
+          <List
+            category="category"
+            origin="mainCategory"
+            userCreatedFolders={createdFolders}
+            width="90%"
+            height="18rem"
+            color="#5587f5"
+          />
         </div>
-      </Box>
+      </div>
     </BoxWrap>
   );
 }

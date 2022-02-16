@@ -10,29 +10,33 @@ import githubIcon from "../../src_assets/github-icon.png";
 const ProfileWrap = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem;
+  height: 7rem;
 
   .Github-Button-Img {
-    width: 1rem;
+    width: 2rem;
   }
 `;
 
 const ImgBox = styled.div`
+  margin-left: 2rem;
+
   .Avartar-Img {
-    width: 5rem;
+    width: 100px;
     border-radius: 50%;
+    box-shadow: 5px 5px 5px grey;
   }
 
   .Default-Img {
-    width: 5rem;
-    height: 5rem;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background-color: green;
   }
 `;
-
+// 파:5587F5 회:EBEBEB 노:F2C84D
 const BoxWrap = styled.div`
   .Form {
     display: flex;
@@ -63,13 +67,16 @@ const NameGithubBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 40%;
+  font-size: 1.5rem;
+  margin-right: 5.5rem;
 
   .Github-Button {
     border-radius: 50%;
     border-style: none;
     width: 2rem;
     height: 2rem;
-    background-color: grey;
+    background-color: transparent;
+    cursor: pointer;
   }
 `;
 
