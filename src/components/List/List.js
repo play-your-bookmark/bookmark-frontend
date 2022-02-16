@@ -14,11 +14,12 @@ import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: ${(props) => props.color};
   margin: 10px;
-  height: 600px;
-  width: 600px;
   z-index: 1;
+  overflow: scroll;
   border: 3px solid skyblue;
 `;
 
@@ -72,6 +73,8 @@ export default function List({
   origin,
   userCreatedFolders = [],
   userLikedFolders = [],
+  width = 450,
+  height = 200,
   color,
 }) {
   const dispatch = useDispatch();
@@ -89,7 +92,7 @@ export default function List({
   }
 
   return (
-    <CardWrapper color={color}>
+    <CardWrapper style={{ width: width, height: height }} color={color}>
       {!!userLikedFolders.length &&
         userLikedFolders.map((folder, index) => {
           return (

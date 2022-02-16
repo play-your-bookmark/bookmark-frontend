@@ -54,6 +54,8 @@ export default function MainRankPage() {
           <List
             category={category.mainCategory[index].name}
             origin="mainCategory"
+            width={450}
+            height={500}
             color="#5587f5"
           />
         </div>
