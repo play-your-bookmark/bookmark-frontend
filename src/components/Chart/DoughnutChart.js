@@ -35,8 +35,10 @@ const ChartWrap = styled.div`
 `;
 
 const LegendBox = styled.div`
-  diplay: flex;
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 20rem;
 `;
 
 export default function DoughnutChart({ userCreatedfolders = [] }) {
