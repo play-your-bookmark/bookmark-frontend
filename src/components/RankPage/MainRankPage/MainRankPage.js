@@ -10,12 +10,13 @@ import { fetchCategoryFolder } from "../../../redux/slices/categoryFolderSlices"
 const ListWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  padding-top: 40px;
+  padding: 10px 10px;
 `;
 
 const TitleWrapper = styled.h2`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  font-weight: 500;
 `;
 
 export default function MainRankPage() {

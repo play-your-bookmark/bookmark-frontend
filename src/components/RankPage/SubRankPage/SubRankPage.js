@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import List from "../../List/List";
@@ -25,8 +25,24 @@ export default function SubRankPage() {
   return (
     <ListWrapper>
       <div>
+        <TitleWrapper># {keyword}</TitleWrapper>
+        <List
+          category={keyword}
+          width={500}
+          height={550}
+          origin="keywordCategory"
+          color="#5587f5"
+        />
+      </div>
+      <div>
         <TitleWrapper># {keyword} </TitleWrapper>
-        <List category={keyword} origin="keywordCategory" color="#5587f5" />
+        <List
+          category={keyword}
+          width={800}
+          height={550}
+          origin="keywordCategory"
+          color="#F2C84D"
+        />
       </div>
       <div>
         <TitleWrapper>

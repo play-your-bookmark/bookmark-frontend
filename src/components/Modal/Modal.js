@@ -10,11 +10,38 @@ const ModalStyle = styled.div`
   position: fixed;
   top: 40%;
   left: 50%;
-  width: 30rem;
-  height: 30rem;
+  width: 50rem;
+  height: 40rem;
   transform: translate(-50%, -50%);
-  background-color: beige;
+  border-radius: 15px;
+  background-color: #f2c84d;
   z-index: 1000;
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    padding: 20px 20px;
+    border-radius: 15px;
+    box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
+    background-color: white;
+  }
+
+  .finish {
+    width: 100px;
+    height: 30px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 15px;
+    background-color: white;
+    cursor: pointer;
+    :hover {
+      background-color: #f2c84d;
+    }
+  }
 `;
 
 const OverlayStyle = styled.div`
