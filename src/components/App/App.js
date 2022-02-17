@@ -1,10 +1,10 @@
 import { useRoutes } from "react-router-dom";
 import styled from "styled-components";
 import routes from "./routes";
-import BasicCursor from "../../src_assets/basicCursor.png";
+import basicCursor from "../../src_assets/basicCursor.png";
 
 const AppContainer = styled.div`
-  cursor: url(${BasicCursor}), auto;
+  cursor: url(${basicCursor}), auto;
 `;
 
 function App({ auth }) {
