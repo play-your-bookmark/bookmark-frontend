@@ -35,21 +35,11 @@ export default function SubRankPage() {
         />
       </div>
       <div>
-        <TitleWrapper># {keyword} </TitleWrapper>
-        <List
-          category={keyword}
-          width={800}
-          height={550}
-          origin="keywordCategory"
-          color="#F2C84D"
-        />
-      </div>
-      <div>
         <TitleWrapper>
           <img src={logoYello} alt="logo" width="30px" />
           Links
         </TitleWrapper>
-        <List color="#F2C84D" />
+        <List width={800} height={550} color="#F2C84D" />
       </div>
     </ListWrapper>
   );

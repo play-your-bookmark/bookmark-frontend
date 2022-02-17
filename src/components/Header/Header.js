@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
-import logo_blue from "../../src_assets/logo_blue.png";
-import logo_yellow from "../../src_assets/logo_yellow.png";
+import logoBlue from "../../src_assets/logo_blue.png";
+import logoYellow from "../../src_assets/logo_yellow.png";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -52,8 +52,8 @@ export default function Header({ auth }) {
     <div>
       <HeaderWrapper>
         <NavBar />
-        <img className="logo-blue" src={logo_blue} alt="logo_blue" />
-        <img className="logo-yellow" src={logo_yellow} alt="logo_yellow" />
+        <img className="logo-blue" src={logoBlue} alt="logo_blue" />
+        <img className="logo-yellow" src={logoYellow} alt="logo_yellow" />
         <LogoutButton onClick={() => handleClickLogout()}>LogOut</LogoutButton>
       </HeaderWrapper>
       <OutletWrapper>

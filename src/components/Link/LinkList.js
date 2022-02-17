@@ -6,7 +6,7 @@ import styled from "styled-components";
 import HistoryLink from "./HistoryLink";
 import Loader from "../Loader/Loader";
 import useInfinityScroll from "../hooks/useInfinityScroll";
-import logo_yellow from "../../src_assets/logo_yellow.png";
+import logoYellow from "../../src_assets/logo_yellow.png";
 
 const LinkListWrap = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ export default function LinkList() {
     <LinkListWrap>
       {LinkLists && LinkLists.map((info, index) => <HistoryLink linkInfo={info} key={info.key} />)}
       <div className="Target-Element">
-        <img ref={setTarget} className="logo-yellow" src={logo_yellow} alt="logo_yellow" />
+        <img ref={setTarget} className="logo-yellow" src={logoYellow} alt="logo_yellow" />
         {isLoaded && <Loader />}
       </div>
     </LinkListWrap>
