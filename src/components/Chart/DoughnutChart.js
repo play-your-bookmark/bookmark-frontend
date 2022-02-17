@@ -9,12 +9,14 @@ const ChartWrap = styled.div`
   align-items: center;
   border-radius: 1rem;
   background-color: #ebebeb;
-  width: 95%;
-  height: 42rem;
-  margin: 0.5rem;
+  width: 70%;
+  height: 34rem;
+  box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
 
   .Chart-title {
+    margin-top: 10px;
     font-size: 1.5rem;
+    font-weight: 500;
   }
 
   .path {
