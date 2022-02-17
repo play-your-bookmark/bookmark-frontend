@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { buildTree } from "90crew-tree-bookmark/src/components/index";
 import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices";
-import { buildTree } from "../../utils/tree";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
 import logo_blue from "../../src_assets/logo_blue.png";
