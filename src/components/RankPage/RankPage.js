@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -16,13 +16,6 @@ const RankHeader = styled.div`
 const LoaderWrapper = styled.div`
   display: flex;
   padding-right: 50px;
-`;
-
-const CounterWrapper = styled.div`
-  display: flex;
-  width: 300px;
-  align-items: center;
-  font-size: 20px;
 `;
 
 const ElapsedTime = styled.div`
