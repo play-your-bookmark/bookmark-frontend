@@ -30,7 +30,6 @@ const FolderTreeWrapper = styled.ul`
 export default function FolderTree({ subTree }) {
   const dispatch = useDispatch();
   const [grabFolder, setGrabFolder] = useState("");
-  const [isToggled, setIsToggled] = useState(false);
 
   const handleDragEnter = (e) => {
     dragEnter(e);
