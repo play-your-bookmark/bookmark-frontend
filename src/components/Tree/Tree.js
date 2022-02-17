@@ -23,7 +23,7 @@ const TreeWrapper = styled.div`
 
     .title1 {
       position: absolute;
-      left: 18%;
+      left: 17%;
 
       .logo-blue {
         position: relative;
@@ -35,7 +35,7 @@ const TreeWrapper = styled.div`
 
     .title2 {
       position: absolute;
-      right: 29%;
+      right: 28%;
 
       .logo-yellow {
         position: relative;
@@ -147,13 +147,14 @@ const TreeWrapper = styled.div`
     font-size: 1.3rem;
     text-align: center;
     position: absolute;
-    right: 3.5%;
-    top: 14%;
+    padding: 10px 10px;
+    border-radius: 15px;
+    right: 5.5%;
+    top: 13%;
     cursor: pointer;
     :hover {
-      animation-name: clickButton;
-      animation-iteration-count: infinite;
-      animation-duration: 0.5s;
+      background-color: #f2c84d;
+      transition: 0.3s;
     }
   }
 `;

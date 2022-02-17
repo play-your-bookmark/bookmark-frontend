@@ -12,6 +12,22 @@ const ButtonWrapper = styled.div`
   margin: 10px;
   align-items: center;
   width: 500px;
+
+  select {
+    text-align: center;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0 5px;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    border: 2px solid #f2c84d;
+    :hover {
+      background-color: #f2c84d;
+    }
+  }
 `;
 
 export default function Category({ isOpen, setIsOpen }) {
@@ -30,15 +46,19 @@ export default function Category({ isOpen, setIsOpen }) {
   return (
     <div>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        폴더의 카테고리를 지정해주세요!
-        <ButtonWrapper>
-          <SelectBox category={category.mainCategory} onSelectCategory={setMainCategory} />
-          <SelectBox
-            category={category.mainCategory[mainCategoryIndex].subCategory}
-            onSelectCategory={setSubCategory}
-          />
-        </ButtonWrapper>
-        <button onClick={handleCloseButton}>설정 완료</button>
+        <div className="category">
+          폴더의 카테고리를 지정해주세요!
+          <ButtonWrapper>
+            <SelectBox category={category.mainCategory} onSelectCategory={setMainCategory} />
+            <SelectBox
+              category={category.mainCategory[mainCategoryIndex].subCategory}
+              onSelectCategory={setSubCategory}
+            />
+          </ButtonWrapper>
+          <button className="finish" onClick={handleCloseButton}>
+            설정 완료
+          </button>
+        </div>
       </Modal>
     </div>
   );

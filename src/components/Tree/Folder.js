@@ -87,7 +87,9 @@ export default function Folder({ folder }) {
         {folder[1]}
         <div className="buttons">
           <Button name="add" type="button" onClickAction={handleAddButton} />
-          <Button name="delete" type="button" onClickAction={handleDeleteButton} />
+          {folder[1] !== "root" && (
+            <Button name="delete" type="button" onClickAction={handleDeleteButton} />
+          )}
         </div>
       </div>
       {isDetailOpen && folder[0] !== "root" && (
