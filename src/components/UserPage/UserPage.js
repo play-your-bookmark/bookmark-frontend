@@ -1,72 +1,86 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { fetchCreatedFolder, fetchLikeFolder } from "../../redux/slices/folderSlices";
 import UserProfile from "../User/UserProfile";
 import List from "../List/List";
-import { fetchCreatedFolder, fetchLikeFolder } from "../../redux/slices/folderSlices";
 import DoughnutChart from "../Chart/DoughnutChart";
 
 const BoxWrap = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  height: 100%;
+  height: 89.7vh;
 
-  .UserInfo-Box {
-    width: 45%;
-    height: 100%;
+  .UserInfo-Box,
+  .FolderInfo-Box {
     display: flex;
+    width: 40%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .UserInfo-Box {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-right: 100px;
+    justify-content: space-evenly;
+    align-items: flex-end;
   }
 
   .FolderInfo-Box {
-    width: 55%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 70%;
+    margin-right: 100px;
   }
 
   .LikeList {
-    width: 95%;
-    border-radius: 1rem;
-    background-color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    font-size: 1.5rem;
-    margin: 0.5rem;
-    height: 25rem;
+    width: 80%;
+    height: 19rem;
+    margin-top: 1.5rem;
+    padding: 10px 10px;
+    border-radius: 1rem;
+    background-color: #ebebeb;
+    box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
   }
 
   .CreatedList {
-    width: 95%;
+    width: 80%;
+    padding: 10px 10px;
     border-radius: 1rem;
     background-color: #ebebeb;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    font-size: 1.5rem;
-    height: 26rem;
-    margin: 0.5rem;
+    height: 24rem;
+    margin-bottom: 1.5rem;
+    box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 20px;
   }
 `;
 
 const ProfileBox = styled.div`
-  width: 95%;
-  height: 25%;
-  border-radius: 1rem;
-  background-color: #ebebeb;
-  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 70%;
 `;
 
 export default function UserPage() {
@@ -90,7 +104,7 @@ export default function UserPage() {
       </div>
       <div className="FolderInfo-Box">
         <div className="LikeList">
-          <div>Like List</div>
+          <div className="title">Like List</div>
           <List
             category="category"
             origin="mainCategory"
@@ -101,7 +115,7 @@ export default function UserPage() {
           />
         </div>
         <div className="CreatedList">
-          <div>Create List</div>
+          <div className="title">Create List</div>
           <List
             category="category"
             origin="mainCategory"

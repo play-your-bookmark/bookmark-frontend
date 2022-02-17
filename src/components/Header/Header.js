@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
+import logo_blue from "../../src_assets/logo_blue.png";
+import logo_yellow from "../../src_assets/logo_yellow.png";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -9,6 +11,18 @@ const HeaderWrapper = styled.div`
   align-items: center;
   height: 100px;
   background-color: #ebebeb;
+
+  .logo-blue {
+    position: absolute;
+    left: 100px;
+    width: 50px;
+  }
+
+  .logo-yellow {
+    position: absolute;
+    left: 80px;
+    width: 50px;
+  }
 `;
 
 const OutletWrapper = styled.div`
@@ -16,8 +30,13 @@ const OutletWrapper = styled.div`
 `;
 
 const LogoutButton = styled.div`
-  margin-right: 50px;
-  font-size: 20px;
+  margin-right: 125px;
+  font-size: 18px;
+  font-weight: 300;
+  :hover {
+    font-weight: 600;
+    transition: 0.3s;
+  }
 `;
 
 export default function Header({ auth }) {
@@ -33,6 +52,8 @@ export default function Header({ auth }) {
     <div>
       <HeaderWrapper>
         <NavBar />
+        <img className="logo-blue" src={logo_blue} alt="logo_blue" />
+        <img className="logo-yellow" src={logo_yellow} alt="logo_yellow" />
         <LogoutButton onClick={() => handleClickLogout()}>LogOut</LogoutButton>
       </HeaderWrapper>
       <OutletWrapper>

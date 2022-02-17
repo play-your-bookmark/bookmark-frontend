@@ -12,8 +12,12 @@ const ProfileWrap = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem;
-  height: 7rem;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 15px;
+  height: 5rem;
+  background-color: #ebebeb;
+  box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
 
   .Github-Button-Img {
     width: 2rem;
@@ -36,7 +40,7 @@ const ImgBox = styled.div`
     background-color: green;
   }
 `;
-// 파:5587F5 회:EBEBEB 노:F2C84D
+
 const BoxWrap = styled.div`
   .Form {
     display: flex;

@@ -15,28 +15,53 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 10px 10px;
+  border-radius: 15px;
   align-items: center;
   background-color: ${(props) => props.color};
+  box-shadow: 1px 1px 5px #000;
   margin: 10px;
   z-index: 1;
-  overflow: scroll;
-  border: 3px solid skyblue;
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background-color: #f2c84d;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+  }
 `;
 
 const FolderTitleWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 `;
 
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 50px;
   padding: 5px;
-  margin: 10px;
+  margin-top: 30px;
   background: white;
   font-size: 20px;
-  width: 400px;
-  border: 2px solid black;
+  border-radius: 15px;
+  box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
+  :hover {
+    box-shadow: rgba(26, 26, 26, 1) 0px 3px 2px 2px;
+    font-weight: bold;
+  }
 `;
 
 const Hyperlink = styled.a`
@@ -48,10 +73,6 @@ const Hyperlink = styled.a`
     color: black;
     text-decoration: none;
   }
-  :hover {
-    font-weight: bolder;
-    color: black;
-  }
 `;
 
 const LinkContainer = styled.div`
@@ -61,7 +82,7 @@ const LinkContainer = styled.div`
 const LikeWrapper = styled.div`
   margin-top: 7px;
   font-size: 20px;
-  font-weight: bolder;
+  font-weight: 500;
 `;
 
 const ModalTitle = styled.div`
