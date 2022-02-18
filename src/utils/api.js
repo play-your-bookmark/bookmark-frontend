@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 axios.defaults.withCredentials = true;
 
-const BASE_URL = "http://localhost:7001";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 const req = (
   method,
   url,

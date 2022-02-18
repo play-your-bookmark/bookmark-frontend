@@ -20,7 +20,6 @@ const ButtonWrap = styled.div`
 
   .Button:hover {
     box-shadow: rgba(26, 26, 26, 0.8) 0px 3px 2px 2px;
-    /* font-weight: bold; */
     background-color: #f2c84d;
     color: white;
     transition: 0.3s;

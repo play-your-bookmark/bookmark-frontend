@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFolder, FaFolderOpen } from "react-icons/fa";
+import { FaFolder } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { ObjectId } from "bson";
 import styled from "styled-components";

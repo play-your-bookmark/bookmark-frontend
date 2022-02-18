@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-
 import { buildTree } from "90crew-tree-bookmark/src/components/index";
 import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices";
 import FolderTree from "./FolderTree";
