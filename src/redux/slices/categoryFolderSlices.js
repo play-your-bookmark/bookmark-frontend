@@ -53,10 +53,10 @@ const categoryFolderSlices = createSlice({
     },
     resetUniqueCategoryFolders: (state, action) => {
       const keyword = action.payload;
-      const keywordIndex = state.fetchedCategoryFolder.findIndex(
-        (category) => category === keyword,
-      );
-      state.fetchedCategoryFolder.splice(keywordIndex, 1);
+      // const keywordIndex = state.fetchedCategoryFolder.(
+      //   (category) => category === keyword,
+      // );
+      delete state.fetchedCategoryFolder.keyword;
     },
   },
   extraReducers: {
