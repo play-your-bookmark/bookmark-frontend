@@ -51,6 +51,13 @@ const categoryFolderSlices = createSlice({
 
       state.fetchedCategoryFolder[category].splice(index, 1);
     },
+    resetUniqueCategoryFolders: (state, action) => {
+      const keyword = action.payload;
+      const keywordIndex = state.fetchedCategoryFolder.findIndex(
+        (category) => category === keyword,
+      );
+      state.fetchedCategoryFolder.splice(keywordIndex, 1);
+    },
   },
   extraReducers: {
     [fetchCategoryFolder.pending]: (state, action) => {
@@ -107,5 +114,6 @@ const categoryFolderSlices = createSlice({
   },
 });
 
-export const { deleteUniqueCategoryFolder } = categoryFolderSlices.actions;
+export const { deleteUniqueCategoryFolder, resetUniqueCategoryFolders } =
+  categoryFolderSlices.actions;
 export default categoryFolderSlices.reducer;

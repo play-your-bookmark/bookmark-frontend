@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { resetUniqueCategoryFolders } from "../../redux/slices/categoryFolderSlices";
 import { setKeyword } from "../../redux/slices/keywordSlices";
 import CATEGORY from "../../utils/customCategory.json";
 
@@ -89,6 +90,11 @@ export default function SearchBar({ position }) {
     }
   }
 
+  function handleResetButton() {
+    dispatch(resetUniqueCategoryFolders(keyword));
+    dispatch(setKeyword());
+  }
+
   return (
     <Wrapper ref={wrapperRef} position={position}>
       <CategoryInput
@@ -99,9 +105,7 @@ export default function SearchBar({ position }) {
         onChange={(e) => setSearch(e.target.value)}
       />
       {keyword && (
-        <MainRedirectingButton onClick={() => dispatch(setKeyword())}>
-          back to main
-        </MainRedirectingButton>
+        <MainRedirectingButton onClick={handleResetButton}>back to main</MainRedirectingButton>
       )}
       {display && (
         <OptionWrapper>

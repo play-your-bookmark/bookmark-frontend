@@ -53,6 +53,7 @@
     "import/no-named-as-default-member": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "import/no-unresolved": 0,
-    "no-alert": 0
+    "no-alert": 0,
+    "react/jsx-no-bind": 0
   }
 }
