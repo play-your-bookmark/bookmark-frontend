@@ -46,15 +46,13 @@ export default function LinkList() {
     const accessToken = Cookies.get("accessToken");
     const formData = new FormData();
     formData.append("bookmark", file);
-
-    const { data } = await axios.post("http://localhost:7001/file", formData, {
+    const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}/file`, formData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "multipart/form-data",
       },
     });
 
-    console.log(data);
     setBookmark(data);
   }
 
@@ -64,10 +62,12 @@ export default function LinkList() {
 
   return (
     <LinkListWrap>
-      <form onSubmit={handleSubmit}>
-        <input name="html" type="file" accept="html" onChange={handleFileChange} />
-        <input type="submit" value="submit" />
-      </form>
+      {!bookmark.length && (
+        <form onSubmit={handleSubmit}>
+          <input name="html" type="file" accept="html" onChange={handleFileChange} />
+          <input type="submit" value="submit" />
+        </form>
+      )}
       {!!bookmark.length &&
         bookmark.map((info, index) => <HistoryLink linkInfo={info} key={info.key} />)}
       <div className="Target-Element">
