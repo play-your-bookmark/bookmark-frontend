@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
+import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 import Card from "./Card";
 import Modal from "../Modal/Modal";
 import LikeButton from "./LikeButton";
-import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
 import UserPageButton from "./UserPageButton";
-import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
+
 
 const CardWrapper = styled.div`
   display: flex;

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
+
+import { selectCategory } from "../../redux/slices/folderSlices";
 import Modal from "../Modal/Modal";
 import SelectBox from "./SelectBox";
 import category from "../../utils/category.json";
-import { selectCategory } from "../../redux/slices/folderSlices";
 
 const ButtonWrapper = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
+
 import { selectFolder } from "../../redux/slices/folderSlices";
 
 const FolderWrapper = styled.div`
@@ -29,7 +30,6 @@ export default function Card({ folder, origin, setIsModalOpen }) {
     <FolderWrapper
       type="button"
       onClick={async (e) => {
-        // 여전히 조회는 가능하고, like button만 막음
         dispatch(selectFolder(folder));
 
         if (origin === "mainCategory") {

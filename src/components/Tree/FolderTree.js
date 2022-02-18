@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
 import { moveFolder, addBookmark } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
 import Folder from "./Folder";

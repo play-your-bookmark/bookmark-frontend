@@ -30,7 +30,7 @@ export default function Bookmark({ bookmark, index }) {
 
   return (
     <BookmarkWrapper>
-      {bookmark.title || "null"}
+      <a href={bookmark.url}>{bookmark.title || "제목 없음"}</a>
       <Button name="delete" type="button" onClickAction={handleDeleteButton} />
     </BookmarkWrapper>
   );

@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import isLoggedIn from "../../utils/isLoggedIn";
 
+import Header from "../Header/Header";
 import Login from "../Login/Login";
 import RankPage from "../RankPage/RankPage";
 import FolderEditPage from "../FolderEditPage/FolderEditPage";

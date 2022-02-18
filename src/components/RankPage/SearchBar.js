@@ -1,6 +1,9 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { resetUniqueCategoryFolders } from "../../redux/slices/categoryFolderSlices";
+import { selectFolder } from "../../redux/slices/folderSlices";
 import { setKeyword } from "../../redux/slices/keywordSlices";
 import CATEGORY from "../../utils/customCategory.json";
 
@@ -24,6 +27,7 @@ const Option = styled.div`
   margin: 5px;
   font-size: 15px;
   width: 350px;
+
   :hover {
     font-weight: bold;
     background-color: #f2c84d;
@@ -48,6 +52,7 @@ const MainRedirectingButton = styled.button`
   border-radius: 15px;
   padding: 10px 10px;
   cursor: pointer;
+
   :hover {
     color: white;
     background-color: #5587f5;
@@ -87,6 +92,12 @@ export default function SearchBar({ position }) {
     }
   }
 
+  function handleResetButton() {
+    dispatch(resetUniqueCategoryFolders(keyword));
+    dispatch(setKeyword());
+    dispatch(selectFolder());
+  }
+
   return (
     <Wrapper ref={wrapperRef} position={position}>
       <CategoryInput
@@ -97,9 +108,7 @@ export default function SearchBar({ position }) {
         onChange={(e) => setSearch(e.target.value)}
       />
       {keyword && (
-        <MainRedirectingButton onClick={() => dispatch(setKeyword())}>
-          back to main
-        </MainRedirectingButton>
+        <MainRedirectingButton onClick={handleResetButton}>back to main</MainRedirectingButton>
       )}
       {display && (
         <OptionWrapper>
