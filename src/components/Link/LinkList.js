@@ -54,7 +54,6 @@ export default function LinkList() {
       },
     });
 
-    console.log(data);
     setBookmark(data);
   }
 
