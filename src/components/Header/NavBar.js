@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import SidebarData from "./SidebarData";
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
     props.className === "menu-bars" &&
     `
       width: 30px;
-      height: 30px;  
+      height: 30px;
     `}
 `;
 
@@ -46,7 +46,7 @@ export default function NavBar() {
 
   return (
     <>
-      {isToggled && <OverlayStyle />}
+      {isToggled && <OverlayStyle onClick={() => setIsToggled(false)} />}
       <NavWrapper>
         <div className="navbar">
           <Link to="#">

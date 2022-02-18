@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { dragEnd, dragOver, dragStart } from "../../utils/dnd";
 
 const LinkWrap = styled.div`
@@ -12,6 +13,12 @@ const LinkWrap = styled.div`
     border-radius: 5px;
     margin: 20px 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    :hover {
+      box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 29px 0px;
+      font-weight: bold;
+      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
   }
 
   .LinkWrap-Title {

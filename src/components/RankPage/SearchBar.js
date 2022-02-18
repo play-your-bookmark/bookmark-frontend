@@ -13,6 +13,7 @@ const OptionWrapper = styled.div`
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
+  top: 200px;
   z-index: 2;
 `;
 
@@ -22,11 +23,11 @@ const Option = styled.div`
   display: block;
   margin: 5px;
   font-size: 15px;
-  font-weight: bolder;
   width: 350px;
-  background-color: beige;
+
   :hover {
-    background-color: orange;
+    font-weight: bold;
+    background-color: #f2c84d;
   }
 `;
 
@@ -34,14 +35,26 @@ const CategoryInput = styled.input`
   width: 200px;
   height: 30px;
   font-size: 20px;
+  border: none;
+  border-bottom: 3px solid #5587f5;
   padding: 10px;
 `;
 
 const MainRedirectingButton = styled.button`
-  background-color: #f2c84d;
-  border: 3px solid #f2c84d;
+  background-color: white;
+  border: none;
+  margin-left: 10px;
   font-size: 15px;
   font-weight: bolder;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+
+  :hover {
+    color: white;
+    background-color: #5587f5;
+    transition: 0.3s;
+  }
 `;
 
 export default function SearchBar({ position }) {
@@ -87,7 +100,7 @@ export default function SearchBar({ position }) {
       />
       {keyword && (
         <MainRedirectingButton onClick={() => dispatch(setKeyword())}>
-          메인 랭크페이지로 되돌아가기
+          back to main
         </MainRedirectingButton>
       )}
       {display && (

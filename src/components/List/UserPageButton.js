@@ -5,13 +5,24 @@ const ButtonWrap = styled.div`
   position: absolute;
   top: 10px;
 
-  .Button {
+  button {
+    background-color: white;
     border-style: none;
+  }
+
+  .Button {
+    width: 300px;
+    height: 40px;
     cursor: pointer;
+    border-radius: 15px;
+    box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
   }
 
   .Button:hover {
-    background-color: green;
+    box-shadow: rgba(26, 26, 26, 0.8) 0px 3px 2px 2px;
+    background-color: #f2c84d;
+    color: white;
+    transition: 0.3s;
   }
 `;
 

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-
 import { buildTree } from "90crew-tree-bookmark/src/components/index";
 import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
-import logo_blue from "../../src_assets/logo_blue.png";
-import logo_yellow from "../../src_assets/logo_yellow.png";
+import logoBlue from "../../src_assets/logo_blue.png";
+import logoYellow from "../../src_assets/logo_yellow.png";
 import Button from "./Button";
 
 const TreeWrapper = styled.div`
@@ -23,7 +22,7 @@ const TreeWrapper = styled.div`
 
     .title1 {
       position: absolute;
-      left: 18%;
+      left: 17%;
 
       .logo-blue {
         position: relative;
@@ -35,7 +34,7 @@ const TreeWrapper = styled.div`
 
     .title2 {
       position: absolute;
-      right: 29%;
+      right: 28%;
 
       .logo-yellow {
         position: relative;
@@ -147,13 +146,14 @@ const TreeWrapper = styled.div`
     font-size: 1.3rem;
     text-align: center;
     position: absolute;
-    right: 3.5%;
-    top: 14%;
+    padding: 10px 10px;
+    border-radius: 15px;
+    right: 5.5%;
+    top: 13%;
     cursor: pointer;
     :hover {
-      animation-name: clickButton;
-      animation-iteration-count: infinite;
-      animation-duration: 0.5s;
+      background-color: #f2c84d;
+      transition: 0.3s;
     }
   }
 `;
@@ -185,11 +185,11 @@ export default function Tree() {
     <TreeWrapper>
       <div className="title">
         <h1 className="title1">
-          <img className="logo-blue" src={logo_blue} alt="logo_blue" />
+          <img className="logo-blue" src={logoBlue} alt="logo-blue" />
           Folders
         </h1>
         <h1 className="title2">
-          <img className="logo-yellow" src={logo_yellow} alt="logo_yellow" />
+          <img className="logo-yellow" src={logoYellow} alt="logo_yellow" />
           History
         </h1>
       </div>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
 import { moveFolder, addBookmark } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
 import Folder from "./Folder";
@@ -30,7 +29,6 @@ const FolderTreeWrapper = styled.ul`
 export default function FolderTree({ subTree }) {
   const dispatch = useDispatch();
   const [grabFolder, setGrabFolder] = useState("");
-  const [isToggled, setIsToggled] = useState(false);
 
   const handleDragEnter = (e) => {
     dragEnter(e);

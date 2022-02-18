@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFolder, FaFolderOpen } from "react-icons/fa";
+import { FaFolder } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { ObjectId } from "bson";
 import styled from "styled-components";
@@ -87,7 +87,9 @@ export default function Folder({ folder }) {
         {folder[1]}
         <div className="buttons">
           <Button name="add" type="button" onClickAction={handleAddButton} />
-          <Button name="delete" type="button" onClickAction={handleDeleteButton} />
+          {folder[1] !== "root" && (
+            <Button name="delete" type="button" onClickAction={handleDeleteButton} />
+          )}
         </div>
       </div>
       {isDetailOpen && folder[0] !== "root" && (
