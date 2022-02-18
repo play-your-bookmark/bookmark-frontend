@@ -13,7 +13,6 @@ const LinkWrap = styled.div`
     border-radius: 5px;
     margin: 20px 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
     :hover {
       box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 29px 0px;
       font-weight: bold;

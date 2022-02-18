@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -8,7 +9,9 @@ import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 import Card from "./Card";
 import Modal from "../Modal/Modal";
 import LikeButton from "./LikeButton";
+import { fetchCategoryFolder } from "../../redux/slices/categoryFolderSlices";
 import UserPageButton from "./UserPageButton";
+import { getUserOfSelectedFolder } from "../../redux/slices/userSlices";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -57,7 +60,6 @@ const LinkWrapper = styled.div`
   font-size: 20px;
   border-radius: 15px;
   box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
-
   :hover {
     box-shadow: rgba(26, 26, 26, 1) 0px 3px 2px 2px;
     font-weight: bold;

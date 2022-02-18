@@ -25,7 +25,6 @@ const ButtonWrapper = styled.div`
     height: 40px;
     border-radius: 15px;
     border: 2px solid #f2c84d;
-
     :hover {
       background-color: #f2c84d;
     }

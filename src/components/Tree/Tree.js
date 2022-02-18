@@ -185,7 +185,7 @@ export default function Tree() {
     <TreeWrapper>
       <div className="title">
         <h1 className="title1">
-          <img className="logo-blue" src={logoBlue} alt="logo-blue" />
+          <img className="logo-blue" src={logoBlue} alt="logo_blue" />
           Folders
         </h1>
         <h1 className="title2">

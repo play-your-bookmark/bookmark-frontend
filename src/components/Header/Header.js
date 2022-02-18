@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
 import NavBar from "./NavBar";
 import logoBlue from "../../src_assets/logo_blue.png";
 import logoYellow from "../../src_assets/logo_yellow.png";
@@ -34,7 +33,6 @@ const LogoutButton = styled.div`
   margin-right: 125px;
   font-size: 18px;
   font-weight: 300;
-
   :hover {
     font-weight: 600;
     transition: 0.3s;
