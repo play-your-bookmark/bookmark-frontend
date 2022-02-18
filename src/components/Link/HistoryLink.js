@@ -1,45 +1,42 @@
 import styled from "styled-components";
+
 import { dragEnd, dragOver, dragStart } from "../../utils/dnd";
 
 const LinkWrap = styled.div`
   .LinkWrap {
-    width: 40rem;
-    height: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    margin: 1rem;
+    text-align: center;
+    width: 50rem;
+    height: 5rem;
+    border-radius: 5px;
+    margin: 20px 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 6px;
+
+    :hover {
+      box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 29px 0px;
+      font-weight: bold;
+      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
   }
 
   .LinkWrap-Title {
     display: flex;
-    width: 40rem;
-    height: 5rem;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    background-color: #e2e5e7;
-    color: #566270;
-    font-size: 1rem;
     justify-content: center;
-    text-align: center;
     align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    height: 3rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #ebebeb;
+    cursor: pointer;
   }
 
   .LinkWrap-Url {
-    width: 30rem;
-    height: 2.5rem;
-    margin: 16px;
-    border-radius: 4px;
-    overflow: hidden;
-    font-size: 1rem;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 2rem;
   }
 `;
 
@@ -51,11 +48,10 @@ export default function HistoryLink({ linkInfo }) {
   const handleDragStart = (e) => {
     dragStart(e);
 
-    const target = e.target.dataset;
+    const target = e.currentTarget.dataset;
     e.dataTransfer.setData("type", "link");
     e.dataTransfer.setData("title", target.title);
     e.dataTransfer.setData("url", target.url);
-    e.dataTransfer.setData("visit_time", target.visit_time);
   };
 
   const handleDragEnd = (e) => {
@@ -73,9 +69,17 @@ export default function HistoryLink({ linkInfo }) {
       onDragEnd={handleDragEnd}
     >
       <div className="LinkWrap">
-        <div className="LinkWrap-Title ">{linkInfo.title}</div>
+        <div className="LinkWrap-Title ">
+          {linkInfo.title
+            ? linkInfo.title.length > 50
+              ? `${linkInfo.title.slice(0, 50)}...`
+              : linkInfo.title
+            : "제목 없음"}
+        </div>
         <div className="LinkWrap-Url">
-          <a href={linkInfo.url}>{linkInfo.url}</a>
+          <a href={linkInfo.url}>
+            {linkInfo.url.length > 50 ? `${linkInfo.url.slice(0, 50)}...` : linkInfo.url}
+          </a>
         </div>
       </div>
     </LinkWrap>

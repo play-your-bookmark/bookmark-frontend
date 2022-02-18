@@ -1,28 +1,40 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { ObjectId } from "bson";
-import {
-  moveFolder,
-  addFolder,
-  addBookmark,
-  deleteFolderInDB,
-  getFolderDetail,
-} from "../../redux/slices/folderSlices";
+import { moveFolder, addBookmark } from "../../redux/slices/folderSlices";
 import { dragEnd, dragEnter, dragLeave, dragOver, dragStart, drop } from "../../utils/dnd";
-import Button from "./Button";
-import Category from "../Category/Category";
-import FolderDetail from "./FolderDetail";
+import Folder from "./Folder";
+
+const FolderTreeWrapper = styled.ul`
+  display: flex;
+
+  li {
+    margin-top: 15px;
+  }
+
+  .drag-target .folder:not(ul, li) {
+    background-color: #f2c84d;
+    cursor: grabbing;
+  }
+
+  .droppable:not(ul, li, .add, .delete, button) {
+    background-color: #5587f5;
+    width: 330px;
+    height: 45px;
+    transition: 0.2s;
+    opacity: 0.4;
+  }
+`;
 
 export default function FolderTree({ subTree }) {
   const dispatch = useDispatch();
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [grabFolder, setGrabFolder] = useState("");
 
   const handleDragEnter = (e) => {
     dragEnter(e);
-    e.target.classList.add("droppable");
+    if (!e.target.classList.contains("buttons")) {
+      e.target.classList.add("droppable");
+    }
   };
 
   const handleDragleave = (e) => {
@@ -48,11 +60,16 @@ export default function FolderTree({ subTree }) {
     drop(e);
     e.target.classList.remove("droppable");
 
+    if (!e.target.dataset._id) {
+      return;
+    }
+
     const dataType = e.dataTransfer.getData("type");
     const targetLocationId = e.target.dataset._id;
 
     if (dataType === "folder") {
       const grabFolderId = grabFolder.dataset._id;
+
       if (targetLocationId !== grabFolderId) {
         dispatch(moveFolder({ targetLocationId, grabFolderId }));
       }
@@ -69,68 +86,32 @@ export default function FolderTree({ subTree }) {
     dispatch(addBookmark({ newBookmark, targetLocationId }));
   };
 
-  const handleAddButton = (e) => {
-    e.stopPropagation();
-    const targetLocation = subTree[0];
-    const newFolderId = `${new ObjectId().toString()} new`;
-    const newFolderName = "새폴더";
-
-    const newFolder = {
-      _id: newFolderId,
-      title: newFolderName,
-      publisher: "",
-      likes: [],
-      bookmark: [],
-      main_category: "",
-      sub_category: "",
-      parent_folder: targetLocation,
-    };
-
-    dispatch(addFolder(newFolder));
-    setIsCategoryOpen(true);
-  };
-
-  const handleDeleteButton = (e) => {
-    e.stopPropagation();
-    const targetFolder = subTree[0];
-    dispatch(deleteFolderInDB(targetFolder));
-  };
-
-  const handleFolderDetailButton = (e) => {
-    const targetId = e.target.dataset._id;
-    setIsDetailOpen(true);
-    dispatch(getFolderDetail(targetId));
-  };
-
   return (
-    <li
-      key={subTree[0]}
-      data-_id={subTree[0]}
-      draggable
-      onDragEnter={handleDragEnter}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragleave}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      onDrop={handleDrop}
-    >
-      <div className="folder" data-_id={subTree[0]} onDoubleClick={handleFolderDetailButton}>
-        - {subTree[1]}
-      </div>
-      {isDetailOpen && subTree[0] !== "root" && (
-        <FolderDetail target={subTree[0]} isOpen={isDetailOpen} setIsOpen={setIsDetailOpen} />
-      )}
-      <Category isOpen={isCategoryOpen} setIsOpen={setIsCategoryOpen} />
-      <Button name="add" type="button" onClickAction={handleAddButton} />
-      <Button name="delete" type="button" onClickAction={handleDeleteButton} />
-      {subTree.length >= 3 &&
-        subTree.map((child, index) => {
-          if (index < 3) {
-            return;
-          }
+    <FolderTreeWrapper>
+      <li>
+        <div
+          key={subTree[0]}
+          className="drag-item"
+          data-_id={subTree[0]}
+          draggable
+          onDragEnter={handleDragEnter}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragleave}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDrop={handleDrop}
+        >
+          <Folder folder={subTree} />
+          {subTree.length >= 3 &&
+            subTree.map((child, index) => {
+              if (index < 3) {
+                return;
+              }
 
-          return <FolderTree subTree={child} />;
-        })}
-    </li>
+              return <FolderTree subTree={child} />;
+            })}
+        </div>
+      </li>
+    </FolderTreeWrapper>
   );
 }

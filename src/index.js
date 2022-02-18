@@ -6,12 +6,14 @@ import store from "./redux/store/store";
 
 import App from "./components/App/App";
 import Authenticate from "./service/authenticate";
+import GlobalStyle from "./style/GlobalStyle";
 
 const auth = new Authenticate();
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
+      <GlobalStyle />
       <App auth={auth} />
     </Router>
   </Provider>,

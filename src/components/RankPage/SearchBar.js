@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { resetUniqueCategoryFolders } from "../../redux/slices/categoryFolderSlices";
+import { selectFolder } from "../../redux/slices/folderSlices";
 import { setKeyword } from "../../redux/slices/keywordSlices";
 import CATEGORY from "../../utils/customCategory.json";
 
 const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
+  display: ${(props) => props.position};
+  padding-left: 50px;
 `;
 
 const OptionWrapper = styled.div`
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
+  top: 200px;
   z-index: 2;
 `;
 
@@ -20,13 +23,43 @@ const Option = styled.div`
   color: black;
   text-decoration: none;
   display: block;
+  margin: 5px;
+  font-size: 15px;
   width: 350px;
+
   :hover {
-    background-color: #f1f1f1;
+    font-weight: bold;
+    background-color: #f2c84d;
   }
 `;
 
-export default function SearchBar() {
+const CategoryInput = styled.input`
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 3px solid #5587f5;
+  padding: 10px;
+`;
+
+const MainRedirectingButton = styled.button`
+  background-color: white;
+  border: none;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: bolder;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+
+  :hover {
+    color: white;
+    background-color: #5587f5;
+    transition: 0.3s;
+  }
+`;
+
+export default function SearchBar({ position }) {
   const [display, setDisplay] = useState(false);
   const [options, setOptions] = useState(CATEGORY);
   const [search, setSearch] = useState("");
@@ -35,7 +68,6 @@ export default function SearchBar() {
   const keyword = useSelector((state) => state.keyword.keyword);
 
   function setKeywordOnInput(keyword) {
-    // 폴더 찾을 시, 쉽게 찾기 위해 정규 표현식으로 불필요한 부분 trimming -> 폴더 저장에 따라 수정 필요
     const folderKeyword = keyword.replace(/[^A-Za-z]/gi, "");
     dispatch(setKeyword(folderKeyword));
 
@@ -59,17 +91,23 @@ export default function SearchBar() {
     }
   }
 
+  function handleResetButton() {
+    dispatch(resetUniqueCategoryFolders(keyword));
+    dispatch(setKeyword());
+    dispatch(selectFolder());
+  }
+
   return (
-    <Wrapper ref={wrapperRef}>
-      <input
+    <Wrapper ref={wrapperRef} position={position}>
+      <CategoryInput
         id="search-input"
-        placeholder="키워드를 입력하세요"
+        placeholder="🔎 Search category"
         onClick={() => setDisplay(!display)}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
       {keyword && (
-        <button onClick={() => dispatch(setKeyword())}>메인 랭크페이지로 되돌아가기</button>
+        <MainRedirectingButton onClick={handleResetButton}>back to main</MainRedirectingButton>
       )}
       {display && (
         <OptionWrapper>

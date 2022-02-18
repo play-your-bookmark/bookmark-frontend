@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import List from "../../List/List";
-// mockdata 사용중
-import folders from "../../../utils/folders.json";
+import logoYello from "../../../src_assets/logo_yellow.png";
 
 const ListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 const TitleWrapper = styled.h2`
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  img {
+    margin-right: 10px;
+  }
 `;
 
 export default function SubRankPage() {
@@ -20,8 +24,23 @@ export default function SubRankPage() {
 
   return (
     <ListWrapper>
-      <List category={keyword} origin="keywordCategory" />
-      <List />
+      <div>
+        <TitleWrapper># {keyword}</TitleWrapper>
+        <List
+          category={keyword}
+          width={500}
+          height={550}
+          origin="keywordCategory"
+          color="#5587f5"
+        />
+      </div>
+      <div>
+        <TitleWrapper>
+          <img src={logoYello} alt="logo" width="30px" />
+          Links
+        </TitleWrapper>
+        <List width={800} height={550} color="#F2C84D" />
+      </div>
     </ListWrapper>
   );
 }

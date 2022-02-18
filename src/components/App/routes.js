@@ -1,16 +1,16 @@
 import { Navigate, Outlet } from "react-router-dom";
 import isLoggedIn from "../../utils/isLoggedIn";
 
+import Header from "../Header/Header";
 import Login from "../Login/Login";
 import RankPage from "../RankPage/RankPage";
 import FolderEditPage from "../FolderEditPage/FolderEditPage";
-import Header from "../Header/Header";
 import UserPage from "../UserPage/UserPage";
 
 const routes = (auth) => [
   {
     path: "/app",
-    element: isLoggedIn() ? <Header /> : <Navigate to="/auth/login" />,
+    element: isLoggedIn() ? <Header auth={auth} /> : <Navigate to="/auth/login" />,
     children: [
       { path: "/app/rankpage", element: <RankPage /> },
       { path: "/app/editpage", element: <FolderEditPage /> },

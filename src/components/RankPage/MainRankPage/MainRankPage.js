@@ -9,12 +9,14 @@ import { fetchCategoryFolder } from "../../../redux/slices/categoryFolderSlices"
 
 const ListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  padding: 10px 10px;
 `;
 
 const TitleWrapper = styled.h2`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  font-weight: 500;
 `;
 
 export default function MainRankPage() {
@@ -50,7 +52,13 @@ export default function MainRankPage() {
       {category.mainCategory.map((element, index) => (
         <div key={element.name}>
           <TitleWrapper># {category.mainCategory[index].name}</TitleWrapper>
-          <List category={category.mainCategory[index].name} origin="mainCategory" />
+          <List
+            category={category.mainCategory[index].name}
+            origin="mainCategory"
+            width={500}
+            height={550}
+            color="#5587f5"
+          />
         </div>
       ))}
     </ListWrapper>

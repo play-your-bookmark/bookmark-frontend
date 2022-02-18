@@ -1,52 +1,105 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import category from "../../utils/category.json";
-import {
-  changeFolderDetail,
-  deleteBookmark,
-  getFolderDetail,
-  selectCategory,
-} from "../../redux/slices/folderSlices";
+import { changeFolderDetail, getFolderDetail } from "../../redux/slices/folderSlices";
 import SelectBox from "../Category/SelectBox";
 import TreeModal from "./TreeModal";
 import Bookmark from "./Bookmark";
+import Button from "./Button";
 
 const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: baseline;
+  padding: 10px 10px;
+  width: 92%;
+  height: 88%;
+  border-radius: 15px;
   background-color: #ffffff;
-  margin: 10px 10px;
-  align-items: center;
-  width: 95%;
-  height: 90%;
-  border-radius: 35px;
+  box-shadow: 1px 1px 5px #000;
 
-  .form {
-    width: 90%;
-    height: 90%;
+  .change {
+    position: absolute;
+    font-size: 1rem;
+    color: #5587f5;
+    background-color: #ffffff;
+    top: 50px;
+    right: 100px;
+    cursor: pointer;
   }
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  input {
+    width: 400px;
+    height: 30px;
+    font-size: 1.7rem;
+    border: none;
+    border-bottom: 3px solid #5587f5;
+  }
+`;
+
+const CategoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 100px;
 
   .category {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    .edit-button {
+      position: absolute;
+      left: 330px;
+      top: 135px;
+      font-size: 1rem;
+      color: #5587f5;
+      cursor: pointer;
+    }
   }
-  .edit {
-    margin-left: 10px;
-    border: 1px solid black;
-    text-align: center;
-    width: 130px;
+
+  .category-box {
+    margin-top: 5px;
   }
 `;
 
-const BookmarkWrapper = styled.div`
+const BookmarkListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 200px;
-  overflow-y: scroll;
+  height: 350px;
   border-radius: 15px;
+
+  .list {
+    height: 90%;
+    border: 3px solid #5587f5;
+    border-radius: 10px;
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 15px;
+      background-color: #5587f5;
+    }
+
+    ::-webkit-scrollbar-track {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: #ebebeb;
+    }
+  }
 `;
 
 export default function FolderDetail({ target, isOpen, setIsOpen }) {
@@ -56,6 +109,7 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
   const [subCategoryIndex, setSubCategory] = useState(0);
   const [showCategorySelectBox, setShowCategorySelectBox] = useState(false);
   const [title, setTitle] = useState(folderInfo.title);
+  const SAVE_CHANGE_MESSAGE = "수정 하시겠습니까?";
 
   useEffect(() => {
     dispatch(getFolderDetail(target));
@@ -85,7 +139,11 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
         bookmark: folderInfo.bookmark,
       };
     }
-    dispatch(changeFolderDetail(changedInfo));
+
+    if (window.confirm(SAVE_CHANGE_MESSAGE)) {
+      dispatch(changeFolderDetail(changedInfo));
+    }
+
     setIsOpen(false);
   };
 
@@ -93,21 +151,26 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
     <div>
       <TreeModal open={isOpen} onClose={() => setIsOpen(false)}>
         <DetailWrapper>
-          <div className="form">
+          <Button name="change" type="button" onClickAction={handleSaveButton} />
+          <TitleWrapper>
+            Title
             <input name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          </TitleWrapper>
+          <CategoryWrapper>
+            Category
             <div className="category">
-              Category: {folderInfo.main_category} / {folderInfo.sub_category}
+              {folderInfo.main_category} / {folderInfo.sub_category}
               <div
-                className="edit"
+                className="edit-button"
                 onClick={() =>
                   setShowCategorySelectBox((showCategorySelectBox) => !showCategorySelectBox)
                 }
               >
-                {showCategorySelectBox ? "cancel change" : "change"}
+                {showCategorySelectBox ? "cancel" : "change category"}
               </div>
             </div>
             {showCategorySelectBox && (
-              <div>
+              <div className="category-box">
                 <SelectBox category={category.mainCategory} onSelectCategory={setMainCategory} />
                 <SelectBox
                   category={category.mainCategory[mainCategoryIndex].subCategory}
@@ -115,8 +178,10 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
                 />
               </div>
             )}
-            <div>북마크 리스트</div>
-            <BookmarkWrapper>
+          </CategoryWrapper>
+          <BookmarkListWrapper>
+            Bookmarks
+            <div className="list">
               {folderInfo.bookmark.map((link, index) => {
                 if (!folderInfo.bookmark) {
                   return;
@@ -124,11 +189,8 @@ export default function FolderDetail({ target, isOpen, setIsOpen }) {
 
                 return <Bookmark bookmark={link} index={index} />;
               })}
-            </BookmarkWrapper>
-          </div>
-          <button type="button" onClick={handleSaveButton}>
-            저장하기
-          </button>
+            </div>
+          </BookmarkListWrapper>
         </DetailWrapper>
       </TreeModal>
     </div>

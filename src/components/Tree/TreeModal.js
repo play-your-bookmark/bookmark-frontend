@@ -10,11 +10,11 @@ const ModalStyle = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 50rem;
-  height: 25rem;
+  width: 60rem;
+  height: 35rem;
   border-radius: 35px;
   transform: translate(-50%, -50%);
-  background-color: #f2c84d;
+  background-color: #5587f5;
   z-index: 1000;
 `;
 

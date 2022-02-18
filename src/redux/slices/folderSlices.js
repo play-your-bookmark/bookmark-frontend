@@ -5,8 +5,33 @@ export const fetchCreatedFolder = createAsyncThunk(
   "get/folders",
   async (payload, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { data } = await req("get", "/folder/main", (res) => res, true);
+      const objectId = payload?.userObjectId.id;
 
+      if (objectId) {
+        const { data } = await req("get", "/folder/main", { params: objectId }, (res) => res, true);
+        return data;
+      }
+
+      const { data } = await req("get", "/folder/main", {}, (res) => res, true);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const fetchLikeFolder = createAsyncThunk(
+  "get/folders/like",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const objectId = payload.userObjectId.id;
+
+      if (objectId) {
+        const { data } = await req("get", "/folder/like", { params: objectId }, (res) => res, true);
+        return data;
+      }
+
+      const { data } = await req("get", "/folder/like", {}, (res) => res, true);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -56,12 +81,32 @@ const folderSlices = createSlice({
     moveFolder: (state, action) => {
       const { targetLocationId, grabFolderId } = action.payload;
       const grabFolderIndex = state.folderList.findIndex((folder) => folder._id === grabFolderId);
-      const grabFolder = state.folderList[grabFolderIndex];
-      if (grabFolder.parent_folder === targetLocationId) {
-        return;
-      }
+      const targetFolderIndex = state.folderList.findIndex(
+        (folder) => folder._id === targetLocationId,
+      );
 
-      state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      const checkParent = (grabFolderIndex, targetFolderIndex) => {
+        const grabFolder = state.folderList[grabFolderIndex];
+        const targetFolder = state.folderList[targetFolderIndex];
+
+        if (!targetFolder.parent_folder || targetFolder._id === "root") {
+          return true;
+        }
+
+        if (grabFolder._id === targetFolder.parent_folder) {
+          return false;
+        }
+
+        const upperFolderIndex = state.folderList.findIndex(
+          (folder) => folder._id === targetFolder.parent_folder,
+        );
+
+        return checkParent(grabFolderIndex, upperFolderIndex);
+      };
+
+      if (grabFolderId !== "root" || checkParent(grabFolderIndex, targetFolderIndex)) {
+        state.folderList[grabFolderIndex].parent_folder = targetLocationId;
+      }
     },
     addFolder: (state, action) => {
       state.folderList.push(action.payload);
@@ -146,6 +191,17 @@ const folderSlices = createSlice({
       state.loading = false;
     },
     [deleteFolderInDB.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [fetchLikeFolder.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchLikeFolder.fulfilled]: (state, action) => {
+      state.likedFolder = action.payload;
+      state.loading = false;
+    },
+    [fetchLikeFolder.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
