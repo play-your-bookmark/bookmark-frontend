@@ -30,22 +30,37 @@ const LinkListWrap = styled.div`
   .logo-yellow {
     width: 1rem;
   }
+
+  .input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 500px;
+    height: 100px;
+    margin-top: 200px;
+
+    .html {
+      border: none;
+      background-color: white;
+      font-size: 15px;
+    }
+  }
 `;
 
 export default function LinkList() {
   const [target, setTarget] = useState(null);
-  const LinkLists = useSelector((state) => state.link.linkList);
   const isLoaded = useSelector((state) => state.link.isLoaded);
   const [file, setFile] = useState(null);
   const [bookmark, setBookmark] = useState([]);
 
-  useInfinityScroll(target);
-
   async function handleSubmit(e) {
     e.preventDefault();
+
     const accessToken = Cookies.get("accessToken");
     const formData = new FormData();
     formData.append("bookmark", file);
+
     const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}/file`, formData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -63,17 +78,26 @@ export default function LinkList() {
   return (
     <LinkListWrap>
       {!bookmark.length && (
-        <form onSubmit={handleSubmit}>
-          <input name="html" type="file" accept="html" onChange={handleFileChange} />
-          <input type="submit" value="submit" />
-        </form>
+        <div className="input-box">
+          <h3>
+            Chrome 브라우저 - 설정 - 북마크 - 북마크 관리자에서
+            <br />
+            북마크 내보내기로 받은 파일을 넣어주세요
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="html"
+              name="html"
+              type="file"
+              accept="html"
+              onChange={handleFileChange}
+            />
+            <input className="html" type="submit" value="북마크 가져오기" />
+          </form>
+        </div>
       )}
       {!!bookmark.length &&
         bookmark.map((info, index) => <HistoryLink linkInfo={info} key={info.key} />)}
-      <div className="Target-Element">
-        <img ref={setTarget} className="logo-yellow" src={logoYellow} alt="logo_yellow" />
-        {isLoaded && <Loader />}
-      </div>
     </LinkListWrap>
   );
 }
