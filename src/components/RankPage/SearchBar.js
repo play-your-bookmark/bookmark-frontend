@@ -2,10 +2,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
+import CATEGORY from "../../utils/customCategory.json";
 import { resetUniqueCategoryFolders } from "../../redux/slices/categoryFolderSlices";
 import { selectFolder } from "../../redux/slices/folderSlices";
 import { setKeyword } from "../../redux/slices/keywordSlices";
-import CATEGORY from "../../utils/customCategory.json";
 
 const Wrapper = styled.div`
   display: ${(props) => props.position};

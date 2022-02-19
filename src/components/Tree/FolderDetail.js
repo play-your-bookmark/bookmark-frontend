@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
 import category from "../../utils/category.json";
 import { changeFolderDetail, getFolderDetail } from "../../redux/slices/folderSlices";
 import SelectBox from "../Category/SelectBox";

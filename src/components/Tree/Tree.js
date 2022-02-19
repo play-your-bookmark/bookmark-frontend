@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { buildTree } from "90crew-tree-bookmark/src/components/index";
+
 import { fetchCreatedFolder, saveFolders } from "../../redux/slices/folderSlices";
 import FolderTree from "./FolderTree";
 import LinkList from "../Link/LinkList";
 import logoBlue from "../../src_assets/logo_blue.png";
 import logoYellow from "../../src_assets/logo_yellow.png";
 import Button from "./Button";
+import { buildTree } from "../../utils/tree";
 
 const TreeWrapper = styled.div`
   display: flex;
@@ -151,6 +152,7 @@ const TreeWrapper = styled.div`
     right: 5.5%;
     top: 13%;
     cursor: pointer;
+
     :hover {
       background-color: #f2c84d;
       transition: 0.3s;

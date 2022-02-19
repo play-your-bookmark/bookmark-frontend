@@ -17,6 +17,7 @@ const FolderWrapper = styled.div`
   border-radius: 15px;
   box-shadow: rgba(26, 26, 26, 0.4) 0px 3px 2px 2px;
   cursor: pointer;
+
   :hover {
     box-shadow: rgba(26, 26, 26, 1) 0px 3px 2px 2px;
     font-weight: bold;

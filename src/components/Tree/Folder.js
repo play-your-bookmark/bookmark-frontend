@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { FaFolder } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { ObjectId } from "bson";
 import styled from "styled-components";
+
+import { FaFolder } from "react-icons/fa";
+import { ObjectId } from "bson";
 import { getFolderDetail, addFolder, deleteFolderInDB } from "../../redux/slices/folderSlices";
 import Button from "./Button";
 import FolderDetail from "./FolderDetail";
@@ -44,6 +45,7 @@ export default function Folder({ folder }) {
 
   const handleFolderDetailButton = (e) => {
     e.stopPropagation();
+
     const targetId = e.target.dataset._id;
     setIsDetailOpen(true);
     dispatch(getFolderDetail(targetId));
@@ -51,10 +53,10 @@ export default function Folder({ folder }) {
 
   const handleAddButton = (e) => {
     e.stopPropagation();
+
     const targetLocation = folder[0];
     const newFolderId = `${new ObjectId().toString()} new`;
     const newFolderName = "새폴더";
-
     const newFolder = {
       _id: newFolderId,
       title: newFolderName,

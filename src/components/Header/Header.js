@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { Outlet, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
 import NavBar from "./NavBar";
 import logoBlue from "../../src_assets/logo_blue.png";
 import logoYellow from "../../src_assets/logo_yellow.png";

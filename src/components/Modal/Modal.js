@@ -38,6 +38,7 @@ const ModalStyle = styled.div`
     border-radius: 15px;
     background-color: white;
     cursor: pointer;
+
     :hover {
       background-color: #f2c84d;
     }
