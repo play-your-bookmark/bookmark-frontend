@@ -69,6 +69,26 @@ export default function LinkList() {
     setFile(e.target.files[0]);
   };
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const accessToken = Cookies.get("accessToken");
+    const formData = new FormData();
+    formData.append("bookmark", file);
+
+    const { data } = await axios.post("http://localhost:7001/file", formData, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    setBookmark(data);
+  }
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   return (
     <LinkListWrap>
       {!bookmark.length && (

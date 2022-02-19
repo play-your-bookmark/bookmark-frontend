@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+=======
+/api/*  https://api.playyourbookmark.com/:splat     200
+>>>>>>> master
 /*  /index.html 200
