@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { nanoid } from "nanoid";
+
 import ColorOfLegend from "./ColorOfLegend";
 import {
   makeBookmarkCountAndTotalCountArray,

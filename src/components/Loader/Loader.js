@@ -1,5 +1,6 @@
-import ReactLoading from "react-loading";
 import styled from "styled-components";
+
+import ReactLoading from "react-loading";
 
 const LoaderWrap = styled.div`
   width: 100%;

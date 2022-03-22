@@ -1,8 +1,9 @@
 import React from "react";
+import "./NavBar.css";
+
 import { BiUser } from "react-icons/bi";
 import { CgListTree } from "react-icons/cg";
 import { GiMedallist } from "react-icons/gi";
-import "./NavBar.css";
 
 const SidebarData = [
   {
