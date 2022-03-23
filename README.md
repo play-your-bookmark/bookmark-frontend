@@ -41,9 +41,8 @@
 - 계획 수립
 
 2022.2.7 - 2022.2.18 : 2주
-- 개발 진행
-- 배포
-- Read.me 작성
+- 개발 진행 및 배포
+- Readme.md 작성
 
 ## Tech Stack
 ### Frontend
@@ -61,12 +60,11 @@
 
 ### 그 외
 - AWS
-- ESLint
-- Prettier
+- ESLint + Prettier
 
 ### Task Tool
 - Schedule : [Jira](https://90crew.atlassian.net/jira/software/projects/MYS/boards/1)
-- Mockup : Figma
+- Mockup : [Figma](https://www.figma.com/file/gSNpLMxkEmz0oscsBiIZ0y/play-your-bookmark)
 
 ## Features
 ### 로그인
@@ -92,20 +90,20 @@
 ## Technical Log
 ### tree view 구현
 tree 자료구조에서 영감을 받았으며, nested array를 사용하여, 부모 - 자식 간의 상대적 위계관계를 정의하였습니다. 
--
--  building folder tree: 배열 형태로 자식을 저장하는 방식으로서, 재귀적으로 함수를 호출하여, nested tree를 구성하였습니다. 이 경우, 첫 인덱스로는 id값을 저장하였는데, 이는 relocate, add, delete 등의 메소드 구현을 염두한 것으로서 추가, 수정, 삭제를 용이하게 하였습니다.
+
+- building folder tree: 배열 형태로 자식을 저장하는 방식으로서, 재귀적으로 함수를 호출하여, nested tree를 구성하였습니다. 이 경우, 첫 인덱스로는 id값을 저장하였는데, 이는 relocate, add, delete 등의 메소드 구현을 염두한 것으로서 추가, 수정, 삭제를 용이하게 하였습니다.
 - rendering folder tree: Componenet를 재귀적으로 rendering 하였습니다. 최초, build된 folder tree를 props로 받고, map배열을 통해 tree의 children들을 props로 전달 및 재귀호출하여 전체 tree를 render합니다.
 - folder tree method: nested array 배열을 재귀호출을 통해 조회하며, target folder를 찾고 아래와 같은 메소드를 수행합니다.
   - relocate folder: 현재 참조하고 있는 parent folder를 다른 parent folder로 바꿔줍니다. 이 경우, 해당 child folder 이하의 children들도 함께 이동시킬 수 있습니다. 
   - add / delete tree: 현재 참조하고 있는 parent folder를 찾아, 해당 배열을 iterating 하여 target folder를 추가, 삭제합니다.
 
-- drag and drop
-<br />
-  라이브러리를 사용하기보다는 직접 구현해보고자 하는 팀의 프로젝트 구현 방향에 맞춰 react-dnd와 같이 드래그-앤-드롭 라이브러리로 유명하고 널리 사용되고 있는 리액트 라이브러리 대신, `HTML API`를 직접 사용해보기로 했습니다. HTML Drag and Drop API를 활용하였지만 appendChild와 같이 직접 DOM의 구조 변경을 시도하는 것이 아닌, 우리의 프로젝트의 폴더 tree-view 구조에 맞게 적용시켰습니다.
-<br />
+### drag and drop
+
+라이브러리를 사용하기보다는 직접 구현해보고자 하는 팀의 프로젝트 구현 방향에 맞춰 `react-dnd` 와 같은 drag&drop으로 유명하고 널리 사용되고 있는 리액트 라이브러리 대신, `HTML Drag & drop API` 를 직접 사용해보기로 했습니다. `HTML Drag and Drop API` 를 활용하였지만 `appendChild` 와 같이 직접 DOM의 구조 변경을 시도하는 것이 아닌, 우리의 프로젝트의 폴더 tree-view 구조에 맞게 적용시켰습니다.
+
 서버에 api 요청을 매번 보내지 않고 폴더의 계층구조 변경 및 북마크 링크를 폴더에 추가하는 기능에 사용하기 위해 `dataset`을 활용하였습니다. 
-<br />
-이번 프로젝트에서 db에 저장된 폴더의 구조는 nested child를 모두 기록하는 방식이 아닌, parent가 누구인지를 저장해두는 형태이기 때문에 계층 구조를 바꾸는 경우, drop event 발생 시 놓는 곳의 id값을 받아서 drag 한 파일의 parent를 바꾸어주는 방법으로 활용하였습니다. 또한, drag 하는 대상이 폴더인지, 링크인지를 구분하기 위해 `dataTransfer.setdatat()`로 구분하여 drop시에 발생하는 이벤트 분기 처리에 활용하였습니다.
+
+이번 프로젝트에서 db에 저장된 폴더의 구조는 nested child를 모두 기록하는 방식이 아닌, parent가 누구인지를 저장해두는 형태이기 때문에 계층 구조를 바꾸는 경우, drop event 발생 시 놓는 곳의 id값을 받아서 drag 한 파일의 parent를 바꾸어주는 방법으로 활용하였습니다. 또한, drag 하는 대상이 폴더인지, 링크인지를 구분하기 위해 `dataTransfer.setdata()`로 구분하여 drop시에 발생하는 이벤트 분기 처리에 활용하였습니다.
 
 ### history
 저희 프로젝트의 핵심 기능 중 하나인 검색기록을 불러오기 위해 node-browser-history 라이브러리를 사용하였습니다.
