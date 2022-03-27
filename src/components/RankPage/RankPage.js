@@ -2,10 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import MainRankPage from "./MainRankPage/MainRankPage";
 import SubRankPage from "./SubRankPage/SubRankPage";
 import SearchBar from "./SearchBar";
+import Loader from "../Loader/Loader";
 
 const RankHeader = styled.div`
   display: flex;
@@ -28,15 +28,7 @@ const ElapsedTime = styled.div`
 
 export default function RankPage() {
   const keyword = useSelector((state) => state.keyword.keyword);
-
-  const timerProps = {
-    isPlaying: true,
-    size: 100,
-    strokeWidth: 8,
-    duration: 5,
-    initialRemainingTime: 5,
-    colors: "#f2c84d",
-  };
+  const loadingTime = useSelector((state) => state.timer.second);
 
   return (
     <div>
@@ -44,22 +36,7 @@ export default function RankPage() {
         {!keyword ? <SearchBar position="inline-block" /> : <SearchBar position="flex" />}
         {!keyword && (
           <div className="loader-wrapper">
-            <CountdownCircleTimer
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...timerProps}
-              onComplete={() => {
-                return { shouldRepeat: true, delay: 1 };
-              }}
-            >
-              {({ elapsedTime }) => {
-                return (
-                  <div className="time-wrapper">
-                    <ElapsedTime>{Math.ceil(5 - elapsedTime)}</ElapsedTime>
-                    <div>seconds</div>
-                  </div>
-                );
-              }}
-            </CountdownCircleTimer>
+            <Loader height={40} width={40} loadingTime={loadingTime} />
           </div>
         )}
       </RankHeader>
